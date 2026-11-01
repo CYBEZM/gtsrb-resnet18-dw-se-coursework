@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "fixture_only": true,
+  "checks": [
+    "single-seed aggregation",
+    "no fabricated SD",
+    "no NaN",
+    "preserved raw accuracy",
+    "all contrasts",
+    "five figure types",
+    "single-seed report prose",
+    "reject incomplete plan"
+  ],
+  "test_script_sha256": "149d0aed7a266f3f01eccf1f93f7e56621a876df7ed4c8c9414616d16492f4cd"
+}

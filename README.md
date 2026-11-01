@@ -2,7 +2,7 @@
 
 从随机初始化训练 GTSRB 适配版 ResNet-18，比较标准卷积、深度可分离卷积与 SE 注意力。研究分类精度、复杂度、硬件性能及五种合成退化下的鲁棒性。与实验三的 YOLO 目标检测、超分辨率复现不同，本项目为裁剪交通标志的多类别图像分类。
 
-**结果状态：请查看 `runs/queue_status.json` 和每次运行的 `complete.json`。没有生成的指标不代表已完成。** `make_tables.py` 只有在四组 × 三个种子全部完成干净及退化评价后才会生成正式汇总；不填充预估准确率。
+**结果状态：请查看 `runs/queue_status.json` 和每次运行的 `complete.json`。没有生成的指标不代表已完成。** 当前正式方案为四组模型各训练一次，种子统一为11、每组60轮。`make_tables.py` 只有在四组全部完成干净及退化评价后才会生成正式汇总；不填充预估准确率。
 
 ## 环境
 
@@ -58,19 +58,21 @@ python train.py --config configs/A.yaml --seed 11 --epochs 8 --data-root data/gt
 # 检查验证曲线、资源占用及验证集退化样例后冻结协议
 python freeze_protocol.py --data-root data/gtsrb
 
-# 单 GPU 串行完成 12 次训练、所有评价、硬件测试和表图汇总
+# 单 GPU 串行完成 4 次训练、所有评价、硬件测试和表图汇总
 python run_experiments.py --data-root data/gtsrb
 ```
 
-正式训练：60 epoch、batch=128、SGD(momentum=0.9, weight_decay=0.0005)、初始学习率0.05、5轮线性预热后余弦衰减至0.0001、统一 AMP FP16。训练种子 `[11,22,33]`。这些是冻结前的候选配置；正式值以 `protocol_frozen.json` 和 run 配置为准。
+正式训练：60 epoch、batch=128、SGD(momentum=0.9, weight_decay=0.0005)、初始学习率0.05、5轮线性预热后余弦衰减至0.0001、统一 AMP FP16。训练种子 `[11]`，四组共4次训练。正式配置见 `protocol_frozen.json` 和 run 配置。
+
+根据用户的计算时间要求，在查看测试结果之前，将原计划的每组3个种子减少为每组1个固定种子11。原协议完整保存在 `protocols/protocol_v1_three_seeds.json`，当前协议记录修订原因、时间和原协议哈希，`validation/single_seed_amendment.json` 记录已保存的 A/B 检查点哈希。没有改变结构、数据划分、60轮训练预算、优化器、学习率计划或退化参数；已完成的A与进行中的B无需重训。
 
 检查点选择规则为验证 Macro-F1 最大，其次验证损失更低，再平局取更早 epoch。验证和正式评价均使用 FP32。训练计时包含训练与验证，不把它当成纯网络性能测试。
 
 单次运行和恢复：
 
 ```powershell
-python train.py --config configs/B.yaml --seed 22 --data-root data/gtsrb --resume
-python eval.py --run runs/B/22 --data-root data/gtsrb --protocol protocol_frozen.json
+python train.py --config configs/B.yaml --seed 11 --data-root data/gtsrb --resume
+python eval.py --run runs/B/11 --data-root data/gtsrb --protocol protocol_frozen.json
 python profile_model.py --variant B --checkpoint runs/B/11/best.ckpt --output report/profiles/B.json
 python make_tables.py
 ```
@@ -98,7 +100,7 @@ python make_tables.py
 ## 运行目录与数字来源
 
 ```text
-runs/{A,B,C,D}/{11,22,33}/
+runs/{A,B,C,D}/11/
   config.json                 实际运行配置
   environment.json            版本、设备、源码清单、git状态
   source_snapshot.zip         含未提交代码的白名单源码快照
@@ -118,9 +120,13 @@ report/
   figures/                    由实测文件生成的PNG/SVG
 ```
 
-表格保留未舍入数值；报告展示时统一舍入，均值±样本标准差(ddof=1)。`summary.json` 记录输入文件及 SHA256；三次种子的标准差不当作显著性检验。配对种子差值和注意力交互效应单独导出。
+表格保留未舍入数值，报告展示时统一舍入。当前为单次运行结果，跨训练种子的标准差不可估计，在JSON中保存为null，CSV留空；图表不绘制跨种子误差条或阴影带，不将标准差设为0或NaN。`summary.json` 记录输入文件及 SHA256。同种子模型差值和注意力交互效应单独导出，只作描述性比较，不作显著性或稳定性结论。硬件计时仍独立重复3轮，这与训练种子重复不同。
 
 队列结束后自动运行 `build_report.py`，从完整实测文件生成 `report/大作业报告.md`，不使用预计精度填空。该文稿仍需进行结果解释和最终版式复核。训练中可运行 `python status.py` 查看当前epoch；不要同时启动另一份训练队列。
+
+### 暂停与继续
+
+在项目目录执行 `python control_training.py pause` 可停止本项目队列和当前训练，释放GPU；已保存检查点保留，尚未保存的当前epoch会在恢复时重跑。执行 `python control_training.py resume` 从最近完整检查点恢复，并跳过已完成实验。控制脚本会核验进程工作目录和脚本名，拒绝重复启动。使用 `python control_training.py status` 查看是否存在本项目进程。不要删除或修改 `last.ckpt`、配置及冻结协议。
 
 ## 场景演示与命令行预测
 

@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "frozen_utc": "2026-11-01T08:55:59.404641+00:00",
   "manifest_sha256": "209d45b5cf8f5caf3218658586be1ab6a6cb8b830221d7358c2f5a00f72a6502",
   "configs": {
@@ -53,9 +53,7 @@
     }
   },
   "seeds": [
-    11,
-    22,
-    33
+    11
   ],
   "corruption_protocol": {
     "version": "gtsrb48-v1",
@@ -109,5 +107,9 @@
     "eval.py": "d21d722e3d21eba016939c8e5ab842b41e5281eaaaa4b80bdaa123fc0020abbe"
   },
   "selection": "max validation macro-F1, then min loss, then earliest epoch",
-  "evaluation": "Clean and 15 prespecified corruptions, all planned models/seeds; no test tuning"
+  "evaluation": "Clean and 15 prespecified corruptions, all planned models/seeds; no test tuning",
+  "amended_utc": "2026-11-01T10:31:10.536156+00:00",
+  "previous_protocol_sha256": "4f52640270b4deac609bad38437fb5b5af0fe54c99476329638fdf25bca503a6",
+  "previous_protocol_path": "protocols/protocol_v1_three_seeds.json",
+  "amendment_reason": "User requested one prespecified seed (11) per model to reduce runtime; no test predictions inspected. Architecture, data split, optimizer, schedule, 60 epochs and corruption settings unchanged."
 }

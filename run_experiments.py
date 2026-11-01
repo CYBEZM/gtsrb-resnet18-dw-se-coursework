@@ -45,12 +45,12 @@ def main():
                          '--data-root', args.data_root, '--protocol', args.protocol])
         for variant in 'ABCD':
             status('profiling', variant=variant)
-            command(['profile_model.py', '--variant', variant, '--checkpoint', args.runs_root / variant / '11/best.ckpt',
+            command(['profile_model.py', '--variant', variant, '--checkpoint', args.runs_root / variant / str(frozen['seeds'][0]) / 'best.ckpt',
                      '--output', f'report/profiles/{variant}.json'])
         status('tables')
-        command(['make_tables.py', '--runs-root', args.runs_root])
+        command(['make_tables.py', '--runs-root', args.runs_root, '--protocol', args.protocol])
         status('report_draft')
-        command(['build_report.py', '--runs-root', args.runs_root])
+        command(['build_report.py', '--runs-root', args.runs_root, '--protocol', args.protocol])
         status('complete')
     except BaseException as error:
         status('failed', error_type=type(error).__name__, detail=str(error))

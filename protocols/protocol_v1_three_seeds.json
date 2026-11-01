@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "frozen_utc": "2026-11-01T08:55:59.404641+00:00",
+  "manifest_sha256": "209d45b5cf8f5caf3218658586be1ab6a6cb8b830221d7358c2f5a00f72a6502",
+  "configs": {
+    "A": {
+      "variant": "A",
+      "epochs": 60,
+      "batch_size": 128,
+      "eval_batch_size": 256,
+      "lr": 0.05,
+      "min_lr": 0.0001,
+      "warmup_epochs": 5,
+      "momentum": 0.9,
+      "weight_decay": 0.0005,
+      "amp": true
+    },
+    "B": {
+      "variant": "B",
+      "epochs": 60,
+      "batch_size": 128,
+      "eval_batch_size": 256,
+      "lr": 0.05,
+      "min_lr": 0.0001,
+      "warmup_epochs": 5,
+      "momentum": 0.9,
+      "weight_decay": 0.0005,
+      "amp": true
+    },
+    "C": {
+      "variant": "C",
+      "epochs": 60,
+      "batch_size": 128,
+      "eval_batch_size": 256,
+      "lr": 0.05,
+      "min_lr": 0.0001,
+      "warmup_epochs": 5,
+      "momentum": 0.9,
+      "weight_decay": 0.0005,
+      "amp": true
+    },
+    "D": {
+      "variant": "D",
+      "epochs": 60,
+      "batch_size": 128,
+      "eval_batch_size": 256,
+      "lr": 0.05,
+      "min_lr": 0.0001,
+      "warmup_epochs": 5,
+      "momentum": 0.9,
+      "weight_decay": 0.0005,
+      "amp": true
+    }
+  },
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "corruption_protocol": {
+    "version": "gtsrb48-v1",
+    "size": 48,
+    "padding": "edge",
+    "resize": "PIL bilinear",
+    "normalization_mean": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "normalization_std": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "brightness": [
+      0.7,
+      0.4,
+      0.2
+    ],
+    "motion": [
+      3,
+      5,
+      9
+    ],
+    "noise": [
+      0.03,
+      0.06,
+      0.12
+    ],
+    "jpeg": [
+      50,
+      25,
+      10
+    ],
+    "resolution": [
+      32,
+      24,
+      12
+    ],
+    "motion_angle_degrees": 0,
+    "noise_units": "RGB values scaled to [0,1]",
+    "order": "edge pad -> resize 48 -> corruption -> tensor -> normalization"
+  },
+  "source_sha256": {
+    "src/models.py": "0b7327e0906b19a50964a6f18500b47245837845cb7b4027497d7d08de958d38",
+    "src/data.py": "885f215046a1f35222d7ce759cc69c0490494044b43e08c9006b85ec5f4eb550",
+    "src/utils.py": "2eca1a1cf8af682c1712ad72b9411bced880108e5f48859a574a3a1b39950c94",
+    "train.py": "a47d85d4da9393a52fe0ab1d2df43fce9fef1066aab208ed85a1d6160669a521",
+    "eval.py": "d21d722e3d21eba016939c8e5ab842b41e5281eaaaa4b80bdaa123fc0020abbe"
+  },
+  "selection": "max validation macro-F1, then min loss, then earliest epoch",
+  "evaluation": "Clean and 15 prespecified corruptions, all planned models/seeds; no test tuning"
+}

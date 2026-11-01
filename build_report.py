@@ -21,22 +21,30 @@ def table(headers, rows):
 
 
 def pm(mean, std):
+    if std is None:
+        return f'{100*mean:.2f}'
     return f'{100*mean:.2f} ± {100*std:.2f}'
 
 
-def build(runs_root, report_root):
+def build(runs_root, report_root, protocol_path='protocol_frozen.json'):
     runs_root, report_root = Path(runs_root), Path(report_root)
     raw = read_json(report_root / 'tables/summary.json')
     data = read_json(report_root / 'data/dataset_summary.json')
-    protocol = read_json('protocol_frozen.json')
+    protocol = read_json(protocol_path)
+    seeds = protocol['seeds']
+    n_seeds = len(seeds)
     models = {r['variant']: r for r in raw['models']}
-    if set(models) != set('ABCD') or len(raw['per_seed']) != 12:
-        raise ValueError('Report requires all four variants and three seeds')
+    expected_runs = {(v, seed) for v in 'ABCD' for seed in seeds}
+    actual_runs = {(r['variant'], r['seed']) for r in raw['per_seed']}
+    if (set(models) != set('ABCD') or actual_runs != expected_runs or
+            len(raw['per_seed']) != len(expected_runs) or raw['seeds'] != seeds or
+            raw['protocol_sha256'] != sha256(protocol_path)):
+        raise ValueError('Report requires exactly the runs in the active frozen protocol')
     for row in raw['source_files']:
         if sha256(row['path']) != row['sha256']:
             raise ValueError(f'Result changed after aggregation: {row["path"]}')
     a, b, c, d = (models[v] for v in 'ABCD')
-    env = read_json(runs_root / 'A/11/environment.json')
+    env = read_json(runs_root / 'A' / str(seeds[0]) / 'environment.json')
     cfg = protocol['configs']['A']
     dw_parameter_reduction = 100 * (1 - b['parameters'] / a['parameters'])
     dw_mac_reduction = 100 * (1 - b['conv_linear_macs'] / a['conv_linear_macs'])
@@ -58,9 +66,20 @@ def build(runs_root, report_root):
          [pm(next(r for r in raw['robustness'] if r['variant'] == v and r['kind'] == kind and r['severity'] == level)['accuracy_mean'],
              next(r for r in raw['robustness'] if r['variant'] == v and r['kind'] == kind and r['severity'] == level)['accuracy_std'])
           for v in 'ABCD'] for kind in NAMES for level in (1, 2, 3)])
-    contrast_table = table(['对比', '平均准确率差 pp', '差值标准差 pp'],
-        [[r['contrast'], f'{r["mean_accuracy_difference_pp"]:+.3f}',
-          f'{r["std_accuracy_difference_pp"]:.3f}'] for r in raw['contrasts']])
+    contrast_headers = ['对比', '准确率差 pp'] if n_seeds == 1 else ['对比', '平均准确率差 pp', '差值标准差 pp']
+    contrast_table = table(contrast_headers,
+        [[r['contrast'], f'{r["mean_accuracy_difference_pp"]:+.3f}'] +
+         ([] if n_seeds == 1 else [f'{r["std_accuracy_difference_pp"]:.3f}']) for r in raw['contrasts']])
+    seed_description = (f'每组使用一个预先指定的训练种子{seeds[0]}' if n_seeds == 1 else
+                        f'每组使用{n_seeds}个训练种子')
+    uncertainty_note = ('各表为单次运行结果，不报告跨种子标准差或置信区间。'
+                        if n_seeds == 1 else f'表中“±”为{n_seeds}个训练种子的样本标准差，而非置信区间。')
+    contrast_note = ('下表为固定同一种子下的模型差值。未进行多种子重复，不能据此判断收益的稳定性或统计显著性。'
+                     if n_seeds == 1 else '下表列出同种子配对差值及其样本标准差，不能仅凭平均数或标准差就宣称统计显著。')
+    limitation_note = ('局限包括单一数据集版本、单次固定分组划分、单个训练种子和单一GPU平台。'
+                       '本实验未估计训练随机性或其他数据划分带来的不确定性，结构差值只作描述性比较。'
+                       if n_seeds == 1 else '局限包括单一数据集版本、单次固定分组划分、有限训练种子和单一GPU平台。'
+                       '样本标准差主要描述训练随机性，没有覆盖其他数据划分的不确定性。')
     strongest = {}
     for v in 'ABCD':
         row = max((r for r in raw['robustness'] if r['variant'] == v and r['severity'] == 3),
@@ -73,14 +92,14 @@ def build(runs_root, report_root):
         for v, r in strongest.items())
     error_rows = []
     for v in ('A', 'D'):
-        clean = read_json(runs_root / v / '11/test_metrics.json')
+        clean = read_json(runs_root / v / str(seeds[0]) / 'test_metrics.json')
         cm = np.array(clean['confusion_matrix'])
         np.fill_diagonal(cm, 0)
         for flat in np.argsort(cm.ravel())[-5:][::-1]:
             truth, pred = np.unravel_index(flat, cm.shape)
             if cm[truth, pred] > 0:
                 error_rows.append([v, int(truth), int(pred), int(cm[truth, pred])])
-    errors = table(['组别 seed11', '真实类别ID', '预测类别ID', '错误图片数'], error_rows)
+    errors = table([f'组别 seed{seeds[0]}', '真实类别ID', '预测类别ID', '错误图片数'], error_rows)
     sources = table(['表图', '原始文件与字段'], [
         ['干净性能与逐种子结果', 'runs/{variant}/{seed}/test_metrics.json: accuracy, macro_f1, correct, samples'],
         ['模型复杂度', 'runs/{variant}/{seed}/complexity.json: parameters, conv_linear_macs'],
@@ -97,10 +116,10 @@ def build(runs_root, report_root):
 本项目针对裁剪交通标志的多类别图像分类，研究 CNN 结构对识别精度、模型复杂度和退化鲁棒性的影响。
 以适配小尺寸图像的 ResNet-18 为基线，分别引入深度可分离卷积和 SE 通道注意力，构建四组控制变量实验。
 使用 GTSRB 的 Training_fixed 数据版本，按完整拍摄序列分组划分训练集和验证集，并在固定官方测试集上评价。
-每组使用三个训练种子，基线干净测试准确率为 {pm(a['accuracy_mean'],a['accuracy_std'])}%，
+{seed_description}，基线干净测试准确率为 {pm(a['accuracy_mean'],a['accuracy_std'])}%，
 DW 组参数量减少 {dw_parameter_reduction:.2f}%，Conv/Linear MACs 减少 {dw_mac_reduction:.2f}%，
 其准确率相对基线变化 {delta_b:+.2f} 个百分点。
-SE 在标准卷积和 DW 骨架上的平均准确率变化分别为 {delta_c:+.2f} 和 {delta_d:+.2f} 个百分点。
+SE 在标准卷积和 DW 骨架上的准确率变化分别为 {delta_c:+.2f} 和 {delta_d:+.2f} 个百分点。
 此外，以五类固定合成退化和同一 GPU 上的实际计时分析结构取舍，不将理论 MACs 直接解释为硬件加速。
 
 关键词：卷积神经网络；残差连接；深度可分离卷积；通道注意力；交通标志识别
@@ -111,7 +130,7 @@ SE 在标准卷积和 DW 骨架上的平均准确率变化分别为 {delta_c:+.2
 光照、模糊和压缩还会进一步改变可见特征。因此，模型设计需要同时考虑干净输入上的识别能力、
 计算资源和输入质量下降时的表现。
 
-本项目的问题是：降低卷积复杂度会产生多大的精度代价；SE 是否在不同骨架上带来稳定收益；
+本项目的问题是：降低卷积复杂度会产生多大的精度代价；SE 在不同骨架上的识别表现如何变化；
 结构变化是否同时改善理论复杂度与实际推理性能。目标不限定为改进模型必须超过基线。
 本项目的输入是已裁剪的标志图片，不包含道路照片中的目标定位。
 实验三复现的是 YOLO 和超分辨率算法；本项目在任务、数据处理、网络主体和消融设计上均与之不同。
@@ -184,12 +203,12 @@ SE 是已有方法，本项目的工作为任务适配、结构组合与实验�
 SGD动量 {cfg['momentum']}、权重衰减 {cfg['weight_decay']}、初始学习率 {cfg['lr']}。
 学习率前 {cfg['warmup_epochs']} 轮预热，之后余弦衰减至 {cfg['min_lr']}。
 训练启用AMP FP16，验证和最终推理使用FP32，关闭TF32。
-种子为11、22、33，不以测试集选出最佳种子。
+训练种子为{seeds}，不以测试集选出最佳种子。
 
 模型按验证 Macro-F1 最大的epoch选择，平局时优先较低验证损失，再优先较早epoch。
 模型、训练规则和退化参数冻结后统一评价测试集，不根据测试结果修改超参数。
 Accuracy为正确预测图片数占比；Macro-F1对全部43类F1等权平均，
-未预测出的类别按零处理。表中“±”为三个训练种子的样本标准差，而非置信区间。
+未预测出的类别按零处理。{uncertainty_note}
 
 ## 5 干净测试结果与消融分析
 
@@ -201,8 +220,7 @@ B相对A的准确率变化为 {delta_b:+.3f} 个百分点，
 这组结果应与实际延迟和退化结果共同判断，不能只据参数量选择最终模型。
 
 C相对A、D相对B的准确率变化分别为 {delta_c:+.3f} 和 {delta_d:+.3f} 个百分点。
-下表列出同种子配对差值及其样本标准差；只有三个种子，
-不能仅凭平均数或标准差就宣称差异具有统计显著性。
+{contrast_note}
 
 {contrast_table}
 
@@ -219,7 +237,7 @@ C相对A、D相对B的准确率变化分别为 {delta_c:+.3f} 和 {delta_d:+.3f}
 
 ### 5.2 错误类型
 
-以下使用预先指定的seed11，列出A与D中出现最多的非对角混淆，不按测试准确率选择展示种子。
+以下使用预先指定的seed{seeds[0]}，列出A与D中出现最多的非对角混淆，不按测试准确率选择展示种子。
 类别中文含义可在代码 `src/labels.py` 中查到。错误数量不能直接解释为某类别更难，
 还需考虑每类支持样本数、拍摄条件和外观相似性。
 
@@ -294,8 +312,7 @@ DW相对基线减少 {dw_parameter_reduction:.2f}% 参数和 {dw_mac_reduction:.
 干净准确率变化 {delta_b:+.3f} 个百分点；SE在两种骨架上的效果分别由C−A和D−B给出。
 最终选择需要结合表中的干净精度、各类退化和目标硬件性能，而非预设D组必然最好。
 
-局限包括单一数据集版本、单次固定分组划分、三个训练种子和单一GPU平台。
-标准差主要描述训练随机性，没有覆盖其他数据划分的不确定性。
+{limitation_note}
 合成退化不代表真实道路泛化，Grad-CAM也不能证明因果机制。
 后续可在新增独立场景数据和更严格统计设计下验证结论，再考虑stage局部替换或低数据量实验。
 
@@ -305,7 +322,7 @@ DW相对基线减少 {dw_parameter_reduction:.2f}% 参数和 {dw_mac_reduction:.
 
 本报告输入汇总文件SHA256：`{sha256(report_root / 'tables/summary.json')}`。
 数据清单SHA256：`{data['manifest_sha256']}`。
-冻结协议SHA256：`{sha256('protocol_frozen.json')}`。
+冻结协议SHA256：`{sha256(protocol_path)}`。
 
 ## 参考文献
 
@@ -326,5 +343,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--runs-root', default='runs')
     parser.add_argument('--report-root', default='report')
+    parser.add_argument('--protocol', default='protocol_frozen.json')
     args = parser.parse_args()
-    build(args.runs_root, args.report_root)
+    build(args.runs_root, args.report_root, args.protocol)
