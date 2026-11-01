@@ -1,0 +1,13 @@
+data/
+__pycache__/
+*.pyc
+runs/
+pilot/
+report/
+*.ckpt
+*.pt
+*.npy
+*.npz
+*.zip
+*.part
+.streamlit/secrets.toml
