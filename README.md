@@ -16,7 +16,7 @@ python -m pip install -r requirements.txt
 python -c "import sys,torch; print(sys.executable,torch.__version__,torch.cuda.is_available())"
 ```
 
-项目代码不依赖 torchvision 的二进制扩展，也不下载预训练模型。数据 ZIP 的官方地址和 MD5 参照 torchvision 2.7.1 对应发行版本的 GTSRB 下载定义。每次运行的确切依赖版本保存在 `environment.json`。
+项目代码不依赖 torchvision 的二进制扩展，也不下载预训练模型。数据 ZIP 的官方地址和 MD5 参照 torchvision 的 GTSRB 下载定义。每次运行的确切依赖版本保存在 `environment.json`。
 
 下列命令假定已进入本项目目录，`python` 指向支持 CUDA 的解释器。本机 PowerShell 可将命令开头的 `python` 替换为 `& 'D:\Anaconda3\python.exe'`。
 
@@ -119,6 +119,8 @@ report/
 ```
 
 表格保留未舍入数值；报告展示时统一舍入，均值±样本标准差(ddof=1)。`summary.json` 记录输入文件及 SHA256；三次种子的标准差不当作显著性检验。配对种子差值和注意力交互效应单独导出。
+
+队列结束后自动运行 `build_report.py`，从完整实测文件生成 `report/大作业报告.md`，不使用预计精度填空。该文稿仍需进行结果解释和最终版式复核。训练中可运行 `python status.py` 查看当前epoch；不要同时启动另一份训练队列。
 
 ## 场景演示与命令行预测
 

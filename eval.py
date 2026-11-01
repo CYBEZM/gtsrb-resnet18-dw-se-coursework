@@ -78,7 +78,7 @@ def evaluate_run(run, data_root, frozen_path):
             raise ValueError(f'Frozen source changed: {source}')
     cfg = read_json(run / 'config.json')
     recorded_source = {r['path']: r['sha256'] for r in read_json(run / 'environment.json')['source_files']}
-    for source in ('src/models.py', 'src/data.py', 'train.py'):
+    for source in ('src/models.py', 'src/data.py', 'src/utils.py', 'train.py'):
         if recorded_source.get(source) != frozen['source_sha256'][source]:
             raise ValueError(f'Run used source different from frozen protocol: {source}')
     variant, seed = cfg['variant'], cfg['seed']

@@ -1,0 +1,102 @@
+{
+  "device": "cuda",
+  "models": {
+    "A": {
+      "parameters": 11190891,
+      "conv_linear_macs": 1249711616,
+      "input_shape": [
+        1,
+        3,
+        48,
+        48
+      ],
+      "output_shape": [
+        1,
+        43
+      ],
+      "stage_macs": [
+        339738624,
+        301989888,
+        301989888,
+        301989888
+      ],
+      "scope": "Conv2d/Linear MACs only; 1 MAC = 1 multiply-accumulate",
+      "optimizer_step": "passed"
+    },
+    "B": {
+      "parameters": 1456555,
+      "conv_linear_macs": 164370944,
+      "input_shape": [
+        1,
+        3,
+        48,
+        48
+      ],
+      "output_shape": [
+        1,
+        43
+      ],
+      "stage_macs": [
+        43057152,
+        40071168,
+        38909952,
+        38329344
+      ],
+      "scope": "Conv2d/Linear MACs only; 1 MAC = 1 multiply-accumulate",
+      "optimizer_step": "passed"
+    },
+    "C": {
+      "parameters": 11279971,
+      "conv_linear_macs": 1249798656,
+      "input_shape": [
+        1,
+        3,
+        48,
+        48
+      ],
+      "output_shape": [
+        1,
+        43
+      ],
+      "stage_macs": [
+        339739648,
+        301993984,
+        302006272,
+        302055424
+      ],
+      "scope": "Conv2d/Linear MACs only; 1 MAC = 1 multiply-accumulate",
+      "optimizer_step": "passed"
+    },
+    "D": {
+      "parameters": 1545635,
+      "conv_linear_macs": 164457984,
+      "input_shape": [
+        1,
+        3,
+        48,
+        48
+      ],
+      "output_shape": [
+        1,
+        43
+      ],
+      "stage_macs": [
+        43058176,
+        40075264,
+        38926336,
+        38394880
+      ],
+      "scope": "Conv2d/Linear MACs only; 1 MAC = 1 multiply-accumulate",
+      "optimizer_step": "passed"
+    }
+  },
+  "metrics_and_corruptions": "passed",
+  "dataset": {
+    "train": 21360,
+    "validation": 5280,
+    "test": 12630,
+    "train_tracks": 712,
+    "val_tracks": 176,
+    "overlap": 0
+  }
+}

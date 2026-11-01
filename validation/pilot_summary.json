@@ -1,0 +1,19 @@
+{
+  "status": "8-epoch pilot completed; not a formal experiment or test result",
+  "variant": "A",
+  "seed": 11,
+  "epochs": 8,
+  "best_validation_accuracy": 0.9674242424242424,
+  "best_validation_macro_f1": 0.922032434485064,
+  "mean_epoch_seconds": 46.066097487499974,
+  "checkpoint_sha256": "5e339329a0a1bfa94e4f94bbcb11d69178f0e9a74589d5113de3f1d59727ca6e",
+  "test_set_evaluated": false,
+  "data_counts": {
+    "train": 21360,
+    "validation": 5280,
+    "test": 12630,
+    "train_tracks": 712,
+    "val_tracks": 176,
+    "overlap": 0
+  }
+}

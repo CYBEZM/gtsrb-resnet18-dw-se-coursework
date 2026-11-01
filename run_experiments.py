@@ -49,6 +49,8 @@ def main():
                      '--output', f'report/profiles/{variant}.json'])
         status('tables')
         command(['make_tables.py', '--runs-root', args.runs_root])
+        status('report_draft')
+        command(['build_report.py', '--runs-root', args.runs_root])
         status('complete')
     except BaseException as error:
         status('failed', error_type=type(error).__name__, detail=str(error))
