@@ -1,0 +1,18 @@
+{
+  "training_runs": 12,
+  "completed_epochs": 720,
+  "evaluated_conditions": 192,
+  "result_audit": "PASS",
+  "summary_audit": "PASS",
+  "pdf": {
+    "path": "report/大作业报告_三种子.pdf",
+    "sha256": "99e48a52d47bfcc82fbc3f3efaa08b31bd5007434c05e6b81dde9728551775a2",
+    "pages": 12,
+    "visual_review": "all 12 rendered pages inspected after final export; PASS"
+  },
+  "word_visual_review": {
+    "status": "UNAVAILABLE",
+    "reason": "No soffice.exe; Word COM 0x80070520; Computer Use native pipe unavailable",
+    "file": "../大作业报告_交通标志识别_三种子待排版核验.docx"
+  }
+}

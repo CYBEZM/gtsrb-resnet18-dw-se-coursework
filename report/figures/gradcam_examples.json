@@ -1,0 +1,164 @@
+{
+  "subset": "prespecified validation examples",
+  "source": "report/data/dataset_summary.json",
+  "target_layer": "stage3 (12x12)",
+  "image_sha256": "3fdd43d6703c911879e3c8f9243cb29d3bcef6268f59c71aa83ecf0aad3b3fd7",
+  "examples": [
+    {
+      "sample_id": "GTSRB/Training/00001/00003_00000.ppm",
+      "true_class": 1,
+      "subset": "validation",
+      "A": [
+        {
+          "class_id": 1,
+          "name": "限速30",
+          "probability": 0.9900381565093994
+        },
+        {
+          "class_id": 25,
+          "name": "道路施工",
+          "probability": 0.006493094377219677
+        },
+        {
+          "class_id": 14,
+          "name": "停车让行",
+          "probability": 0.0010671141790226102
+        }
+      ],
+      "D": [
+        {
+          "class_id": 1,
+          "name": "限速30",
+          "probability": 0.9763594269752502
+        },
+        {
+          "class_id": 14,
+          "name": "停车让行",
+          "probability": 0.012002949602901936
+        },
+        {
+          "class_id": 5,
+          "name": "限速80",
+          "probability": 0.0027320568915456533
+        }
+      ]
+    },
+    {
+      "sample_id": "GTSRB/Training/00013/00004_00000.ppm",
+      "true_class": 13,
+      "subset": "validation",
+      "A": [
+        {
+          "class_id": 13,
+          "name": "减速让行",
+          "probability": 0.8679290413856506
+        },
+        {
+          "class_id": 9,
+          "name": "禁止超车",
+          "probability": 0.04640152305364609
+        },
+        {
+          "class_id": 10,
+          "name": "禁止3.5吨以上车辆超车",
+          "probability": 0.020551854744553566
+        }
+      ],
+      "D": [
+        {
+          "class_id": 13,
+          "name": "减速让行",
+          "probability": 0.6794126033782959
+        },
+        {
+          "class_id": 10,
+          "name": "禁止3.5吨以上车辆超车",
+          "probability": 0.15298983454704285
+        },
+        {
+          "class_id": 9,
+          "name": "禁止超车",
+          "probability": 0.027076108381152153
+        }
+      ]
+    },
+    {
+      "sample_id": "GTSRB/Training/00025/00004_00000.ppm",
+      "true_class": 25,
+      "subset": "validation",
+      "A": [
+        {
+          "class_id": 25,
+          "name": "道路施工",
+          "probability": 0.8847202062606812
+        },
+        {
+          "class_id": 10,
+          "name": "禁止3.5吨以上车辆超车",
+          "probability": 0.02420063130557537
+        },
+        {
+          "class_id": 20,
+          "name": "向右急弯",
+          "probability": 0.023219797760248184
+        }
+      ],
+      "D": [
+        {
+          "class_id": 25,
+          "name": "道路施工",
+          "probability": 0.5459802150726318
+        },
+        {
+          "class_id": 20,
+          "name": "向右急弯",
+          "probability": 0.27290549874305725
+        },
+        {
+          "class_id": 30,
+          "name": "注意冰雪",
+          "probability": 0.04015585035085678
+        }
+      ]
+    },
+    {
+      "sample_id": "GTSRB/Training/00038/00006_00000.ppm",
+      "true_class": 38,
+      "subset": "validation",
+      "A": [
+        {
+          "class_id": 38,
+          "name": "靠右行驶",
+          "probability": 0.999516487121582
+        },
+        {
+          "class_id": 34,
+          "name": "向左转弯",
+          "probability": 6.817052053520456e-05
+        },
+        {
+          "class_id": 36,
+          "name": "直行或右转",
+          "probability": 6.112356641096994e-05
+        }
+      ],
+      "D": [
+        {
+          "class_id": 38,
+          "name": "靠右行驶",
+          "probability": 0.9991069436073303
+        },
+        {
+          "class_id": 34,
+          "name": "向左转弯",
+          "probability": 0.0001711383374640718
+        },
+        {
+          "class_id": 36,
+          "name": "直行或右转",
+          "probability": 0.00013377830327954143
+        }
+      ]
+    }
+  ]
+}

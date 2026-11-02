@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "variant": "D",
+  "seed": 33,
+  "epochs": 60,
+  "best_epoch": 28,
+  "best_validation_macro_f1": 0.9597378564295351,
+  "checkpoint_sha256": "2fbd5332b6652e2b320382420841282f3113521423556baec06986a9673b558d",
+  "manifest_sha256": "209d45b5cf8f5caf3218658586be1ab6a6cb8b830221d7358c2f5a00f72a6502",
+  "note": "Validation only; test set has not been used by train.py"
+}

@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "seeds": [
+    11,
+    22,
+    33
+  ],
+  "standard_deviation_ddof": 1,
+  "protocol_sha256": "c2047458eb0981b4f12c36c2f1924d90413b7a7554041fd84aadd5150d5763df",
+  "summary_sha256": "04c9f43d9a08fc8ee3698697fa39a1311ccf33a4e954ecaa62def766bcb2a865",
+  "checks": [
+    "clean and corruption Accuracy/Macro-F1 means and sample SD",
+    "paired contrasts and interaction means and sample SD",
+    "all seeds included"
+  ]
+}

@@ -65,6 +65,19 @@ def build(runs_root, report_root, protocol_path='protocol_frozen.json'):
     clean_rank = max(models, key=lambda v: models[v]['accuracy_mean'])
     clean_discussion = (f'本次{n_seeds}个种子的汇总中，干净测试平均准确率最高的是{clean_rank}组。'
         '四组干净精度差异应结合具体百分点、错误数量和Macro-F1理解，不能因模型包含更多模块就预设其更优。')
+    repeated_discussion = ''
+    if n_seeds > 1:
+        details = []
+        for label, row in zip(('B−A（DW替换）', 'C−A（标准骨架加入SE）', 'D−B（DW骨架加入SE）'), raw['contrasts'][:3]):
+            values = [row[f'seed{seed}_pp'] for seed in seeds]
+            changes = '、'.join(f'种子{seed}为{value:+.3f}' for seed, value in zip(seeds, values))
+            details.append(f'{label}的准确率差为：{changes}个百分点，'
+                           f'其中{sum(value > 0 for value in values)}/{n_seeds}个种子的差值为正。')
+        repeated_discussion = (''.join(details) +
+            f'D组准确率的跨种子标准差为{100*d["accuracy_std"]:.3f}个百分点，'
+            f'A组为{100*a["accuracy_std"]:.3f}个百分点。'
+            '这些结果说明组合结构的收益具有骨架和训练随机性的依赖；'
+            '三个种子仅支持描述性比较，不能将同方向差值直接解释为统计显著。')
     main_table = table(['组别', 'Accuracy %', 'Macro-F1 %', '参数量', 'MACs M'],
         [[v, pm(r['accuracy_mean'], r['accuracy_std']), pm(r['macro_f1_mean'], r['macro_f1_std']),
           f'{r["parameters"]:,}', f'{r["conv_linear_macs"]/1e6:.3f}'] for v, r in models.items()])
@@ -275,9 +288,12 @@ C相对A、D相对B的准确率变化分别为 {delta_c:+.3f} 和 {delta_d:+.3f}
 
 {contrast_table}
 
+{repeated_discussion}
+
 ![训练和验证曲线](figures/learning_curves.png)
 
 训练曲线用于检查收敛、过拟合以及固定训练预算的限制。
+曲线表示全部训练种子的算术均值，阴影表示均值上下一个样本标准差；阴影不是置信区间。
 各模型均使用同一预算，这不等同于证明各架构已达到其所有可能超参数下的最优性能。
 
 ![精度和复杂度取舍](figures/tradeoffs.png)

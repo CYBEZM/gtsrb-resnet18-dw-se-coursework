@@ -2,18 +2,20 @@
 
 从随机初始化训练 GTSRB 适配版 ResNet-18，比较标准卷积、深度可分离卷积与 SE 注意力。研究分类精度、复杂度、硬件性能及五种合成退化下的鲁棒性。与实验三的 YOLO 目标检测、超分辨率复现不同，本项目为裁剪交通标志的多类别图像分类。
 
-**当前计划：四组统一使用种子11、22、33，每次60轮，共12次训练和192项评价。** 种子11已完成并通过逐样本独立复核；正在补充22、33。三种子汇总仅在全部完成后生成。运行 `python status.py` 查看实时状态。
+**已完成：四组统一使用种子11、22、33，每次60轮，共12次训练、720轮和192项评价。** 逐样本指标独立复核与均值／样本标准差复核均为PASS。运行 `python status.py` 查看本地状态。
 
-以下是已完成的种子11历史结果，不能当作三种子均值。原报告归档在 `archives/single_seed_11/report/`，原评价协议为 `protocols/protocol_v2_single_seed.json`。
+下表为全部三个种子的均值±样本标准差（ddof=1）；GPU延迟沿用固定种子11的三轮计时结果，不是跨训练种子的均值。原单种子报告在本地归档于 `archives/single_seed_11/report/`，原评价协议为 `protocols/protocol_v2_single_seed.json`。
 
 | 组别 | 测试 Accuracy % | Macro-F1 % | 参数量 | Conv/Linear MACs M | GPU中位延迟 ms |
 |---|---:|---:|---:|---:|---:|
-| A ResNet-18 | 98.55 | 97.05 | 11,190,891 | 1249.712 | 10.465 |
-| B DW | 98.35 | 97.00 | 1,456,555 | 164.371 | 3.071 |
-| C SE | 98.65 | 97.36 | 11,279,971 | 1249.799 | 12.176 |
-| D DW+SE | 97.78 | 96.01 | 1,545,635 | 164.458 | 5.309 |
+| A ResNet-18 | 98.56 ± 0.02 | 97.35 ± 0.28 | 11,190,891 | 1249.712 | 10.465 |
+| B DW | 98.42 ± 0.15 | 97.31 ± 0.31 | 1,456,555 | 164.371 | 3.071 |
+| C SE | 98.73 ± 0.07 | 97.69 ± 0.33 | 11,279,971 | 1249.799 | 12.176 |
+| D DW+SE | 98.04 ± 0.42 | 96.88 ± 0.97 | 1,545,635 | 164.458 | 5.309 |
 
-B相对A减少86.98%参数；上表的精度和延迟仅对应种子11。三种子最终报告、表图及原始JSON将写入 `report/大作业报告.md` 和 `report/tables/summary.json`。权重、逐样本预测和恢复检查点保存在 `runs/`，Git仓库不直接存放大文件。
+B相对A减少86.98%参数，平均准确率降低0.135个百分点；C在三个种子上均比A准确率高，平均提高0.172个百分点；D相对B的平均变化为−0.383个百分点且波动较大。三个种子仅作描述性比较，不宣称统计显著。完整报告见 [报告正文](report/大作业报告.md)，原始汇总见 [summary.json](report/tables/summary.json)。
+
+仓库包含12次运行的JSON和日志，以及报告、表图和审计记录。权重、192份逐样本预测和源码快照保存在本地完整证据包；训练恢复检查点仍在本机 `runs/`。Git不直接存放这些大文件，数据集不再分发。
 
 ## 环境
 
@@ -62,6 +64,15 @@ python inspect_data.py --data-root data/gtsrb
 
 ## 先试跑 再冻结 再正式运行
 
+仓库已发布的 `runs/` 是原始指标与日志，不含权重。若要从头复现，请在**全新克隆的副本**中先把已有指标及报告移入归档目录，再按下列步骤下载数据、生成数据统计和训练；不要在当前实测工作目录执行这两条移动命令：
+
+```powershell
+New-Item -ItemType Directory -Path published_results
+Move-Item -LiteralPath runs,report -Destination published_results
+python prepare_data.py --data-root data/gtsrb --mirror
+python inspect_data.py --data-root data/gtsrb
+```
+
 ```powershell
 # 独立试跑目录，不纳入正式报告；不会查看测试准确率
 python train.py --config configs/A.yaml --seed 11 --epochs 8 --data-root data/gtsrb --output pilot/A11
@@ -69,7 +80,7 @@ python train.py --config configs/A.yaml --seed 11 --epochs 8 --data-root data/gt
 # 检查验证曲线、资源占用及验证集退化样例后冻结协议
 python freeze_protocol.py --data-root data/gtsrb
 
-# 单 GPU 串行完成12次训练，已完成的种子11自动跳过
+# 单 GPU 串行完成12次训练，已有完成标记且校验通过的运行自动跳过
 python run_experiments.py --data-root data/gtsrb
 ```
 
@@ -153,6 +164,19 @@ python export_docx.py
 ```
 
 `audit_results.py`在扩展完成后重新读取192份预测，使用sklearn核对Accuracy、Macro-F1、混淆矩阵、样本对齐、共用退化输入哈希和60轮日志的检查点选择规则。`report/final_audit.json`保存逐样本复核结果，`report/summary_audit.json`保存均值与标准差复核结果。最佳epoch在训练日志中从0计数，报告表格转为从1计数。
+
+独立检查均值与标准差不需要GPU、数据集、权重或预测数组：安装NumPy与PyYAML后，在项目根目录运行 `python audit_summary.py`。完整逐样本复核另需完整证据包中的192份NPZ与12个best.ckpt。重新训练时请使用新目录（或全新克隆后先移出已发布的runs指标目录），避免与已发布记录混用；不可删除原始证据。
+
+PDF导出使用 `python export_pdf.py`，额外依赖reportlab；默认使用Windows宋体和黑体，其他平台通过 `--font` 与 `--bold-font` 传入支持中文的TrueType字体。报告导出依赖可通过 `pip install -r requirements-report.txt` 安装。[已逐页核验的PDF](report/大作业报告_三种子.pdf)与Markdown的数字一致。本机另存了三种子Word文件，但当前会话缺少LibreOffice且无法连接Word，尚未完成Word逐页排版核验；正式阅读以PDF或Markdown为准。
+
+打包使用显式文件白名单并检查当前协议的两份PASS审计；每个包含文件级SHA256清单：
+
+```powershell
+python package_results.py --output ../traffic_sign_cnn_代码报告与实测结果_三种子.zip
+python package_results.py --include-weights --output ../traffic_sign_cnn_权重预测与完整证据_三种子.zip
+```
+
+第一个包提供代码、运行说明、报告图表和12次原始指标；第二个额外提供12个最佳检查点、192份逐样本预测及源码快照。恢复训练使用的last.ckpt保留在本机，不纳入交付包。
 
 ### 暂停与继续
 

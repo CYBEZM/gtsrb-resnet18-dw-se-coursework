@@ -4,6 +4,7 @@ __pycache__/
 runs/
 pilot/
 archives/
+published_results/
 report/
 *.ckpt
 *.pt

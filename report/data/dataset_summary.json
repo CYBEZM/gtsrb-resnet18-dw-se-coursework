@@ -1,0 +1,113 @@
+{
+  "train_images": 21360,
+  "val_images": 5280,
+  "supplied_training_images": 26640,
+  "test_images": 12630,
+  "train_tracks": 712,
+  "val_tracks": 176,
+  "track_overlap": 0,
+  "min_width": 25,
+  "max_width": 243,
+  "min_height": 25,
+  "max_height": 225,
+  "manifest_sha256": "209d45b5cf8f5caf3218658586be1ab6a6cb8b830221d7358c2f5a00f72a6502",
+  "visual_examples": [
+    {
+      "path": "GTSRB/Training/00001/00003_00000.ppm",
+      "label": 1,
+      "track": "00001/00003",
+      "width": 25,
+      "height": 26,
+      "roi": [
+        5,
+        6,
+        20,
+        21
+      ]
+    },
+    {
+      "path": "GTSRB/Training/00013/00004_00000.ppm",
+      "label": 13,
+      "track": "00013/00004",
+      "width": 27,
+      "height": 25,
+      "roi": [
+        6,
+        5,
+        22,
+        20
+      ]
+    },
+    {
+      "path": "GTSRB/Training/00025/00004_00000.ppm",
+      "label": 25,
+      "track": "00025/00004",
+      "width": 38,
+      "height": 34,
+      "roi": [
+        6,
+        6,
+        33,
+        29
+      ]
+    },
+    {
+      "path": "GTSRB/Training/00038/00006_00000.ppm",
+      "label": 38,
+      "track": "00038/00006",
+      "width": 55,
+      "height": 71,
+      "roi": [
+        2,
+        7,
+        50,
+        65
+      ]
+    }
+  ],
+  "dataset_version": "GTSRB-Training_fixed.zip (torchvision version); not the 39,209-image final training release",
+  "protocol": {
+    "version": "gtsrb48-v1",
+    "size": 48,
+    "padding": "edge",
+    "resize": "PIL bilinear",
+    "normalization_mean": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "normalization_std": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "brightness": [
+      0.7,
+      0.4,
+      0.2
+    ],
+    "motion": [
+      3,
+      5,
+      9
+    ],
+    "noise": [
+      0.03,
+      0.06,
+      0.12
+    ],
+    "jpeg": [
+      50,
+      25,
+      10
+    ],
+    "resolution": [
+      32,
+      24,
+      12
+    ],
+    "motion_angle_degrees": 0,
+    "noise_units": "RGB values scaled to [0,1]",
+    "order": "edge pad -> resize 48 -> corruption -> tensor -> normalization"
+  }
+}

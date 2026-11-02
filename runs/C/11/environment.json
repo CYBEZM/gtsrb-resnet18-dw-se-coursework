@@ -1,0 +1,131 @@
+{
+  "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 13:17:27) [MSC v.1929 64 bit (AMD64)]",
+  "executable": "D:\\Anaconda3\\python.exe",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.7.1+cu118",
+  "cuda_runtime": "11.8",
+  "cudnn": 90100,
+  "numpy": "1.26.4",
+  "pillow": "10.4.0",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "git_commit": "132c9f01c3e08921d6559930687b0b5b7575f8af",
+  "git_status": "",
+  "argv": [
+    "train.py",
+    "--config",
+    "configs/C.yaml",
+    "--seed",
+    "11",
+    "--data-root",
+    "C:\\Users\\CYBEZM\\Documents\\Codex\\2026-11-01\\1-github-gitee-cnn-se-net\\work\\gtsrb",
+    "--output",
+    "runs\\C\\11",
+    "--resume"
+  ],
+  "deterministic_cudnn": true,
+  "tf32": false,
+  "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 617.42, [N/A], P5",
+  "source_files": [
+    {
+      "path": "app.py",
+      "sha256": "9878a9d02a02d1683b4a14d82b7e7ce86ecf29655f3e4af47a3c1ce4c0139aff"
+    },
+    {
+      "path": "build_report.py",
+      "sha256": "c0aa374f307405c9c9e01e10839b1d396e2524e62bafa530123f0e077f99671a"
+    },
+    {
+      "path": "control_training.py",
+      "sha256": "12aa3c62353335711afecb7a319c713051b9e52f39a97ace3c671aaaf61ed9f4"
+    },
+    {
+      "path": "eval.py",
+      "sha256": "d21d722e3d21eba016939c8e5ab842b41e5281eaaaa4b80bdaa123fc0020abbe"
+    },
+    {
+      "path": "freeze_protocol.py",
+      "sha256": "2581ab921981cdbd87cdc4365e2ce93c7d63968c1f6a519e85b07de69bdb5c3c"
+    },
+    {
+      "path": "infer.py",
+      "sha256": "fa8a847416e400990ea29c655228bb72ce0641cecb2a24bd52bdee9d15b3d645"
+    },
+    {
+      "path": "inspect_data.py",
+      "sha256": "4dee99de620c1a054b0366584a0f377fc75edc521bf6ce16c6f1c39fe3d7750b"
+    },
+    {
+      "path": "make_tables.py",
+      "sha256": "6cbdecfae5c55858f20d07b872b4b6434319d09578b46457c185aa5a0fe08ee0"
+    },
+    {
+      "path": "prepare_data.py",
+      "sha256": "1a45583baf8916a4b884e8b362c30618795186149c7599aebf2d7dd637e6156c"
+    },
+    {
+      "path": "profile_model.py",
+      "sha256": "5b91265016f9f51b1a769eeaec050ed98f897406c2758415cc46c73894139009"
+    },
+    {
+      "path": "run_experiments.py",
+      "sha256": "c2ae53ef45ae581884b2525853bf3ce4209e5ddcd6fe49c192dce71ac9bcdf56"
+    },
+    {
+      "path": "status.py",
+      "sha256": "1702af20db81321a609c09d85f2fbd7b7dc474eb9b962cfe29b13c90b71dae79"
+    },
+    {
+      "path": "train.py",
+      "sha256": "a47d85d4da9393a52fe0ab1d2df43fce9fef1066aab208ed85a1d6160669a521"
+    },
+    {
+      "path": "verify.py",
+      "sha256": "6db0504e9b3bc6e488b666b6c71ccf81489ff15db8b7bbe6b85f8ca691068a46"
+    },
+    {
+      "path": "src/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "src/data.py",
+      "sha256": "885f215046a1f35222d7ce759cc69c0490494044b43e08c9006b85ec5f4eb550"
+    },
+    {
+      "path": "src/labels.py",
+      "sha256": "22ba3938535981bcee6dbf86ebbfe2203c316379c6cc056814c868cbc971a785"
+    },
+    {
+      "path": "src/models.py",
+      "sha256": "0b7327e0906b19a50964a6f18500b47245837845cb7b4027497d7d08de958d38"
+    },
+    {
+      "path": "src/utils.py",
+      "sha256": "2eca1a1cf8af682c1712ad72b9411bced880108e5f48859a574a3a1b39950c94"
+    },
+    {
+      "path": "configs/A.yaml",
+      "sha256": "8dc6fee4b571cd323efdcb009ee4e9c40730ceff44263c8bce8370d84da4f524"
+    },
+    {
+      "path": "configs/B.yaml",
+      "sha256": "6d7538fe9166dcec839fa4a4cac8649febf9f2f82512cd1ca1b8268f247071f6"
+    },
+    {
+      "path": "configs/C.yaml",
+      "sha256": "a3b8ec7c19db1d3487ae80f6d7954244eae83ee6124aed426de69a88d2b2f765"
+    },
+    {
+      "path": "configs/D.yaml",
+      "sha256": "fa0e412438ce7d2f5c1d794893869135cf6e0299f01069a53c25b662dc799372"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "94cc4c3606371b396d1bfaf796919b2e794a8a2928f2380806f5f72b8f795f8b"
+    },
+    {
+      "path": "README.md",
+      "sha256": "275cbe5bad127d130551741f38daf1d29e83ea0d1ce13f4e4c6e3802451dedf4"
+    }
+  ],
+  "source_snapshot_sha256": "6116769144443b8c75438ece9877f7373f239deec934506650483c6421733c93"
+}

@@ -1,0 +1,151 @@
+{
+  "python": "3.12.7 | packaged by Anaconda, Inc. | (main, Oct  4 2024, 13:17:27) [MSC v.1929 64 bit (AMD64)]",
+  "executable": "D:\\Anaconda3\\python.exe",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "torch": "2.7.1+cu118",
+  "cuda_runtime": "11.8",
+  "cudnn": 90100,
+  "numpy": "1.26.4",
+  "pillow": "10.4.0",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "git_commit": "132c9f01c3e08921d6559930687b0b5b7575f8af",
+  "git_status": "M README.md\n M build_report.py\n M control_training.py\n M freeze_protocol.py\n M make_tables.py\n M protocol_frozen.json\n M requirements.txt\n M run_experiments.py\n M status.py\n?? archives/\n?? audit_results.py\n?? experiment_protocol.py\n?? export_docx.py\n?? extend_seeds.py\n?? make_examples.py\n?? protocols/protocol_v2_single_seed.json\n?? validation/three_seed_extension.json",
+  "argv": [
+    "train.py",
+    "--config",
+    "configs/A.yaml",
+    "--seed",
+    "22",
+    "--data-root",
+    "C:\\Users\\CYBEZM\\Documents\\Codex\\2026-11-01\\1-github-gitee-cnn-se-net\\work\\gtsrb",
+    "--output",
+    "runs\\A\\22",
+    "--resume"
+  ],
+  "deterministic_cudnn": true,
+  "tf32": false,
+  "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 617.42, [N/A], P8",
+  "source_files": [
+    {
+      "path": "app.py",
+      "sha256": "9878a9d02a02d1683b4a14d82b7e7ce86ecf29655f3e4af47a3c1ce4c0139aff"
+    },
+    {
+      "path": "audit_results.py",
+      "sha256": "285c7b3fc815dd68dd8a44b83479c2f849316424e67abf4841d148a804caf4a4"
+    },
+    {
+      "path": "build_report.py",
+      "sha256": "c354aaed145d0121e90ad5a3fad3405645efaa0faa93a0d722b687726e909c6a"
+    },
+    {
+      "path": "control_training.py",
+      "sha256": "56bd0acf39c3ef5366d8899fbda546c00a77eae2e64e57359b4b34c42c209d17"
+    },
+    {
+      "path": "eval.py",
+      "sha256": "d21d722e3d21eba016939c8e5ab842b41e5281eaaaa4b80bdaa123fc0020abbe"
+    },
+    {
+      "path": "experiment_protocol.py",
+      "sha256": "cc504488a8dcfa94ebdc0b2772259e240855a0e58ad40312b7e05a4715dd6b46"
+    },
+    {
+      "path": "export_docx.py",
+      "sha256": "79102a41e24d94dbbec9e81cab2ed3aecf2f347d7697c38def7b482c45f2ea27"
+    },
+    {
+      "path": "extend_seeds.py",
+      "sha256": "810989bd7201f95767eab0341344b84d79ccde8329f868eb69e0dae3e2130821"
+    },
+    {
+      "path": "freeze_protocol.py",
+      "sha256": "d4aeb789624ebd2dd4f364ede97292bafb226668bd070663f7816c870dbbfc57"
+    },
+    {
+      "path": "infer.py",
+      "sha256": "fa8a847416e400990ea29c655228bb72ce0641cecb2a24bd52bdee9d15b3d645"
+    },
+    {
+      "path": "inspect_data.py",
+      "sha256": "4dee99de620c1a054b0366584a0f377fc75edc521bf6ce16c6f1c39fe3d7750b"
+    },
+    {
+      "path": "make_examples.py",
+      "sha256": "6012e120d2384e3a85f6d4ce2a1c8dcde6686d4109c2e592f7443fd53d8dfc69"
+    },
+    {
+      "path": "make_tables.py",
+      "sha256": "c5604359c5790a4e9c0c1d5c242d07a6113424fcfebc036904f7a4e54d1c944d"
+    },
+    {
+      "path": "prepare_data.py",
+      "sha256": "1a45583baf8916a4b884e8b362c30618795186149c7599aebf2d7dd637e6156c"
+    },
+    {
+      "path": "profile_model.py",
+      "sha256": "5b91265016f9f51b1a769eeaec050ed98f897406c2758415cc46c73894139009"
+    },
+    {
+      "path": "run_experiments.py",
+      "sha256": "8d2be3336f8f01ce9b83cc8d2e09e98c1c69682a6e8b13924f051c98221f899c"
+    },
+    {
+      "path": "status.py",
+      "sha256": "4792b0265db08244bd290780b2aaa392aab745a7cc4577829df8ee70478d8e1f"
+    },
+    {
+      "path": "train.py",
+      "sha256": "a47d85d4da9393a52fe0ab1d2df43fce9fef1066aab208ed85a1d6160669a521"
+    },
+    {
+      "path": "verify.py",
+      "sha256": "6db0504e9b3bc6e488b666b6c71ccf81489ff15db8b7bbe6b85f8ca691068a46"
+    },
+    {
+      "path": "src/__init__.py",
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "path": "src/data.py",
+      "sha256": "885f215046a1f35222d7ce759cc69c0490494044b43e08c9006b85ec5f4eb550"
+    },
+    {
+      "path": "src/labels.py",
+      "sha256": "22ba3938535981bcee6dbf86ebbfe2203c316379c6cc056814c868cbc971a785"
+    },
+    {
+      "path": "src/models.py",
+      "sha256": "0b7327e0906b19a50964a6f18500b47245837845cb7b4027497d7d08de958d38"
+    },
+    {
+      "path": "src/utils.py",
+      "sha256": "2eca1a1cf8af682c1712ad72b9411bced880108e5f48859a574a3a1b39950c94"
+    },
+    {
+      "path": "configs/A.yaml",
+      "sha256": "8dc6fee4b571cd323efdcb009ee4e9c40730ceff44263c8bce8370d84da4f524"
+    },
+    {
+      "path": "configs/B.yaml",
+      "sha256": "6d7538fe9166dcec839fa4a4cac8649febf9f2f82512cd1ca1b8268f247071f6"
+    },
+    {
+      "path": "configs/C.yaml",
+      "sha256": "a3b8ec7c19db1d3487ae80f6d7954244eae83ee6124aed426de69a88d2b2f765"
+    },
+    {
+      "path": "configs/D.yaml",
+      "sha256": "fa0e412438ce7d2f5c1d794893869135cf6e0299f01069a53c25b662dc799372"
+    },
+    {
+      "path": "requirements.txt",
+      "sha256": "0d715a55ef246043fd6b3e3ba3efd4694e60e0820a12562da5c9c72dcbcf32b6"
+    },
+    {
+      "path": "README.md",
+      "sha256": "8798054600676e1865ed0c5296d699a51b964e0eb02de4055ae85cfabfc579e8"
+    }
+  ],
+  "source_snapshot_sha256": "631efc8cd71ea46b0cb5ab118d373ff99979ef18f875d5bc336f28eaa093c421"
+}
