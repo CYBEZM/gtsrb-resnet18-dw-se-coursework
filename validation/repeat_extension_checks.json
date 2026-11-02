@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "utc": "2026-11-02T00:44:01.718784+00:00",
+  "preserved_files": 112,
+  "checks": [
+    "seed11 files unchanged byte for byte",
+    "inherited protocol tamper rejection",
+    "synthetic three-seed mean/sample-SD and paired contrasts",
+    "historical prediction and aggregation re-audit"
+  ]
+}

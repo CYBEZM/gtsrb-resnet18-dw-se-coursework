@@ -7,7 +7,8 @@ from pathlib import Path
 
 import numpy as np
 
-from src.utils import read_json, sha256
+from src.utils import read_json, save_json, sha256
+from src.labels import CLASS_NAMES_ZH
 
 REPO = 'https://github.com/CYBEZM/gtsrb-resnet18-dw-se-coursework'
 NAMES = {'brightness': '亮度降低', 'motion': '水平运动模糊', 'noise': '高斯噪声',
@@ -28,6 +29,8 @@ def pm(mean, std):
 
 def build(runs_root, report_root, protocol_path='protocol_frozen.json'):
     runs_root, report_root = Path(runs_root), Path(report_root)
+    from audit_summary import audit
+    save_json(report_root / 'summary_audit.json', audit(report_root / 'tables/summary.json', protocol_path))
     raw = read_json(report_root / 'tables/summary.json')
     data = read_json(report_root / 'data/dataset_summary.json')
     protocol = read_json(protocol_path)
@@ -52,6 +55,16 @@ def build(runs_root, report_root, protocol_path='protocol_frozen.json'):
     delta_c = 100 * (c['accuracy_mean'] - a['accuracy_mean'])
     delta_d = 100 * (d['accuracy_mean'] - b['accuracy_mean'])
     latency_delta = 100 * (b['latency_median_ms'] / a['latency_median_ms'] - 1)
+    stage1_share = 100 * read_json(runs_root / 'A' / str(seeds[0]) / 'complexity.json')['stage_macs'][0] / a['conv_linear_macs']
+    se_params = c['parameters'] - a['parameters']
+    architecture_discussion = (
+        f'基线stage1占全模型Conv/Linear MACs的{stage1_share:.2f}%，但各后续stage仍有接近的计算贡献。'
+        '因此，小图像入口适配提高了浅层空间分辨率，计算压缩不能只看参数最多的深层。'
+        f'SE增加{se_params:,}个参数，相对A增加{100*se_params/a["parameters"]:.2f}%，'
+        f'相对B增加{100*(d["parameters"]-b["parameters"])/b["parameters"]:.2f}%；同一模块的相对开销取决于参照骨架。')
+    clean_rank = max(models, key=lambda v: models[v]['accuracy_mean'])
+    clean_discussion = (f'本次{n_seeds}个种子的汇总中，干净测试平均准确率最高的是{clean_rank}组。'
+        '四组干净精度差异应结合具体百分点、错误数量和Macro-F1理解，不能因模型包含更多模块就预设其更优。')
     main_table = table(['组别', 'Accuracy %', 'Macro-F1 %', '参数量', 'MACs M'],
         [[v, pm(r['accuracy_mean'], r['accuracy_std']), pm(r['macro_f1_mean'], r['macro_f1_std']),
           f'{r["parameters"]:,}', f'{r["conv_linear_macs"]/1e6:.3f}'] for v, r in models.items()])
@@ -80,6 +93,12 @@ def build(runs_root, report_root, protocol_path='protocol_frozen.json'):
                        '本实验未估计训练随机性或其他数据划分带来的不确定性，结构差值只作描述性比较。'
                        if n_seeds == 1 else '局限包括单一数据集版本、单次固定分组划分、有限训练种子和单一GPU平台。'
                        '样本标准差主要描述训练随机性，没有覆盖其他数据划分的不确定性。')
+    expansion_note = ''
+    if protocol.get('test_results_already_observed'):
+        expansion_note = ('种子11的测试结果已在扩展之前查看；随后按用户要求，统一补充种子22和33，'
+                          '这属于查看结果后的重复实验扩展，不宣称全部重复均在首次测试之前预注册。'
+                          '结构、训练预算、数据划分、检查点选择和退化参数保持不变，三个种子全部纳入汇总。'
+                          '种子11仍引用原协议和原预测文件，未为适配新协议重写结果。')
     strongest = {}
     for v in 'ABCD':
         row = max((r for r in raw['robustness'] if r['variant'] == v and r['severity'] == 3),
@@ -90,6 +109,27 @@ def build(runs_root, report_root, protocol_path='protocol_frozen.json'):
         f'较本组干净输入下降 {r["accuracy_drop_pp"]:.2f} 个百分点，'
         f'该条件准确率为 {pm(r["accuracy_mean"],r["accuracy_std"])}%。'
         for v, r in strongest.items())
+    condition_discussion = []
+    for kind, title in NAMES.items():
+        values = {v: next(r for r in raw['robustness'] if r['variant'] == v and
+                         r['kind'] == kind and r['severity'] == 3) for v in 'ABCD'}
+        delta = 100 * (values['D']['accuracy_mean'] - values['B']['accuracy_mean'])
+        delta_standard = 100 * (values['C']['accuracy_mean'] - values['A']['accuracy_mean'])
+        condition_discussion.append(f'{title}的第3档强度下，C−A为{delta_standard:+.2f}个百分点，'
+                                    f'D−B为{delta:+.2f}个百分点。')
+    robust_comparison = ''.join(condition_discussion)
+    robustness_wins = {v: sum(max(models_for_condition.values()) == models_for_condition[v]
+        for models_for_condition in (
+            {u: next(r['accuracy_mean'] for r in raw['robustness'] if r['variant'] == u and
+                     r['kind'] == kind and r['severity'] == severity) for u in 'ABCD'}
+            for kind in NAMES for severity in (1, 2, 3))) for v in 'ABCD'}
+    selection_discussion = (
+        f'干净平均准确率最高的是{clean_rank}组。15项退化条件中，'
+        + '、'.join(f'{v}组有{robustness_wins[v]}项平均准确率最高' for v in 'ABCD')
+        + '（含并列）；这些条件的物理尺度不同，胜出次数只用于描述，不替代逐条件结果。'
+        f'B相对A的平均准确率差为{delta_b:+.3f}个百分点，中位延迟变化为{latency_delta:+.2f}%。'
+        '因此，实际选择应同时结合精度、退化类型与目标设备资源，不能预设组合模型最好。'
+        '以上为本数据版本和固定划分下的任务适配判断，尚不能推广为真实道路部署结论。')
     error_rows = []
     for v in ('A', 'D'):
         clean = read_json(runs_root / v / str(seeds[0]) / 'test_metrics.json')
@@ -98,8 +138,9 @@ def build(runs_root, report_root, protocol_path='protocol_frozen.json'):
         for flat in np.argsort(cm.ravel())[-5:][::-1]:
             truth, pred = np.unravel_index(flat, cm.shape)
             if cm[truth, pred] > 0:
-                error_rows.append([v, int(truth), int(pred), int(cm[truth, pred])])
-    errors = table([f'组别 seed{seeds[0]}', '真实类别ID', '预测类别ID', '错误图片数'], error_rows)
+                error_rows.append([v, f'{truth} {CLASS_NAMES_ZH[truth]}',
+                                   f'{pred} {CLASS_NAMES_ZH[pred]}', int(cm[truth, pred])])
+    errors = table([f'组别 seed{seeds[0]}', '真实类别', '预测类别', '错误图片数'], error_rows)
     sources = table(['表图', '原始文件与字段'], [
         ['干净性能与逐种子结果', 'runs/{variant}/{seed}/test_metrics.json: accuracy, macro_f1, correct, samples'],
         ['模型复杂度', 'runs/{variant}/{seed}/complexity.json: parameters, conv_linear_macs'],
@@ -108,6 +149,7 @@ def build(runs_root, report_root, protocol_path='protocol_frozen.json'):
         ['推理性能', 'report/profiles/{variant}.json: latency_runs, throughput_runs_images_s'],
         ['数据划分', 'report/data/dataset_summary.json; data cache manifest.json'],
         ['汇总与来源校验', 'report/tables/summary.json: source_files'],
+        ['逐样本独立复核', 'report/final_audit.json; runs/{variant}/{seed}/predictions/*.npz'],
     ])
     text = f'''# 轻量化 ResNet 与 SE 注意力在交通标志识别中的应用研究
 
@@ -163,6 +205,10 @@ SE 将特征图进行全局平均池化，通过压缩和恢复通道维度的�
 模块放在残差分支最后一个 BN 之后、与捷径相加之前。
 SE 是已有方法，本项目的工作为任务适配、结构组合与实验分析。
 
+四组模型在各阶段的空间尺寸相同：入口与stage1为48×48，stage2为24×24，
+stage3为12×12，stage4为6×6。相加的两条分支若尺寸或通道数不同，
+捷径通过步长匹配的1×1卷积和BN完成投影。
+
 ### 2.4 四组控制变量实验
 
 | 组别 | 残差主分支卷积 | SE |
@@ -207,12 +253,17 @@ SGD动量 {cfg['momentum']}、权重衰减 {cfg['weight_decay']}、初始学习�
 
 模型按验证 Macro-F1 最大的epoch选择，平局时优先较低验证损失，再优先较早epoch。
 模型、训练规则和退化参数冻结后统一评价测试集，不根据测试结果修改超参数。
+{expansion_note}
 Accuracy为正确预测图片数占比；Macro-F1对全部43类F1等权平均，
 未预测出的类别按零处理。{uncertainty_note}
 
 ## 5 干净测试结果与消融分析
 
 {main_table}
+
+{architecture_discussion}
+
+{clean_discussion}
 
 基线A的干净测试准确率为 {pm(a['accuracy_mean'],a['accuracy_std'])}%。
 B相对A的准确率变化为 {delta_b:+.3f} 个百分点，
@@ -243,6 +294,10 @@ C相对A、D相对B的准确率变化分别为 {delta_c:+.3f} 和 {delta_d:+.3f}
 
 {errors}
 
+行人与儿童标志都包含三角轮廓和较小的人形图案，容易在低分辨率下混淆。
+但还存在形状不同类别间的错误，仅凭混淆计数不能确定原因；
+后续应逐图检查拍摄条件、背景与标签，避免把所有错误都归因于类别相似。
+
 ![混淆矩阵](figures/confusion.png)
 
 ## 6 合成退化下的场景适配分析
@@ -259,6 +314,8 @@ C相对A、D相对B的准确率变化分别为 {delta_c:+.3f} 和 {delta_d:+.3f}
 
 {robust_text}
 
+{robust_comparison}
+
 ![Accuracy与退化强度](figures/robustness.png)
 
 这些结果支持的是所定义图像退化条件下的性能描述。亮度降低只模拟部分低照度影响，
@@ -270,6 +327,8 @@ C相对A、D相对B的准确率变化分别为 {delta_c:+.3f} 和 {delta_d:+.3f}
 性能测试使用同一GPU、FP32、channels-last、eval与inference_mode，输入预先放在GPU。
 batch=1预热50次、采样200次、重复3轮，以CUDA Events计时并逐次同步；
 表中的中位延迟和P95分别取三轮对应统计量的中位数。
+硬件测量统一使用固定种子11的检查点并沿用同一轮测量结果；三轮计时重复与三个训练种子不同，
+不将该延迟表解释为跨训练种子的均值和标准差。
 batch=32连续执行200批，仅在计时边界同步，以处理图片数除总时间计算吞吐。
 该计时不包括读图、CPU预处理和主机到GPU传输，也不等同于完整应用响应时间。
 
@@ -288,6 +347,11 @@ MACs计数只包含卷积与线性层的乘加，未计池化、归一化和逐�
 项目提供图片上传、模型选择、Top-3预测概率、固定退化对比及stage3的12×12 Grad-CAM。
 热力图用于辅助观察，不作为注意力有效性的因果证明。分类概率未经校准，
 模型也不具备可靠的未知类别拒识或道路照片目标定位能力。
+
+![固定验证样例的预测与Grad-CAM](figures/gradcam_examples.png)
+
+图中样例沿用正式测试之前选定的四张验证图片，展示A与D的Top-3预测以及stage3关注区域。
+没有根据测试集正确与否重新挑选展示图片；样本路径与概率另存于图像同名JSON文件。
 
 代码仓库：{REPO}
 
@@ -310,7 +374,7 @@ python -m streamlit run app.py
 并将场景适配落实为固定退化条件的定量评价。
 DW相对基线减少 {dw_parameter_reduction:.2f}% 参数和 {dw_mac_reduction:.2f}% Conv/Linear MACs，
 干净准确率变化 {delta_b:+.3f} 个百分点；SE在两种骨架上的效果分别由C−A和D−B给出。
-最终选择需要结合表中的干净精度、各类退化和目标硬件性能，而非预设D组必然最好。
+{selection_discussion}
 
 {limitation_note}
 合成退化不代表真实道路泛化，Grad-CAM也不能证明因果机制。
@@ -323,6 +387,7 @@ DW相对基线减少 {dw_parameter_reduction:.2f}% 参数和 {dw_mac_reduction:.
 本报告输入汇总文件SHA256：`{sha256(report_root / 'tables/summary.json')}`。
 数据清单SHA256：`{data['manifest_sha256']}`。
 冻结协议SHA256：`{sha256(protocol_path)}`。
+历史种子评价协议按 `protocol_frozen.json` 的 `inherited_evaluations` 解析，并由哈希和固定字段一致性校验。
 
 ## 参考文献
 

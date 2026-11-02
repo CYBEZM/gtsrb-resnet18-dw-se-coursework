@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from src.utils import read_json, save_json, sha256
+from experiment_protocol import evaluation_protocol_path
 
 COLORS = ['#0072B2', '#E69F00', '#009E73', '#CC79A7']
 
@@ -47,6 +48,7 @@ def make(runs_root, output, protocol_path='protocol_frozen.json'):
         runs[v] = []
         for seed in seeds:
             path = runs_root / v / str(seed)
+            evaluation_protocol = evaluation_protocol_path(protocol_path, seed)
             clean = read_json(path / 'test_metrics.json')
             robust = read_json(path / 'robustness_metrics.json')
             if len(robust) != 16:
@@ -55,7 +57,7 @@ def make(runs_root, output, protocol_path='protocol_frozen.json'):
             if clean['checkpoint_sha256'] != complete['checkpoint_sha256']:
                 raise ValueError('Checkpoint provenance mismatch')
             for metrics in [clean, *robust.values()]:
-                if (metrics['protocol_sha256'] != sha256(protocol_path) or
+                if (metrics['protocol_sha256'] != sha256(evaluation_protocol) or
                         metrics['checkpoint_sha256'] != complete['checkpoint_sha256'] or
                         metrics['seed'] != seed or metrics['variant'] != v):
                     raise ValueError(f'Evaluation provenance mismatch: {path}')
@@ -105,6 +107,8 @@ def make(runs_root, output, protocol_path='protocol_frozen.json'):
                           **{f'seed{seed}_pp': float(value) for seed, value in zip(seeds, interaction)}))
     write_csv(tables / 'contrasts.csv', contrasts)
     sources.append(dict(path=Path(protocol_path).as_posix(), sha256=sha256(protocol_path)))
+    for reference in protocol.get('inherited_evaluations', {}).values():
+        sources.append(dict(path=reference['path'], sha256=reference['sha256']))
     save_json(tables / 'summary.json', dict(models=summary, per_seed=per_seed, robustness=robust_rows,
               seeds=seeds, protocol_sha256=sha256(protocol_path),
               contrasts=contrasts, source_files=sources,

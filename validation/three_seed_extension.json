@@ -1,0 +1,60 @@
+{
+  "amended_utc": "2026-11-02T00:39:32.043660+00:00",
+  "reason": "User requested all four variants repeat with seeds 22 and 33 after seeing seed-11 test results. No architecture, split, training, selection or corruption changes; include all seeds, never select by test accuracy.",
+  "previous_protocol_sha256": "8b78a541767b2b73dc52647dcf1028e1ed8009b8b313b16dad15c51132264609",
+  "active_protocol_sha256": "c2047458eb0981b4f12c36c2f1924d90413b7a7554041fd84aadd5150d5763df",
+  "archive": "archives/single_seed_11",
+  "preserved_files": "archives/single_seed_11/preserved_run_files.json",
+  "new_runs": [
+    {
+      "variant": "A",
+      "seed": 22,
+      "epochs": 60
+    },
+    {
+      "variant": "B",
+      "seed": 22,
+      "epochs": 60
+    },
+    {
+      "variant": "C",
+      "seed": 22,
+      "epochs": 60
+    },
+    {
+      "variant": "D",
+      "seed": 22,
+      "epochs": 60
+    },
+    {
+      "variant": "A",
+      "seed": 33,
+      "epochs": 60
+    },
+    {
+      "variant": "B",
+      "seed": 33,
+      "epochs": 60
+    },
+    {
+      "variant": "C",
+      "seed": 33,
+      "epochs": 60
+    },
+    {
+      "variant": "D",
+      "seed": 33,
+      "epochs": 60
+    }
+  ],
+  "final_runs": 12,
+  "final_evaluation_conditions": 192,
+  "unchanged_fields": [
+    "manifest_sha256",
+    "configs",
+    "corruption_protocol",
+    "source_sha256",
+    "selection",
+    "evaluation"
+  ]
+}

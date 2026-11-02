@@ -3,6 +3,7 @@ __pycache__/
 *.pyc
 runs/
 pilot/
+archives/
 report/
 *.ckpt
 *.pt

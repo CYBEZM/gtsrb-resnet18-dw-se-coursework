@@ -39,7 +39,8 @@ def control(action):
         for queue in queues:
             for child in queue.children(recursive=True):
                 if any(owned(child, name) for name in ('train.py', 'eval.py', 'profile_model.py',
-                                                       'make_tables.py', 'build_report.py')):
+                                                       'make_tables.py', 'build_report.py',
+                                                       'audit_results.py', 'audit_summary.py', 'make_examples.py')):
                     targets.append(child)
             queue.terminate()
         psutil.wait_procs(queues, timeout=10)

@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "frozen_utc": "2026-11-01T08:55:59.404641+00:00",
   "manifest_sha256": "209d45b5cf8f5caf3218658586be1ab6a6cb8b830221d7358c2f5a00f72a6502",
   "configs": {
@@ -53,7 +53,9 @@
     }
   },
   "seeds": [
-    11
+    11,
+    22,
+    33
   ],
   "corruption_protocol": {
     "version": "gtsrb48-v1",
@@ -108,8 +110,25 @@
   },
   "selection": "max validation macro-F1, then min loss, then earliest epoch",
   "evaluation": "Clean and 15 prespecified corruptions, all planned models/seeds; no test tuning",
-  "amended_utc": "2026-11-01T10:31:10.536156+00:00",
-  "previous_protocol_sha256": "4f52640270b4deac609bad38437fb5b5af0fe54c99476329638fdf25bca503a6",
-  "previous_protocol_path": "protocols/protocol_v1_three_seeds.json",
-  "amendment_reason": "User requested one prespecified seed (11) per model to reduce runtime; no test predictions inspected. Architecture, data split, optimizer, schedule, 60 epochs and corruption settings unchanged."
+  "amended_utc": "2026-11-02T00:39:32.043660+00:00",
+  "previous_protocol_sha256": "8b78a541767b2b73dc52647dcf1028e1ed8009b8b313b16dad15c51132264609",
+  "previous_protocol_path": "protocols/protocol_v2_single_seed.json",
+  "amendment_reason": "User requested all four variants repeat with seeds 22 and 33 after seeing seed-11 test results. No architecture, split, training, selection or corruption changes; include all seeds, never select by test accuracy.",
+  "test_results_already_observed": true,
+  "inherited_evaluations": {
+    "11": {
+      "path": "protocols/protocol_v2_single_seed.json",
+      "sha256": "8b78a541767b2b73dc52647dcf1028e1ed8009b8b313b16dad15c51132264609"
+    }
+  },
+  "aggregation": {
+    "seeds": [
+      11,
+      22,
+      33
+    ],
+    "standard_deviation_ddof": 1,
+    "no_best_seed_selection": true,
+    "no_automatic_significance_claims": true
+  }
 }
