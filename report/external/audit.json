@@ -1,0 +1,68 @@
+{
+  "status": "PASS",
+  "models": 12,
+  "samples": 163,
+  "exact_duplicates_excluded": 0,
+  "summary_sha256": "9a2e4da97bc39d3b6afc670747be67fcbfda334ed35d6a3739201e87f1ddc470",
+  "input_protocol_sha256": "7eed9f4de2b84bfe1e825d0c29136d4623dbeb8f9b7283e06c48aa59489f5e06",
+  "source_manifest_sha256": "f27816d90266dc3480f3fc99d32139e2eb4143b2639e812fbe52dfcaf893cc0b",
+  "prediction_files": [
+    {
+      "path": "report/external/A_11.npz",
+      "sha256": "e6abb297b84c3e97682a39945bcb2c5c752cda710fd59f9080b83f0683f31724"
+    },
+    {
+      "path": "report/external/A_22.npz",
+      "sha256": "90fa2d9763750c3fd046226e476d0463574a60f8f684e563e7d93c6eb390bb01"
+    },
+    {
+      "path": "report/external/A_33.npz",
+      "sha256": "5d1cf516295d2f4e015c941764d6413092fee9a6c69a1f6d8ac25c9a8760ef04"
+    },
+    {
+      "path": "report/external/B_11.npz",
+      "sha256": "1a6daa90f8d5bb51ea1cc0f636c1052696b979b282a1635565626b451dec5026"
+    },
+    {
+      "path": "report/external/B_22.npz",
+      "sha256": "68d5433753c77b3c49ce0b2f92ecd8614a43869ad47ad27549bc3fc19af0fcff"
+    },
+    {
+      "path": "report/external/B_33.npz",
+      "sha256": "1f93f76d6bac78140525cba7daf37e4a09338ea850e1e618878d564a666dc7b8"
+    },
+    {
+      "path": "report/external/C_11.npz",
+      "sha256": "d60e304344d96cdb1dcecd564c8c388f8614960bd3bbc665c606ccae9fcbb8c3"
+    },
+    {
+      "path": "report/external/C_22.npz",
+      "sha256": "4b01212adf83089dd0587fda482f4886c2e05c728cb4543f926ddde03e9f44ce"
+    },
+    {
+      "path": "report/external/C_33.npz",
+      "sha256": "3a8da60136fd056410c11aef390146ba58ba67719238061b25337a1b673018d5"
+    },
+    {
+      "path": "report/external/D_11.npz",
+      "sha256": "625b2f596364a348c304698b2f0bef6bc6334fce52b020f24ffd957fb9a25bc0"
+    },
+    {
+      "path": "report/external/D_22.npz",
+      "sha256": "f1831bcbd069d7c823b1c888a8023cb1c514b59356d5a4ca0632c2f55a5ac7ec"
+    },
+    {
+      "path": "report/external/D_33.npz",
+      "sha256": "f05ff9d731463c76eda0f3281945511a0dcf572cda16128693618bb608f1a029"
+    }
+  ],
+  "checks": [
+    "sklearn accuracy/present-class F1/confusion",
+    "top3",
+    "probabilities",
+    "sample alignment",
+    "checkpoint/input hashes",
+    "means/sample SD",
+    "source scene SHA256"
+  ]
+}

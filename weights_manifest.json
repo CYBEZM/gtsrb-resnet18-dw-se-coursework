@@ -1,0 +1,100 @@
+{
+  "repository": "CYBEZM/gtsrb-resnet18-dw-se-coursework",
+  "tag": "v1.0.0-three-seed",
+  "archives": [
+    {
+      "name": "weights_seed11.zip",
+      "sha256": "54ad55764d4e898573b1e8ede93e43aa4e000fb1d6541316b1c46d00b70bb3a4",
+      "bytes": 95084842,
+      "files": [
+        {
+          "path": "runs/A/11/best.ckpt",
+          "sha256": "e93ecf240325b66edf2416fb19cf5b215e627955502dca908f9ef930c4342b4a",
+          "bytes": 44844107
+        },
+        {
+          "path": "runs/B/11/best.ckpt",
+          "sha256": "7bf354b3cef55138eed10f31320e802c62f79cb4dddf7f490666d8ca8d5804aa",
+          "bytes": 5912379
+        },
+        {
+          "path": "runs/C/11/best.ckpt",
+          "sha256": "2fac656832cd83d0e93454e07cd2b3fcf5619bee21ccc1a289e0dc4b68c3c81a",
+          "bytes": 45210923
+        },
+        {
+          "path": "runs/D/11/best.ckpt",
+          "sha256": "d1834893f30d886550142c1ec4ad30d129a1f54f540858ecea9495969d051ea6",
+          "bytes": 6279259
+        }
+      ]
+    },
+    {
+      "name": "weights_all_seeds.zip",
+      "sha256": "f5ca5ab2a0720f4663d55072c1a8565eb39fdd8c88fa420fdc2e6134e610b11e",
+      "bytes": 285257632,
+      "files": [
+        {
+          "path": "runs/A/11/best.ckpt",
+          "sha256": "e93ecf240325b66edf2416fb19cf5b215e627955502dca908f9ef930c4342b4a",
+          "bytes": 44844107
+        },
+        {
+          "path": "runs/A/22/best.ckpt",
+          "sha256": "be8378f607c5d98782806e7dc44d404687b15b558692facef90a979a41124cd8",
+          "bytes": 44844107
+        },
+        {
+          "path": "runs/A/33/best.ckpt",
+          "sha256": "516f8b8bc5baa33aece8cc064787ce54668dc08a17691f9e85206098191b4e5b",
+          "bytes": 44844107
+        },
+        {
+          "path": "runs/B/11/best.ckpt",
+          "sha256": "7bf354b3cef55138eed10f31320e802c62f79cb4dddf7f490666d8ca8d5804aa",
+          "bytes": 5912379
+        },
+        {
+          "path": "runs/B/22/best.ckpt",
+          "sha256": "33c8870a41da03622fc0e42d06462d348d0004ea7aeb81937f886cd828bd0ab9",
+          "bytes": 5912379
+        },
+        {
+          "path": "runs/B/33/best.ckpt",
+          "sha256": "55e9f36b4793088fc5ce5073d077b14115dfcffe16aee516204f433def617198",
+          "bytes": 5912379
+        },
+        {
+          "path": "runs/C/11/best.ckpt",
+          "sha256": "2fac656832cd83d0e93454e07cd2b3fcf5619bee21ccc1a289e0dc4b68c3c81a",
+          "bytes": 45210923
+        },
+        {
+          "path": "runs/C/22/best.ckpt",
+          "sha256": "d7137dc86e3006c14c9565cb174d2a3e5576859946673374fbe776cfabffea70",
+          "bytes": 45210923
+        },
+        {
+          "path": "runs/C/33/best.ckpt",
+          "sha256": "61bacdd422ce99e45ed4aad06df5c003f54d304ca48e7b2833716bca475f6f23",
+          "bytes": 45210923
+        },
+        {
+          "path": "runs/D/11/best.ckpt",
+          "sha256": "d1834893f30d886550142c1ec4ad30d129a1f54f540858ecea9495969d051ea6",
+          "bytes": 6279259
+        },
+        {
+          "path": "runs/D/22/best.ckpt",
+          "sha256": "d56974df604e30e57d5a05ee298eca834513e981498194c9592fb6f9c36d0584",
+          "bytes": 6279259
+        },
+        {
+          "path": "runs/D/33/best.ckpt",
+          "sha256": "2fbd5332b6652e2b320382420841282f3113521423556baec06986a9673b558d",
+          "bytes": 6279259
+        }
+      ]
+    }
+  ]
+}

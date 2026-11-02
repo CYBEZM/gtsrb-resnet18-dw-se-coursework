@@ -1,0 +1,632 @@
+{
+  "dataset": "German Traffic Sign Detection Benchmark (GTSDB)",
+  "official_url": "https://benchmark.ini.rub.de/gtsdb_dataset.html",
+  "mirror_url": "https://huggingface.co/datasets/GlowBond/GTSDB/resolve/0d1c1a77fce322ba23b57a5e3261fae934f5afe3/archive.zip?download=true",
+  "revision": "0d1c1a77fce322ba23b57a5e3261fae934f5afe3",
+  "permission_quote": "You are free to use this data package for any purpose you like.",
+  "permission_document": "source_1_ReadMe.txt",
+  "attribution": "Institut fuer Neuroinformatik, Ruhr-Universitaet Bochum; GTSDB authors",
+  "archive_sha256_claimed_by_publisher": "6144b38827acf3989bd7cd000a424c52cfd46a49da07e586439e25cf52995547",
+  "full_archive_hash_verified_locally": false,
+  "downloaded_scenes": [
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00000.ppm",
+      "path": "scenes/00000.ppm",
+      "bytes": 3264016,
+      "sha256": "df36f79d891f76f6c80d356de555f7f9bc8adfdf66d12fe032be1f6000cf1771"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00001.ppm",
+      "path": "scenes/00001.ppm",
+      "bytes": 3264016,
+      "sha256": "1ab49f0f78982eaf6028a7a00deb07136b93f6abac8b9db0e71fa8db2d341d4c"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00002.ppm",
+      "path": "scenes/00002.ppm",
+      "bytes": 3264016,
+      "sha256": "1092228fb207c3de251691e0feede827d0bfda46aae5a20dd5612414da5fdbbb"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00003.ppm",
+      "path": "scenes/00003.ppm",
+      "bytes": 3264016,
+      "sha256": "3c7497e45d42acd40860cc0195812a0b0b5dde87dd8de8105a3aaa12d5b25dd0"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00004.ppm",
+      "path": "scenes/00004.ppm",
+      "bytes": 3264016,
+      "sha256": "f48cbb56c33adc0c961f76b780086dc9dda686861ef076c289965154c1441ef9"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00005.ppm",
+      "path": "scenes/00005.ppm",
+      "bytes": 3264016,
+      "sha256": "27794bf0e00c8be857ebfaa34b90c0aff44cf27b20cea8d03f10220bc7d5efbc"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00006.ppm",
+      "path": "scenes/00006.ppm",
+      "bytes": 3264016,
+      "sha256": "0195e06b6753bfc780c5c408c67299896e54031b8706386ea1e55fce1e444330"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00007.ppm",
+      "path": "scenes/00007.ppm",
+      "bytes": 3264016,
+      "sha256": "444e794cc304c798fe0c3baf2f69924258d973b5bc3dc62561d41ea3c08cf36e"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00008.ppm",
+      "path": "scenes/00008.ppm",
+      "bytes": 3264016,
+      "sha256": "de2d1aa111c94de45ef5b5b11a1ce024ff78db61bb82ac1bef520530dcbfc032"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00009.ppm",
+      "path": "scenes/00009.ppm",
+      "bytes": 3264016,
+      "sha256": "5d35ed7ece3342afe4528a8d84531055d8f0577a4fbd158f8f75c1c3225e6aea"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00010.ppm",
+      "path": "scenes/00010.ppm",
+      "bytes": 3264016,
+      "sha256": "3243f5e092e2e9b1bd374c558eb5d27e6dcc4d3b45601e51b5bebd193eff7c68"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00011.ppm",
+      "path": "scenes/00011.ppm",
+      "bytes": 3264016,
+      "sha256": "5c1a00f9a126f640ead883f2eefbf084f722cf92df18cf2bcd1e624e267df6af"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00012.ppm",
+      "path": "scenes/00012.ppm",
+      "bytes": 3264016,
+      "sha256": "1ac6e72aebd1ad6283d4324bfcd65765b8979fb4992a7d8849d69f26a5b46497"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00013.ppm",
+      "path": "scenes/00013.ppm",
+      "bytes": 3264016,
+      "sha256": "e308778d1e3539309798b5834287deb708241d2e1916486ebfe2295476cc40a7"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00014.ppm",
+      "path": "scenes/00014.ppm",
+      "bytes": 3264016,
+      "sha256": "365ef074adafcdc7a0a1d91c24a56e3b8f286bf640ecc4fd895bd0bafde8cf99"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00015.ppm",
+      "path": "scenes/00015.ppm",
+      "bytes": 3264016,
+      "sha256": "e40ca0d0f280b8e6407552edbdc598117d2ee7892cda3a1593fb4209cd2f8a17"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00016.ppm",
+      "path": "scenes/00016.ppm",
+      "bytes": 3264016,
+      "sha256": "abbd1c26f6e2284f7871f23d2252f326286aa3fd55a1158b86a83f3d8b18a503"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00017.ppm",
+      "path": "scenes/00017.ppm",
+      "bytes": 3264016,
+      "sha256": "14d8dbcbcf88a65ffd80bed9fa67a091da4604bf60f79c75647e1b02ee7bbc21"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00018.ppm",
+      "path": "scenes/00018.ppm",
+      "bytes": 3264016,
+      "sha256": "37eb0f08f0aedd00af8b4fd36b5a82dbf6a0aeb271bce30a414e734467aa76f6"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00019.ppm",
+      "path": "scenes/00019.ppm",
+      "bytes": 3264016,
+      "sha256": "65e284ea48b9b76d0eec56dcd8ff8ed47b74770b0eb0dc7a28ad371d052759c3"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00020.ppm",
+      "path": "scenes/00020.ppm",
+      "bytes": 3264016,
+      "sha256": "8964f2bf68d2d31a8654ef8fdedacb0f7bbf8d9b4bc87108403c56aa02984967"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00021.ppm",
+      "path": "scenes/00021.ppm",
+      "bytes": 3264016,
+      "sha256": "e7b980efc8efc095206d1ff4bd64cc44463dacfe09406c390eb72ea2655f60e0"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00022.ppm",
+      "path": "scenes/00022.ppm",
+      "bytes": 3264016,
+      "sha256": "5fc7d4e94e18dfa9da3c776da8f20172ea6a7ea7426a002226a86bd1e08de65f"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00023.ppm",
+      "path": "scenes/00023.ppm",
+      "bytes": 3264016,
+      "sha256": "3840efe9c984785c11dcf771db38edb893714b3b393f6f5ddc562f122640abc7"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00024.ppm",
+      "path": "scenes/00024.ppm",
+      "bytes": 3264016,
+      "sha256": "47a5c4faf22304d95013e23f553720b1a7f3192c20023250986d6ad99f40fc4c"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00025.ppm",
+      "path": "scenes/00025.ppm",
+      "bytes": 3264016,
+      "sha256": "fe7b1609d93baef4dab2aa7befd4bd8de153a9105acf6c01c20bdfa0dfd4a996"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00026.ppm",
+      "path": "scenes/00026.ppm",
+      "bytes": 3264016,
+      "sha256": "516dec387af0ce6874ac4f84cbe9ef781c7eedd9a3faf5b4534cf9774d70b0dd"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00027.ppm",
+      "path": "scenes/00027.ppm",
+      "bytes": 3264016,
+      "sha256": "fff9e52bc9b4946b58155d6e60d6cb5919c1b9dce91bac01d366a13d40a39027"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00028.ppm",
+      "path": "scenes/00028.ppm",
+      "bytes": 3264016,
+      "sha256": "128157159f4a59509d17d19d2324e2c8c91776cbc930cb28f79b59ca2e3d5b56"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00029.ppm",
+      "path": "scenes/00029.ppm",
+      "bytes": 3264016,
+      "sha256": "136ec812b008604347c5296b122687919ec6854bc3e0f7d345021557f7834c3c"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00030.ppm",
+      "path": "scenes/00030.ppm",
+      "bytes": 3264016,
+      "sha256": "3c2490459506f5118a83b989e11da8de9dc14a2cdfb896ab6ffc75c6bf42c78e"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00031.ppm",
+      "path": "scenes/00031.ppm",
+      "bytes": 3264016,
+      "sha256": "a8fd699ded507d5d51d62d7b6a0335e3ec5089a7094117878a81f61b45773f63"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00032.ppm",
+      "path": "scenes/00032.ppm",
+      "bytes": 3264016,
+      "sha256": "46fc534b306a2a6981f28219147ce5f7d0d999e699e2c8e25e72c9522dd47f1c"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00033.ppm",
+      "path": "scenes/00033.ppm",
+      "bytes": 3264016,
+      "sha256": "89a11e5fba286448a268250740a4321ecec11007dcfa823d5e5c078014b6a6da"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00034.ppm",
+      "path": "scenes/00034.ppm",
+      "bytes": 3264016,
+      "sha256": "bd9727c7af4b4ea57719ed175c2f281751908abcc6150f706dd9950ca08757b1"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00035.ppm",
+      "path": "scenes/00035.ppm",
+      "bytes": 3264016,
+      "sha256": "6ea3b76e3c15debc17efed5a8a26d2c7ed5f98baf21735dfd630e0876b0ec2f5"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00036.ppm",
+      "path": "scenes/00036.ppm",
+      "bytes": 3264016,
+      "sha256": "875896b2e8db28835633ddd16fff130b685aaab33166f675a78205eec2c5ce8f"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00037.ppm",
+      "path": "scenes/00037.ppm",
+      "bytes": 3264016,
+      "sha256": "d127328cd452115b1cf32f960eef22e2dcd5e903f8e7c2fd8609e461402b64f5"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00038.ppm",
+      "path": "scenes/00038.ppm",
+      "bytes": 3264016,
+      "sha256": "23f5ed672e0490541888e6e9eefc410b4bad3a4d28347cfc8e41a8d4a96a33b7"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00039.ppm",
+      "path": "scenes/00039.ppm",
+      "bytes": 3264016,
+      "sha256": "341963d1ca959fed8f2fa0c9e0fe5d6e70ec2047af4d3bd120aa8264f990c6c4"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00040.ppm",
+      "path": "scenes/00040.ppm",
+      "bytes": 3264016,
+      "sha256": "53e44435a8fb6827e07de70653b90cee6719d36805b13cc2409a828a75e8f0c6"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00041.ppm",
+      "path": "scenes/00041.ppm",
+      "bytes": 3264016,
+      "sha256": "68dfe35798371ef435a5f04c27c095ca8fa4132846a56eef4288f1732b4bc8a1"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00042.ppm",
+      "path": "scenes/00042.ppm",
+      "bytes": 3264016,
+      "sha256": "f48854da44475860cb179a510c9f68d896e1fb9c8d7a86eae3abb5467f015be0"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00043.ppm",
+      "path": "scenes/00043.ppm",
+      "bytes": 3264016,
+      "sha256": "6b05bce946c803d3df2ffd2890c36cd67354f01656d8822ffd60a1192c1f31bf"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00044.ppm",
+      "path": "scenes/00044.ppm",
+      "bytes": 3264016,
+      "sha256": "61b5d171b87fbbdc8a1e220d71fbe020b2ae77af770f744ffa11f74d817d55b4"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00045.ppm",
+      "path": "scenes/00045.ppm",
+      "bytes": 3264016,
+      "sha256": "cee9a30aaf75c3c4eebdbf16076b27e4517738ea17e05a527632f9b180a79b42"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00046.ppm",
+      "path": "scenes/00046.ppm",
+      "bytes": 3264016,
+      "sha256": "a02dea95a3f7f831a7af72152ad62c7263499c3c914133f90f0d0ad4b9a7bbda"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00047.ppm",
+      "path": "scenes/00047.ppm",
+      "bytes": 3264016,
+      "sha256": "7cfca78f2150ea93cb1ee3cdb70fec23cdc3a367235004c3f5e27a31a0f90f8a"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00048.ppm",
+      "path": "scenes/00048.ppm",
+      "bytes": 3264016,
+      "sha256": "748a0b4767aad663a78e9a66389688f16052472a8e2ddb2a96e31a4fe3b829e6"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00049.ppm",
+      "path": "scenes/00049.ppm",
+      "bytes": 3264016,
+      "sha256": "617be462a847dc42830287a69e1b30c72c6d11062da030107f4d518404c9281a"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00050.ppm",
+      "path": "scenes/00050.ppm",
+      "bytes": 3264016,
+      "sha256": "1ae8afdc437537009a7080ea50a0a4bbc2b54353c5339b3de0d8e5998a36e7d2"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00051.ppm",
+      "path": "scenes/00051.ppm",
+      "bytes": 3264016,
+      "sha256": "14c7954d80d571d9b8f1ea70f5e5970903d233b20636f69264a6588086ac7f04"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00052.ppm",
+      "path": "scenes/00052.ppm",
+      "bytes": 3264016,
+      "sha256": "7f7d51f8d1b80f74d68400781af47805e2ec8202f4b3ffd951b628ed95540b6b"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00053.ppm",
+      "path": "scenes/00053.ppm",
+      "bytes": 3264016,
+      "sha256": "de0e81ce20b54e12da453ece83c0c33a8a19d1e1ab12a88504fc8af11c9be4dd"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00054.ppm",
+      "path": "scenes/00054.ppm",
+      "bytes": 3264016,
+      "sha256": "5896e60c6d6d8dbfdf49e50d15ab84c891927358413a1af19a102936d5976c0a"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00055.ppm",
+      "path": "scenes/00055.ppm",
+      "bytes": 3264016,
+      "sha256": "dbfc16259304dedf1eea2b53498b41f5d2648591170d8adad8d6e4faef860fd8"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00056.ppm",
+      "path": "scenes/00056.ppm",
+      "bytes": 3264016,
+      "sha256": "362f0a716058bb8463010e8efd9f04c4149d13e8dc28af30fc8ac3ff94ab79a2"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00057.ppm",
+      "path": "scenes/00057.ppm",
+      "bytes": 3264016,
+      "sha256": "755c357c9b6539158d923180c382bba0a8c4b1ac806ef5498723aee3ff1a08d1"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00058.ppm",
+      "path": "scenes/00058.ppm",
+      "bytes": 3264016,
+      "sha256": "e04bb3b6140ead757527a604c34161c73044291561e0424540785686ffbc6124"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00059.ppm",
+      "path": "scenes/00059.ppm",
+      "bytes": 3264016,
+      "sha256": "60f78469a38b5fdc8335e2d583aa2a752ed644fd2fc34db1dee9e1a1aa3ef085"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00060.ppm",
+      "path": "scenes/00060.ppm",
+      "bytes": 3264016,
+      "sha256": "6e7dc427cc25c08f9f5052a71db99d71e71fd4bf1b9ee131bc54d71833a12a80"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00061.ppm",
+      "path": "scenes/00061.ppm",
+      "bytes": 3264016,
+      "sha256": "623c559a6d0877b4682d6d07233fe7de2350770420e0613117643522e444fb3a"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00062.ppm",
+      "path": "scenes/00062.ppm",
+      "bytes": 3264016,
+      "sha256": "21fa99cd99a766a907ff6a71c7774732c230d9bc835447e7a54600ea5c0c2dec"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00063.ppm",
+      "path": "scenes/00063.ppm",
+      "bytes": 3264016,
+      "sha256": "72594947ef0b1fea99ac011943d17307f03e94a1da53effdd25267943237e78c"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00064.ppm",
+      "path": "scenes/00064.ppm",
+      "bytes": 3264016,
+      "sha256": "0ce57e345eb02e8839ed3e57c0c6ee5eb13bf5c26c454bf96781aa00b8be90a3"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00065.ppm",
+      "path": "scenes/00065.ppm",
+      "bytes": 3264016,
+      "sha256": "6a0c1c1ac35fc22fc94e7cf17ebf63b69ad972b5436386859ada3a2cc6b15b44"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00066.ppm",
+      "path": "scenes/00066.ppm",
+      "bytes": 3264016,
+      "sha256": "5a187e0540c148f63a616ec5d07591bf162d9e93fab6a35a15642855730bd6cf"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00067.ppm",
+      "path": "scenes/00067.ppm",
+      "bytes": 3264016,
+      "sha256": "206bcbe01c1224c245b4e625bdf895bec1faa36e0d9863b4ee705b3bffd3bd70"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00068.ppm",
+      "path": "scenes/00068.ppm",
+      "bytes": 3264016,
+      "sha256": "0768b3f95cfac4dac091d12d15ae414e7d33a828fc8b9e29c7af3687aff56b5c"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00069.ppm",
+      "path": "scenes/00069.ppm",
+      "bytes": 3264016,
+      "sha256": "e9f52275e1cd1bf68887effba42dbe2bea510fff4554b351678af49abe9bd5d2"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00070.ppm",
+      "path": "scenes/00070.ppm",
+      "bytes": 3264016,
+      "sha256": "8cd04896754fe403acf46256a69121d22d888e9ec2da31960c41bcf7e8a03dd3"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00071.ppm",
+      "path": "scenes/00071.ppm",
+      "bytes": 3264016,
+      "sha256": "61578429abdfafb35eee9acca58bc419160e2921a8c4f4f4cebb2580ed76f860"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00072.ppm",
+      "path": "scenes/00072.ppm",
+      "bytes": 3264016,
+      "sha256": "95352d053844fc71d4ca38f6263f3ed31784be80e9e6a5fcf2daf3adeb782ec0"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00073.ppm",
+      "path": "scenes/00073.ppm",
+      "bytes": 3264016,
+      "sha256": "28399aedf19b79e2c99db68226ce2a3bc0140ae15d6f7c3ccee4306d61956c89"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00074.ppm",
+      "path": "scenes/00074.ppm",
+      "bytes": 3264016,
+      "sha256": "2c97cb2ea2a5990060911b32ff261b670b8f396ece0eeef29732f5e0f6b925a7"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00075.ppm",
+      "path": "scenes/00075.ppm",
+      "bytes": 3264016,
+      "sha256": "05d019de7ccb787b5cc66ada65656f9a324a6231bab05eee24658fa077eac442"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00076.ppm",
+      "path": "scenes/00076.ppm",
+      "bytes": 3264016,
+      "sha256": "50fa16d142c41e932ca060f032807686dc9a61f8ac0fc7000356992ff482acb4"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00077.ppm",
+      "path": "scenes/00077.ppm",
+      "bytes": 3264016,
+      "sha256": "1ec6372745c9c73be4222def6b2d704f554715d358f2170f93772dfa402cb8a9"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00078.ppm",
+      "path": "scenes/00078.ppm",
+      "bytes": 3264016,
+      "sha256": "cd6b2c42e1922f60d219e67e83e1a264b976e03d9239c4f0c03aacec9757ae17"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00079.ppm",
+      "path": "scenes/00079.ppm",
+      "bytes": 3264016,
+      "sha256": "68fb932da644c247c71bfa30df33b0beb7b87b6584fca0a19625194fbd9e163c"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00080.ppm",
+      "path": "scenes/00080.ppm",
+      "bytes": 3264016,
+      "sha256": "c0d357b6dbc5f4a8fba23e7040ce27363018501c53b650f3e1d9d8a86cc0b78c"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00081.ppm",
+      "path": "scenes/00081.ppm",
+      "bytes": 3264016,
+      "sha256": "9f323196a6e11a54ac37c5d07c1be04af21fb4ad89253ce396d42c6f0aeeaa48"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00082.ppm",
+      "path": "scenes/00082.ppm",
+      "bytes": 3264016,
+      "sha256": "c10296e230ed6f288f379e7fa7177fc1b0536cfe71cff7ca6c371d07cb10766b"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00083.ppm",
+      "path": "scenes/00083.ppm",
+      "bytes": 3264016,
+      "sha256": "b5b1eb7f12c4c75051be8fd66e0d646a7e19d2a63a0b22671a8e411dcd7ca15f"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00084.ppm",
+      "path": "scenes/00084.ppm",
+      "bytes": 3264016,
+      "sha256": "db8194c9c873cd86c7c949cb6dceedb4882d4578f3e5c4d9a03099212822baef"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00085.ppm",
+      "path": "scenes/00085.ppm",
+      "bytes": 3264016,
+      "sha256": "b7062a96ef85e5925407e3f8d463425146e2759ce6274b239c53cc8e9edbb4a4"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00086.ppm",
+      "path": "scenes/00086.ppm",
+      "bytes": 3264016,
+      "sha256": "23c01d4d2d357cc9844c363e4f0a1321774c20685f2c42d48b12df34979c32f9"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00087.ppm",
+      "path": "scenes/00087.ppm",
+      "bytes": 3264016,
+      "sha256": "3c440eff3f6f1a972cfc24fba184560c06b09875ee0d03afeff8e9b93d138ade"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00088.ppm",
+      "path": "scenes/00088.ppm",
+      "bytes": 3264016,
+      "sha256": "13c7ae36d815708e7a7ec119304b637983e177d5f13a0d0e56be85d97fd862a0"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00089.ppm",
+      "path": "scenes/00089.ppm",
+      "bytes": 3264016,
+      "sha256": "3157d43baa2a21962ce64cf6f5d86fa9d48bee65732a211f9d5cfc1a4166b749"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00090.ppm",
+      "path": "scenes/00090.ppm",
+      "bytes": 3264016,
+      "sha256": "00fa9fc56a639f1bb7ef678ed9988aee18939a9889670d0149359ae320a58fed"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00091.ppm",
+      "path": "scenes/00091.ppm",
+      "bytes": 3264016,
+      "sha256": "dcd5564c488c8943bf591cf8ebb66cfb80654f2999eb30e42d697d0c3c65eeb0"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00092.ppm",
+      "path": "scenes/00092.ppm",
+      "bytes": 3264016,
+      "sha256": "b7bd5ef8f2263b8341c483c4cfdd372af53feb8bb31b3b6f00628fa72b2c7345"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00093.ppm",
+      "path": "scenes/00093.ppm",
+      "bytes": 3264016,
+      "sha256": "fe3fa9821dcddfacfc3301da8c1f8f0dff64d98b70edb5f88085b754de8a7fd1"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00094.ppm",
+      "path": "scenes/00094.ppm",
+      "bytes": 3264016,
+      "sha256": "84a809d843f65893b0ebd74434a3c27b814f6783993b6cacd0b293acba53c1f7"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00095.ppm",
+      "path": "scenes/00095.ppm",
+      "bytes": 3264016,
+      "sha256": "47e75c59cade9ee536d995f5d877f4dd8da84b87b213d4972db45ed028561a6e"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00096.ppm",
+      "path": "scenes/00096.ppm",
+      "bytes": 3264016,
+      "sha256": "37488ea0c8d96a66788cb5fa76ffe26cf5e0e4a799f01843c5efb0346e900f83"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00097.ppm",
+      "path": "scenes/00097.ppm",
+      "bytes": 3264016,
+      "sha256": "a7810ea85e499249f5ea840fe1947b01f7c8d16acc10dd345612b48d0d05638d"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00098.ppm",
+      "path": "scenes/00098.ppm",
+      "bytes": 3264016,
+      "sha256": "7f42e2473680ee65cf8d70e660d46eb9e8bf20ddbbd481fb028f4c5081f6e055"
+    },
+    {
+      "member": "TrainIJCNN2013/TrainIJCNN2013/00099.ppm",
+      "path": "scenes/00099.ppm",
+      "bytes": 3264016,
+      "sha256": "1a2d9ac7e65dd73398054aed198248d6b17e6a94d85374203a0b882407b7cd6f"
+    }
+  ],
+  "documents": [
+    {
+      "path": "report/external/source_1_ReadMe.txt",
+      "sha256": "8bd258401e6426369eb244586f0ded2ec63b3df17dfe0129a5b00df4fb0524cc"
+    },
+    {
+      "path": "report/external/source_gt.txt",
+      "sha256": "c9eb06670eaeaa4aa2b24e88be7be08a595ff144c4c84c09cb06ea2066614614"
+    },
+    {
+      "path": "report/external/source_selection_frozen.json",
+      "sha256": "ecf1a2fa911bc21b84e46ed9f673ba654e0e3a0688cae0d2fcb69cf15dfbba8c"
+    },
+    {
+      "path": "report/external/source_download_manifest.json",
+      "sha256": "4c971442bfbc6c1350b45912e0ddfa03ce14c4563bf495444039485c65363107"
+    }
+  ],
+  "integrity": "Pinned mirror revision; HTTPS Content-Range, ZIP member CRC32, downloaded member SHA256"
+}

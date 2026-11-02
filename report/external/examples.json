@@ -1,0 +1,122 @@
+[
+  {
+    "sample_id": "00000.ppm:0",
+    "scene": "00000.ppm",
+    "class_id": 11,
+    "box_inclusive": [
+      774,
+      411,
+      815,
+      446
+    ],
+    "canonical_sha256": "365240b88ba1d7bbe9fbc8df7d8dacfb55cc133c63698941c90fa491383f33a1",
+    "crop_width": 42,
+    "crop_height": 36,
+    "predicted": 11
+  },
+  {
+    "sample_id": "00001.ppm:1",
+    "scene": "00001.ppm",
+    "class_id": 40,
+    "box_inclusive": [
+      983,
+      388,
+      1024,
+      432
+    ],
+    "canonical_sha256": "c01a7a1ae255880308cb759e6830e07ca5eec5b9bc47fca69ca9ec6ba8760fd1",
+    "crop_width": 42,
+    "crop_height": 45,
+    "predicted": 40
+  },
+  {
+    "sample_id": "00001.ppm:2",
+    "scene": "00001.ppm",
+    "class_id": 38,
+    "box_inclusive": [
+      386,
+      494,
+      442,
+      552
+    ],
+    "canonical_sha256": "e7f4c7399241469c69d832228fd1a681fd5074569cba3748eff44e4d63386a48",
+    "crop_width": 57,
+    "crop_height": 59,
+    "predicted": 38
+  },
+  {
+    "sample_id": "00001.ppm:3",
+    "scene": "00001.ppm",
+    "class_id": 13,
+    "box_inclusive": [
+      973,
+      335,
+      1031,
+      390
+    ],
+    "canonical_sha256": "84cf663ec6b128486158067a7b70c2b6ba8cd75555a66b29666de06ed17fa4f7",
+    "crop_width": 59,
+    "crop_height": 56,
+    "predicted": 13
+  },
+  {
+    "sample_id": "00011.ppm:18",
+    "scene": "00011.ppm",
+    "class_id": 21,
+    "box_inclusive": [
+      710,
+      265,
+      780,
+      342
+    ],
+    "canonical_sha256": "07a02712c631856dbbef7a9b823d2de96e4aeadfe9b45ad17d62196d7c2f7fb3",
+    "crop_width": 71,
+    "crop_height": 78,
+    "predicted": 11
+  },
+  {
+    "sample_id": "00014.ppm:21",
+    "scene": "00014.ppm",
+    "class_id": 21,
+    "box_inclusive": [
+      712,
+      492,
+      732,
+      511
+    ],
+    "canonical_sha256": "710186a7e66485b3502f66d9d9dc73682ca17c40405b4b0bc5bd5e58353c9ae6",
+    "crop_width": 21,
+    "crop_height": 20,
+    "predicted": 11
+  },
+  {
+    "sample_id": "00016.ppm:23",
+    "scene": "00016.ppm",
+    "class_id": 12,
+    "box_inclusive": [
+      901,
+      421,
+      959,
+      478
+    ],
+    "canonical_sha256": "8e74b1fced142e622cd21d9194144c2796d2aeb9f7cc707b769c81ba44082c81",
+    "crop_width": 59,
+    "crop_height": 58,
+    "predicted": 13
+  },
+  {
+    "sample_id": "00025.ppm:37",
+    "scene": "00025.ppm",
+    "class_id": 40,
+    "box_inclusive": [
+      734,
+      463,
+      767,
+      497
+    ],
+    "canonical_sha256": "61245c1a636ca596840cc8a761320afb47dda31e764c699059c36b638f36cb6a",
+    "crop_width": 34,
+    "crop_height": 35,
+    "predicted": 36
+  }
+]

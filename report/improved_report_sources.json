@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "output": "report/大作业报告_改进版.md",
+  "output_sha256": "bd4de28ab38944c82f54aa2763642483b26c79eafa43e2ff18053d22dc991dda",
+  "sources": [
+    {
+      "path": "report/大作业报告.md",
+      "sha256": "e500cc731c80a9cf75869ec333a1d0d785e8af0580ac6acb4210a98a890f268c"
+    },
+    {
+      "path": "report/deep_analysis/independent_audit.json",
+      "sha256": "44fa1ea4c2e84ca780cb15db30b374755bf4c3ce4e21d9b635aef4da8bd23f0f"
+    },
+    {
+      "path": "report/deep_analysis/section.md",
+      "sha256": "e863efc77d2d4b2d4471ba2ec11f7e593b7daebd607466c38a63b684842331a5"
+    },
+    {
+      "path": "report/deep_analysis/analysis.json",
+      "sha256": "6e4123d40004b0cb63d351858794430dbe3ac6e094b98e4b9da740d68250eef0"
+    },
+    {
+      "path": "report/external/section.md",
+      "sha256": "0ca2344b30a6eeb738b21d4fc2c82760f9f801f98cf54273c92c5e1a3c7efafc"
+    },
+    {
+      "path": "report/external/audit.json",
+      "sha256": "5e27a004ced02b04bcdedd830a15a9f47ca9805763504fc98cf5d9ad4832720f"
+    }
+  ],
+  "supplemental_E_complete": false
+}

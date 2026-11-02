@@ -1,0 +1,29 @@
+{
+  "B-A": {
+    "repaired_all_seeds": [
+      "GTSRB/Final_Test/Images/04384.ppm"
+    ],
+    "harmed_all_seeds": [
+      "GTSRB/Final_Test/Images/10477.ppm",
+      "GTSRB/Final_Test/Images/10586.ppm"
+    ]
+  },
+  "C-A": {
+    "repaired_all_seeds": [
+      "GTSRB/Final_Test/Images/02258.ppm",
+      "GTSRB/Final_Test/Images/04384.ppm",
+      "GTSRB/Final_Test/Images/05507.ppm"
+    ],
+    "harmed_all_seeds": [
+      "GTSRB/Final_Test/Images/08427.ppm"
+    ]
+  },
+  "D-B": {
+    "repaired_all_seeds": [],
+    "harmed_all_seeds": [
+      "GTSRB/Final_Test/Images/06530.ppm",
+      "GTSRB/Final_Test/Images/11330.ppm",
+      "GTSRB/Final_Test/Images/12346.ppm"
+    ]
+  }
+}

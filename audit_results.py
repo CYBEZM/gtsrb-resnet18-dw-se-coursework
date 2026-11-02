@@ -10,13 +10,13 @@ from src.utils import read_json, save_json, sha256
 from experiment_protocol import evaluation_protocol_path
 
 
-def audit(root, protocol_path):
+def audit(root, protocol_path, variants='ABCD'):
     root = Path(root)
     protocol = read_json(protocol_path)
     comparisons = []
     hashes = {}
     sample_ids_reference = None
-    for variant in 'ABCD':
+    for variant in variants:
         for seed in protocol['seeds']:
             evaluation_protocol = evaluation_protocol_path(protocol_path, seed)
             run = root / variant / str(seed)

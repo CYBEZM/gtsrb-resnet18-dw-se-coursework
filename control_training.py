@@ -22,7 +22,8 @@ def owned(process, script):
 
 
 def queue_processes():
-    return [p for p in psutil.process_iter() if owned(p, 'run_experiments.py')]
+    return [p for p in psutil.process_iter()
+            if any(owned(p, script) for script in ('run_experiments.py', 'run_supplement.py'))]
 
 
 def control(action):
@@ -32,6 +33,9 @@ def control(action):
     if action == 'status':
         print(json.dumps({'queue_pids': [p.pid for p in queues],
                           'training_pids': [p.pid for p in trainers]}, indent=2))
+        supplemental = RUNS / 'supplement_status.json'
+        if supplemental.exists():
+            print(supplemental.read_text(encoding='utf-8'))
         return
     if action == 'pause':
         # Stop the scheduler first so it cannot launch another training process.
@@ -40,7 +44,12 @@ def control(action):
             for child in queue.children(recursive=True):
                 if any(owned(child, name) for name in ('train.py', 'eval.py', 'profile_model.py',
                                                        'make_tables.py', 'build_report.py',
-                                                       'audit_results.py', 'audit_summary.py', 'make_examples.py')):
+                                                       'audit_results.py', 'audit_summary.py', 'make_examples.py',
+                                                       'analyze_results.py','finalize_improvements.py',
+                                                       'summarize_supplement.py','evaluate_external.py',
+                                                       'audit_external.py','build_improved_report.py',
+                                                       'export_pdf.py','package_results.py','-c',
+                                                       'audit_deep_analysis.py','make_external_scenes.py')):
                     targets.append(child)
             queue.terminate()
         psutil.wait_procs(queues, timeout=10)
@@ -57,6 +66,13 @@ def control(action):
         temp = RUNS / 'queue_status.json.tmp'
         temp.write_text(json.dumps(value, indent=2), encoding='utf-8')
         os.replace(temp, RUNS / 'queue_status.json')
+        if (RUNS / 'supplement_status.json').exists():
+            supplemental = RUNS / 'supplement_status.json'
+            saved = json.loads(supplemental.read_text(encoding='utf-8'))
+            if saved['stage'] != 'complete':
+                temporary = supplemental.with_suffix('.tmp')
+                temporary.write_text(json.dumps(value, indent=2), encoding='utf-8')
+                os.replace(temporary, supplemental)
         print('Paused. Checkpoints preserved; GPU memory will be released.')
         return
     if queues or trainers:
@@ -66,14 +82,23 @@ def control(action):
     if not references:
         raise RuntimeError('No previous run metadata; use documented first-run command')
     data_root = json.loads(references[0].read_text(encoding='utf-8'))['data_root']
+    supplemental = ROOT / 'protocols/supplement_E.json'
+    base_complete = all((RUNS / v / str(seed) / 'complete.json').exists()
+                        for v in 'ABCD' for seed in (11, 22, 33))
+    status_path = RUNS / 'supplement_status.json'
+    supplement_complete = (status_path.exists() and
+                           json.loads(status_path.read_text(encoding='utf-8'))['stage'] == 'complete')
+    script = ('run_supplement.py' if supplemental.exists() and base_complete
+              and not supplement_complete else 'run_experiments.py')
     flags = (subprocess.DETACHED_PROCESS | subprocess.CREATE_NEW_PROCESS_GROUP |
              subprocess.CREATE_NO_WINDOW) if os.name == 'nt' else 0
-    with (RUNS / 'queue.stdout.log').open('ab') as stdout, (RUNS / 'queue.stderr.log').open('ab') as stderr:
-        child = subprocess.Popen([sys.executable, '-u', 'run_experiments.py', '--data-root', data_root],
+    log_stem = 'supplement' if script == 'run_supplement.py' else 'queue'
+    with (RUNS / f'{log_stem}.stdout.log').open('ab') as stdout, (RUNS / f'{log_stem}.stderr.log').open('ab') as stderr:
+        child = subprocess.Popen([sys.executable, '-u', script, '--data-root', data_root],
                                   cwd=ROOT, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
                                   creationflags=flags, start_new_session=os.name != 'nt')
     (RUNS / 'queue.pid').write_text(str(child.pid), encoding='ascii')
-    print(f'Resumed queue PID={child.pid}. Completed runs are skipped.')
+    print(f'Resumed {script} PID={child.pid}. Completed runs are skipped.')
 
 
 if __name__ == '__main__':

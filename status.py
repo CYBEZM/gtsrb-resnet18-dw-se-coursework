@@ -48,3 +48,17 @@ print(f'Active-plan summary: {"ready" if summary_current else "pending"}; '
       f'result audit: {"ready" if audit_current else "pending"}')
 if not summary_current:
     print('Existing seed-11 report is historical; three-seed statistics are not yet complete.')
+
+supplement = root / 'protocols/supplement_E.json'
+if supplement.exists():
+    print('\nExploratory E (DW only in stage3/4), separate from the original A-D study:')
+    state = root / 'runs/supplement_status.json'
+    if state.exists():
+        print(state.read_text(encoding='utf-8'))
+    for seed in json.loads(supplement.read_text(encoding='utf-8'))['seeds']:
+        run = root / 'runs/E' / str(seed)
+        progress = run / 'progress.json'
+        epoch = json.loads(progress.read_text(encoding='utf-8'))['epoch'] + 1 if progress.exists() else 0
+        result = run / 'robustness_metrics.json'
+        conditions = len(json.loads(result.read_text(encoding='utf-8'))) if result.exists() else 0
+        print(f'E/{seed}: {epoch}/60 epochs; {conditions}/16 test conditions')

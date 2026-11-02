@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "Current A-D improvement report; E still pending",
+  "pdf": "report/大作业报告_改进版.pdf",
+  "pdf_sha256": "1f69ece5a8051df058e7301e476e4d327a1fa7f92b6e137716e5cdf0132c4ad1",
+  "pages": 16,
+  "review": "All pages inspected via contact sheet, supplemental pages 13-16 individually; no clipping; numerical text checks passed",
+  "word_visual_review": "Not completed; no functional Word/LibreOffice renderer"
+}

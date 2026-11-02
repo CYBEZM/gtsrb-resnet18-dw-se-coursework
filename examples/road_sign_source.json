@@ -1,0 +1,21 @@
+{
+  "sample": {
+    "sample_id": "00000.ppm:0",
+    "scene": "00000.ppm",
+    "class_id": 11,
+    "box_inclusive": [
+      774,
+      411,
+      815,
+      446
+    ],
+    "canonical_sha256": "365240b88ba1d7bbe9fbc8df7d8dacfb55cc133c63698941c90fa491383f33a1",
+    "crop_width": 42,
+    "crop_height": 36,
+    "predicted": 11
+  },
+  "source_manifest": "report/external/source_manifest.json",
+  "permission": "You are free to use this data package for any purpose you like.",
+  "image_sha256": "fe5ee8d9f1c8e105c92b7a65aeb288edaad5ebcef4e7cb12608d3c0f6c2afd6b",
+  "selection": "First correct C seed11 example in lexicographic sample order; qualitative demo only"
+}

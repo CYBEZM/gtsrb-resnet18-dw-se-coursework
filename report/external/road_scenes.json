@@ -1,0 +1,35 @@
+{
+  "model": "C/11",
+  "selection": "First erroneous crop scene in sample order",
+  "note": "Boxes are ground truth, not predictions from an object detector",
+  "scenes": [
+    {
+      "scene": "00011.ppm",
+      "scene_sha256": "5c1a00f9a126f640ead883f2eefbf084f722cf92df18cf2bcd1e624e267df6af",
+      "cases": [
+        {
+          "sample_id": "00011.ppm:17",
+          "box_inclusive": [
+            720,
+            338,
+            770,
+            398
+          ],
+          "class_id": 1,
+          "predicted": 1
+        },
+        {
+          "sample_id": "00011.ppm:18",
+          "box_inclusive": [
+            710,
+            265,
+            780,
+            342
+          ],
+          "class_id": 21,
+          "predicted": 11
+        }
+      ]
+    }
+  ]
+}

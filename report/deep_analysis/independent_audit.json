@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "class_rows": 516,
+  "paired_rows": 9,
+  "analysis_sha256": "6e4123d40004b0cb63d351858794430dbe3ac6e094b98e4b9da740d68250eef0",
+  "checks": [
+    "sklearn per-class precision/recall/F1/support",
+    "paired four-cell counts",
+    "all source hashes"
+  ]
+}

@@ -191,6 +191,40 @@ python -m streamlit run app.py
 
 演示默认在 CPU 运行，支持上传裁剪后的标志、Top-3 概率、固定退化与 stage3 的12×12 Grad-CAM。概率未校准，不支持未知类别判断，也不自动在道路照片中定位标志。只加载可信的本项目 `.ckpt` 文件，PyTorch pickle 检查点不可视为安全的外来文档。
 
+## 改进实验与最快演示
+
+原A-D三种子实验与已发布报告保持不变。新增逐类别、配对错误与训练波动分析见`report/deep_analysis/`；真实GTSDB道路场景见`report/external/`。外部子集按推理前冻结的规则选择100张有标注道路图像中的全部163个标志框，不用于训练或调参；无法证明与GTSRB的实体标志完全独立，且仅评价已知标注框内分类。E为stage3/4局部DW的事后探索实验，协议独立保存在`protocols/supplement_E.json`。全部三个种子训练、48个条件评估与独立审计完成前，不列入E结论。
+
+E进度：`python status.py`；暂停、恢复仍使用`python control_training.py pause`和`python control_training.py resume`。补充队列完成后自动运行`summarize_supplement.py`、外部评估、独立审计、`build_improved_report.py`及代码结果打包。PDF导出需reportlab；也可通过环境变量`GTSRB_REPORT_PYTHON`指定安装了reportlab的解释器。报告标题含“改进版”，未完成E时会明确标注进度，原报告不会被覆盖。
+
+在Python 3.12环境安装已实测版本，然后下载Release权重，无需先下载数据集或重新训练：
+
+```powershell
+python -m pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cu118
+python -m pip install -r requirements-tested.txt
+python download_weights.py
+python infer.py --checkpoint runs/C/11/best.ckpt --image examples/road_sign.png --output prediction.json --cam gradcam.png
+python -m streamlit run app.py
+```
+
+训练应选择CUDA解释器，本机为`D:\Anaconda3\python.exe`。推理默认CPU，可直接运行。上述道路标志示例的真实类别为11，来源、裁剪坐标和选择规则在`examples/road_sign_source.json`；演示样本属于定性案例，整体准确率以完整结果为准。
+
+[原A-D三种子权重Release](https://github.com/CYBEZM/gtsrb-resnet18-dw-se-coursework/releases/tag/v1.0.0-three-seed)提供种子11的四个检查点及全部十二个检查点。`python download_weights.py --all-seeds`下载全部种子。脚本依据仓库内`weights_manifest.json`验证压缩包和每个检查点SHA256；支持`--archive YOUR_DOWNLOADED_ZIP`离线安装，遇到已存在但内容不同的检查点会停止，不覆盖它。E权重不属于该原始实验Release。
+
+新增分析可分别复核与生成：
+
+```powershell
+python analyze_results.py
+python audit_deep_analysis.py
+python prepare_external.py --count 100 --output data/gtsdb_external
+python evaluate_external.py --external-root data/gtsdb_external --gtsrb-root data/gtsrb
+python audit_external.py --external-root data/gtsdb_external
+python make_external_scenes.py --external-root data/gtsdb_external
+python build_improved_report.py
+```
+
+外部数据下载仅选择固定镜像版本中的指定ZIP成员，并验证HTTP范围、ZIP CRC32和逐图SHA256；未下载完整ZIP，不将发布方的整包SHA256声称为本地已验证。模型评估需要全部种子的权重。逐类别完整复核还需原完整证据包的NPZ，下载权重本身不包含这些预测数组。改进版PDF可直接阅读；Word仍须在具有可用Word/LibreOffice的环境中完成排版核验。
+
 ## 方法参考
 
 - He et al. *Deep Residual Learning for Image Recognition*. CVPR 2016. [arXiv:1512.03385](https://arxiv.org/abs/1512.03385)

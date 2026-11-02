@@ -20,15 +20,18 @@ def digest(path):
 def public_files(root=ROOT):
     files = set()
     patterns = ['*.py', '*.md', 'requirements*.txt', 'LICENSE', '.gitignore',
-                '.gitattributes', 'protocol_frozen.json', 'configs/*.yaml',
+                '.gitattributes', 'protocol_frozen.json', 'weights_manifest.json', 'examples/*.png',
+                'examples/*.json', 'examples/*.md', 'configs/*.yaml',
                 'src/*.py', 'tests/*.py', 'protocols/*.json', 'validation/*.json']
     for pattern in patterns:
         files.update(path for path in root.glob(pattern) if path.is_file())
     for path in (root / 'report').rglob('*'):
-        if (path.is_file() and path.suffix in {'.json', '.csv', '.md', '.png', '.svg', '.pdf'}
+        if (path.is_file() and (path.suffix in {'.json', '.csv', '.md', '.txt', '.png', '.svg', '.pdf'}
+                or (path.parent.name=='external' and path.suffix=='.npz'))
                 and not path.name.startswith('smoke_')):
             files.add(path)
-    for variant in 'ABCD':
+    variants='ABCD'+('E' if (root/'report/supplement/audit.json').exists() else '')
+    for variant in variants:
         for seed in (11, 22, 33):
             run = root / 'runs' / variant / str(seed)
             for name in ('config.json', 'environment.json', 'data_reference.json',
@@ -56,6 +59,23 @@ def check_ready():
     for source in summary['source_files']:
         if digest(ROOT / source['path']) != source['sha256']:
             raise ValueError(f'Summary input changed: {source["path"]}')
+    for name in ('deep_analysis/analysis.json','external/audit.json','supplement/audit.json'):
+        path=ROOT/'report'/name
+        if not path.exists():
+            continue
+        audit=json.loads(path.read_text(encoding='utf-8'))
+        if audit['status']!='PASS':
+            raise ValueError(f'Supplemental audit failed: {name}')
+        if 'summary_sha256' in audit and digest(path.parent/'summary.json')!=audit['summary_sha256']:
+            raise ValueError(f'Supplemental summary changed: {name}')
+        for source in audit.get('source_files',[]):
+            if digest(ROOT/source['path'])!=source['sha256']:
+                raise ValueError(f'Supplement input changed: {source["path"]}')
+    independent=ROOT/'report/deep_analysis/independent_audit.json'
+    if independent.exists():
+        audit=json.loads(independent.read_text(encoding='utf-8'))
+        if audit['status']!='PASS' or audit['analysis_sha256']!=digest(independent.parent/'analysis.json'):
+            raise ValueError('Independent per-class audit is stale')
 
 
 def package(output, include_weights=False):
@@ -63,13 +83,16 @@ def package(output, include_weights=False):
     output = Path(output).resolve()
     files = public_files()
     if include_weights:
-        for variant in 'ABCD':
+        variants='ABCD'+('E' if (ROOT/'report/supplement/audit.json').exists() else '')
+        for variant in variants:
             for seed in (11, 22, 33):
                 run = ROOT / 'runs' / variant / str(seed)
                 files.extend([run / 'best.ckpt', run / 'source_snapshot.zip'])
                 files.extend(sorted((run / 'predictions').glob('*.npz')))
                 if len(list((run / 'predictions').glob('*.npz'))) != 16:
                     raise ValueError(f'Incomplete predictions: {run}')
+        files.extend(sorted((ROOT/'report/external').glob('*.npz')))
+    files=sorted(set(files))
     manifest = [dict(path=p.relative_to(ROOT).as_posix(), bytes=p.stat().st_size,
                      sha256=digest(p)) for p in sorted(files)]
     note = ('This archive contains code, all twelve run metrics, and the measured report.\n'
@@ -80,6 +103,10 @@ def package(output, include_weights=False):
              if include_weights else
              'Weights and prediction arrays are in the separate full evidence archive.\n'
              'audit_summary.py works with this archive; audit_results.py also needs that full archive.\n')
+    if (ROOT/'report/supplement/audit.json').exists():
+        note+='E is a separately frozen post-test exploratory study (3 seeds, 48 conditions).\n'
+    if (ROOT/'report/external/audit.json').exists():
+        note+='External GTSDB crop classification is supplementary; physical-sign independence is unproven.\n'
     output.parent.mkdir(parents=True, exist_ok=True)
     temporary = output.with_suffix(output.suffix + '.tmp')
     with zipfile.ZipFile(temporary, 'w', zipfile.ZIP_DEFLATED, compresslevel=3) as archive:
