@@ -4,5 +4,5 @@
 *.md text eol=lf
 *.txt text eol=lf
 # Frozen protocol hashes refer to exact bytes, including historical newlines.
-protocol_frozen.json -text
-protocols/*.json -text
+protocol_frozen.json -text whitespace=cr-at-eol
+protocols/*.json -text whitespace=cr-at-eol
