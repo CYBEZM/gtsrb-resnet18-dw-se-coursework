@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "repository_commit": "4fc45a1",
+  "fresh_remote_clone": true,
+  "downloaded_from_github_release": true,
+  "release": "v1.0.0-three-seed",
+  "archive_sha256": "54ad55764d4e898573b1e8ede93e43aa4e000fb1d6541316b1c46d00b70bb3a4",
+  "verified_checkpoints": 4,
+  "prediction": {
+    "top3": [
+      {
+        "class_id": 11,
+        "name": "交叉路口优先通行",
+        "probability": 0.9975695013999939
+      },
+      {
+        "class_id": 25,
+        "name": "道路施工",
+        "probability": 0.0003039852308575064
+      },
+      {
+        "class_id": 23,
+        "name": "路面湿滑",
+        "probability": 0.00029973569326102734
+      }
+    ],
+    "note": "Uncalibrated closed-set probabilities; cropped signs only"
+  },
+  "summary_audit": "PASS",
+  "note": "Uses existing tested Python environment; dependency installation on a clean OS is not claimed"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "available_hashed_references": 111,
+  "excluded_original_prediction_references": [
+    "runs/A/11/predictions/clean_0.npz",
+    "runs/A/22/predictions/clean_0.npz",
+    "runs/A/33/predictions/clean_0.npz",
+    "runs/B/11/predictions/clean_0.npz",
+    "runs/B/22/predictions/clean_0.npz",
+    "runs/B/33/predictions/clean_0.npz",
+    "runs/C/11/predictions/clean_0.npz",
+    "runs/C/22/predictions/clean_0.npz",
+    "runs/C/33/predictions/clean_0.npz",
+    "runs/D/11/predictions/clean_0.npz",
+    "runs/D/22/predictions/clean_0.npz",
+    "runs/D/33/predictions/clean_0.npz"
+  ],
+  "repository_commit": "4fc45a1"
+}
