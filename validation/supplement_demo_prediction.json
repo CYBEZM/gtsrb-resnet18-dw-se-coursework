@@ -1,0 +1,20 @@
+{
+  "top3": [
+    {
+      "class_id": 11,
+      "name": "交叉路口优先通行",
+      "probability": 0.9982372522354126
+    },
+    {
+      "class_id": 7,
+      "name": "限速100",
+      "probability": 0.00018700781220104545
+    },
+    {
+      "class_id": 30,
+      "name": "注意冰雪",
+      "probability": 0.00015962071483954787
+    }
+  ],
+  "note": "Uncalibrated closed-set probabilities; cropped signs only"
+}

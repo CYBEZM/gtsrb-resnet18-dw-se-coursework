@@ -1,0 +1,13 @@
+{
+  "variant": "E",
+  "epochs": 60,
+  "batch_size": 128,
+  "eval_batch_size": 256,
+  "lr": 0.05,
+  "min_lr": 0.0001,
+  "warmup_epochs": 5,
+  "momentum": 0.9,
+  "weight_decay": 0.0005,
+  "amp": true,
+  "seed": 11
+}

@@ -1,0 +1,21 @@
+{
+  "parameters": 2040043,
+  "conv_linear_macs": 722971136,
+  "input_shape": [
+    1,
+    3,
+    48,
+    48
+  ],
+  "output_shape": [
+    1,
+    43
+  ],
+  "stage_macs": [
+    339738624,
+    301989888,
+    38909952,
+    38329344
+  ],
+  "scope": "Conv2d/Linear MACs only; 1 MAC = 1 multiply-accumulate"
+}

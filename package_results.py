@@ -20,7 +20,7 @@ def digest(path):
 def public_files(root=ROOT):
     files = set()
     patterns = ['*.py', '*.md', 'requirements*.txt', 'LICENSE', '.gitignore',
-                '.gitattributes', 'protocol_frozen.json', 'weights_manifest.json', 'examples/*.png',
+                '.gitattributes', 'protocol_frozen.json', 'weights*manifest.json', 'examples/*.png',
                 'examples/*.json', 'examples/*.md', 'configs/*.yaml',
                 'src/*.py', 'tests/*.py', 'protocols/*.json', 'validation/*.json']
     for pattern in patterns:
@@ -95,16 +95,19 @@ def package(output, include_weights=False):
     files=sorted(set(files))
     manifest = [dict(path=p.relative_to(ROOT).as_posix(), bytes=p.stat().st_size,
                      sha256=digest(p)) for p in sorted(files)]
-    note = ('This archive contains code, all twelve run metrics, and the measured report.\n'
-            'No dataset or credentials are included. See README.md for installation and data download.\n'
+    note = ('This archive contains code, original A-D twelve run metrics, and the measured report.\n'
+            'No full dataset or credentials are included; a few attributed road-scene figures illustrate results.\n'
+            'See README.md for installation and data download.\n'
             'All mean/SD values use seeds 11,22,33; sample SD uses ddof=1.\n')
-    note += ('Best checkpoints, source snapshots and 192 prediction arrays are included.\n'
+    note += ('Best checkpoints, source snapshots and original A-D 192 prediction arrays are included.\n'
              'Run audit_results.py and audit_summary.py from the extracted project folder.\n'
              if include_weights else
              'Weights and prediction arrays are in the separate full evidence archive.\n'
              'audit_summary.py works with this archive; audit_results.py also needs that full archive.\n')
     if (ROOT/'report/supplement/audit.json').exists():
         note+='E is a separately frozen post-test exploratory study (3 seeds, 48 conditions).\n'
+        if include_weights:
+            note+='The three E checkpoints, source snapshots and 48 prediction arrays are also included.\n'
     if (ROOT/'report/external/audit.json').exists():
         note+='External GTSDB crop classification is supplementary; physical-sign independence is unproven.\n'
     output.parent.mkdir(parents=True, exist_ok=True)

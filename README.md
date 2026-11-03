@@ -17,7 +17,9 @@ B相对A减少86.98%参数，平均准确率降低0.135个百分点；C在三个
 
 仓库包含12次运行的JSON和日志，以及报告、表图和审计记录。十二个权重现已提供[GitHub Release下载](https://github.com/CYBEZM/gtsrb-resnet18-dw-se-coursework/releases/tag/v1.0.0-three-seed)，运行方法见[最快演示](#改进实验与最快演示)。192份逐样本预测和源码快照保存在本地完整证据包；训练恢复检查点仍在本机 `runs/`。Git不直接存放这些大文件，数据集不再分发。
 
-新增逐类别错误、验证波动和真实道路裁剪实验见[改进版报告PDF](report/大作业报告_改进版.pdf)与[Markdown](report/大作业报告_改进版.md)。当前版本包含已完成的A-D补充分析，E组局部DW仍在训练，完成后另行审计与更新。
+新增逐类别错误、验证波动、真实道路裁剪和E组局部DW实验均已完成，见[改进版报告PDF](report/大作业报告_改进版.pdf)与[Markdown](report/大作业报告_改进版.md)。E组新增3次60轮训练和48项评价；连同原四组共15次训练、900轮、240项GTSRB评价。E组仍是观察原四组结果后冻结的探索实验。
+
+E组Accuracy为98.49 ± 0.15%，Macro-F1为97.18 ± 0.29%，参数2,040,043，MACs为722.971 M。E相对B的配对准确率差为+0.066 ± 0.180个百分点，三个种子不支持显著性宣称。新增五组同一时段硬件补测中B为2.017 ms、E为2.779 ms，原四组历史计时保持不变；跨时间计时排序可能不同，应使用补充章节的同一时段表比较E。真实道路163个裁剪上E平均Accuracy为97.34 ± 0.94%，仅作固定子集的探索描述。
 
 ## 环境
 
@@ -178,7 +180,7 @@ python package_results.py --output ../traffic_sign_cnn_代码报告与实测结�
 python package_results.py --include-weights --output ../traffic_sign_cnn_权重预测与完整证据_三种子.zip
 ```
 
-第一个包提供代码、运行说明、报告图表和12次原始指标；第二个额外提供12个最佳检查点、192份逐样本预测及源码快照。恢复训练使用的last.ckpt保留在本机，不纳入交付包。
+当前第一个包提供代码、运行说明、报告图表、原A-D和补充E的15次原始指标；第二个额外提供15个最佳检查点、240份GTSRB逐样本预测及源码快照。包内另含15份外部子集预测。恢复训练使用的last.ckpt保留在本机，不纳入交付包。
 
 ### 暂停与继续
 
@@ -195,7 +197,7 @@ python -m streamlit run app.py
 
 ## 改进实验与最快演示
 
-原A-D三种子实验与已发布报告保持不变。新增逐类别、配对错误与训练波动分析见`report/deep_analysis/`；真实GTSDB道路场景见`report/external/`。外部子集按推理前冻结的规则选择100张有标注道路图像中的全部163个标志框，不用于训练或调参；无法证明与GTSRB的实体标志完全独立，且仅评价已知标注框内分类。E为stage3/4局部DW的事后探索实验，协议独立保存在`protocols/supplement_E.json`。全部三个种子训练、48个条件评估与独立审计完成前，不列入E结论。
+原A-D三种子实验与已发布报告保持不变。新增逐类别、配对错误与训练波动分析见`report/deep_analysis/`；真实GTSDB道路场景见`report/external/`。外部子集按推理前冻结的规则选择100张有标注道路图像中的全部163个标志框，不用于训练或调参；无法证明与GTSRB的实体标志完全独立，且仅评价已知标注框内分类。E为stage3/4局部DW的事后探索实验，协议独立保存在`protocols/supplement_E.json`。全部三个种子训练、48个条件评估与独立审计现已完成。
 
 E进度：`python status.py`；暂停、恢复仍使用`python control_training.py pause`和`python control_training.py resume`。补充队列完成后自动运行`summarize_supplement.py`、外部评估、独立审计、`build_improved_report.py`及代码结果打包。PDF导出需reportlab；也可通过环境变量`GTSRB_REPORT_PYTHON`指定安装了reportlab的解释器。报告标题含“改进版”，未完成E时会明确标注进度，原报告不会被覆盖。
 
@@ -212,6 +214,8 @@ python -m streamlit run app.py
 训练应选择CUDA解释器，本机为`D:\Anaconda3\python.exe`。推理默认CPU，可直接运行。上述道路标志示例的真实类别为11，来源、裁剪坐标和选择规则在`examples/road_sign_source.json`；演示样本属于定性案例，整体准确率以完整结果为准。
 
 [原A-D三种子权重Release](https://github.com/CYBEZM/gtsrb-resnet18-dw-se-coursework/releases/tag/v1.0.0-three-seed)提供种子11的四个检查点及全部十二个检查点。`python download_weights.py --all-seeds`下载全部种子。脚本依据仓库内`weights_manifest.json`验证压缩包和每个检查点SHA256；支持`--archive YOUR_DOWNLOADED_ZIP`离线安装，遇到已存在但内容不同的检查点会停止，不覆盖它。E权重不属于该原始实验Release。
+
+[补充E与完整交付Release](https://github.com/CYBEZM/gtsrb-resnet18-dw-se-coursework/releases/tag/v1.1.0-supplement-E)另外提供E组三个检查点、最终PDF、代码结果包和完整证据包。运行`python download_weights.py --supplement`下载并校验全部E权重，使用独立的`weights_supplement_manifest.json`。若要重算240项GTSRB预测指标，下载并解压完整证据包后运行`python audit_results.py`（原192项）与`python summarize_supplement.py`（补充48项）；外部15份NPZ也包含在仓库及证据包中。
 
 新增分析可分别复核与生成：
 
@@ -234,4 +238,4 @@ python build_improved_report.py
 - Hu et al. *Squeeze-and-Excitation Networks*. CVPR 2018. [arXiv:1709.01507](https://arxiv.org/abs/1709.01507)
 - Stallkamp et al. *Man vs. computer: Benchmarking machine learning algorithms for traffic sign recognition*. Neural Networks, 2012. [DOI:10.1016/j.neunet.2012.02.016](https://doi.org/10.1016/j.neunet.2012.02.016)
 
-仓库不包含第三方数据或预训练权重。结构实现由本项目编写；参考文献用于说明方法来源，不将已有注意力或可分离卷积作为原创算法宣称。
+仓库不包含完整第三方数据集或外部预训练权重；真实道路章节使用少量已注明来源与使用许可的示例图。模型均由本项目从随机初始化训练。结构实现由本项目编写；参考文献用于说明方法来源，不将已有注意力或可分离卷积作为原创算法宣称。

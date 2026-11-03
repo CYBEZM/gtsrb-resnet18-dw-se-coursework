@@ -15,9 +15,10 @@ def digest(path):
     return h.hexdigest()
 
 
-def install(all_seeds=False,output='.',archive=None):
-    manifest=json.loads(Path(__file__).with_name('weights_manifest.json').read_text(encoding='utf-8'))
-    name='weights_all_seeds.zip' if all_seeds else 'weights_seed11.zip'
+def install(all_seeds=False,output='.',archive=None,supplement=False):
+    manifest_name='weights_supplement_manifest.json' if supplement else 'weights_manifest.json'
+    manifest=json.loads(Path(__file__).with_name(manifest_name).read_text(encoding='utf-8'))
+    name='weights_E_all_seeds.zip' if supplement else ('weights_all_seeds.zip' if all_seeds else 'weights_seed11.zip')
     entry=next(r for r in manifest['archives'] if r['name']==name)
     output=Path(output).resolve()
     if all((output/r['path']).is_file() and digest(output/r['path'])==r['sha256'] for r in entry['files']):
@@ -53,5 +54,6 @@ def install(all_seeds=False,output='.',archive=None):
 
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('--all-seeds',action='store_true')
+    p.add_argument('--supplement',action='store_true',help='Download all three E checkpoints from the separate exploratory release')
     p.add_argument('--output',default='.');p.add_argument('--archive',help='Verify/install an already downloaded ZIP')
-    a=p.parse_args();install(a.all_seeds,a.output,a.archive)
+    a=p.parse_args();install(a.all_seeds,a.output,a.archive,a.supplement)

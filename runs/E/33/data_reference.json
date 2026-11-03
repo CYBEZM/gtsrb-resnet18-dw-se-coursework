@@ -1,0 +1,11 @@
+{
+  "manifest_sha256": "209d45b5cf8f5caf3218658586be1ab6a6cb8b830221d7358c2f5a00f72a6502",
+  "data_root": "C:\\Users\\CYBEZM\\Documents\\Codex\\2026-11-01\\1-github-gitee-cnn-se-net\\work\\gtsrb",
+  "split_seed": 2026,
+  "train_count": 21360,
+  "val_count": 5280,
+  "raw_content_sha256": {
+    "train": "537cf8d5499f13ad8c580d61ff56a8b501cf5f9aca25ff791ae503db729a0788",
+    "test": "8d1106868576df3c008d70998fdbea363a37f9725f33d37558b4e1533fa7d043"
+  }
+}

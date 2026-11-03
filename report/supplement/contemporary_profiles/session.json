@@ -1,0 +1,14 @@
+{
+  "completed_utc": "2026-11-03T03:10:22.846897+00:00",
+  "order": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "training_and_queue_processes_absent": true,
+  "checkpoint_seed": 11,
+  "method": "One serial pass across five models; each profile 3 repeats, 50 warmup/200 samples. Fixed order, not randomized interleaving.",
+  "nvidia_smi": "NVIDIA GeForce RTX 4060 Laptop GPU, 617.42, 54, 13.04 W, 3 %"
+}

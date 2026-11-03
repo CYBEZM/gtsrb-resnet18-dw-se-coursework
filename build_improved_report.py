@@ -15,7 +15,7 @@ def build():
         audit=root/directory/audit_name
         if section.exists():
             assert read_json(audit)['status']=='PASS', f'{directory} has not passed audit'
-            if directory=='external':
+            if directory in ('external','supplement'):
                 assert read_json(audit)['summary_sha256']==sha256(root/directory/'summary.json')
             if directory=='deep_analysis':
                 independent=root/directory/'independent_audit.json'

@@ -1,0 +1,28 @@
+{
+  "repository": "CYBEZM/gtsrb-resnet18-dw-se-coursework",
+  "tag": "v1.1.0-supplement-E",
+  "archives": [
+    {
+      "name": "weights_E_all_seeds.zip",
+      "sha256": "736ac64ca2ee300b738bfdf2d2666afa94da13406e45e3a85637e7f5ed7ed092",
+      "bytes": 22928867,
+      "files": [
+        {
+          "path": "runs/E/11/best.ckpt",
+          "sha256": "d9433458020a8528cb158e1ce0c78382546760c6190e9c6cb1511fc7610e6bd5",
+          "bytes": 8243555
+        },
+        {
+          "path": "runs/E/22/best.ckpt",
+          "sha256": "b43df5a8f11fcc2e829a1db738aca8e98debce73805fa964be80a11581c60b13",
+          "bytes": 8243555
+        },
+        {
+          "path": "runs/E/33/best.ckpt",
+          "sha256": "3ea37968009a884442bc90102b12042970cfaf169c14167d6001f6c6ad00058f",
+          "bytes": 8243555
+        }
+      ]
+    }
+  ]
+}

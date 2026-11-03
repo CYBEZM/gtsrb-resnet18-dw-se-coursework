@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "scope": "Completed original A-D plus exploratory E and GTSDB road crops",
+  "pdf": "report/大作业报告_改进版.pdf",
+  "pdf_sha256": "b7d99af87ca4b99efde9f7dd8a754cc52debe56148a539551600ba175888ffc1",
+  "pages": 17,
+  "review": "All pages contact sheet and E pages 15-16 individually; numeric text checks: 98.49,97.18,2040043,722.971,2.017,2.779,97.34",
+  "word_visual_review": "Not completed; verified final deliverable is PDF"
+}

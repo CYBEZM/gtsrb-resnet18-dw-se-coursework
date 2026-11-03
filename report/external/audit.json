@@ -1,9 +1,9 @@
 {
   "status": "PASS",
-  "models": 12,
+  "models": 15,
   "samples": 163,
   "exact_duplicates_excluded": 0,
-  "summary_sha256": "9a2e4da97bc39d3b6afc670747be67fcbfda334ed35d6a3739201e87f1ddc470",
+  "summary_sha256": "5d4205b5caf9fb85151afe574d6d7595ed62e043ea77ca49574b579b55cfdc7d",
   "input_protocol_sha256": "7eed9f4de2b84bfe1e825d0c29136d4623dbeb8f9b7283e06c48aa59489f5e06",
   "source_manifest_sha256": "f27816d90266dc3480f3fc99d32139e2eb4143b2639e812fbe52dfcaf893cc0b",
   "prediction_files": [
@@ -54,6 +54,18 @@
     {
       "path": "report/external/D_33.npz",
       "sha256": "f05ff9d731463c76eda0f3281945511a0dcf572cda16128693618bb608f1a029"
+    },
+    {
+      "path": "report/external/E_11.npz",
+      "sha256": "90d53392962d4b3a185301b6df07921526497a2a6686eaa57af617b07fcacff4"
+    },
+    {
+      "path": "report/external/E_22.npz",
+      "sha256": "3a48f91d6a3935365123b1d12971f45d290a1511ecdb9c988c8eb8151d7e15f8"
+    },
+    {
+      "path": "report/external/E_33.npz",
+      "sha256": "404a19373ba7b766774b7a547fe684a92071b0253c51faf5c5df08307281c322"
     }
   ],
   "checks": [
