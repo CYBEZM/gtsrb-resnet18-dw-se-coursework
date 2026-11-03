@@ -2,9 +2,9 @@
 
 从随机初始化实现小图像ResNet-18，连续研究全阶段DW、SE及深层局部DW的精度、复杂度、退化表现和道路裁剪分类。五组共享数据划分、60轮训练预算及验证选模规则，使用种子11、22、33，共15次训练、900轮、240项GTSRB评价。
 
-![模型结构](report/integrated/architecture.png)
+![任务场景与研究路线](report/integrated/task_scene.png)
 
-当前阅读版本为**内容整合稿v2，供审阅，版式待调整**：[报告PDF](report/大作业报告_内容整合稿_v2.pdf) · [可编辑正文](report/大作业报告_内容整合稿_v2.md)。正文保留6幅核心图、6个表，增加结构推导与结果讨论；历史版本保留在仓库记录与Releases中。
+当前阅读版本为**内容整合稿v3，供审阅，版式待调整**：[报告PDF](report/大作业报告_内容整合稿_v3.pdf) · [可编辑正文](report/大作业报告_内容整合稿_v3.md)。正文包含9幅图、6个表，结合场景示意、组件原理与结构推导展开结果讨论；历史版本保留在仓库记录与Releases中。
 
 ## 主要结果
 
@@ -54,7 +54,7 @@ report/external/         道路裁剪结果、输入协议、来源与许可
 docs/                    操作说明与协议沿革
 ```
 
-报告、README表格和新图均从`review_data.py`读取保存结果。`make_compact_evidence.py`生成精简案例与组件分析，`make_integrated_figures.py`生成五组曲线，`build_integrated_report.py`生成本稿及本页。详细来源见报告附录。
+报告、README表格和新图均从`review_data.py`读取保存结果。`make_explanatory_figures.py`生成场景、组件原理及分组预处理示意，`make_compact_evidence.py`生成精简案例与组件分析，`make_integrated_figures.py`生成五组曲线，`build_integrated_report.py`生成本稿及本页。详细来源见报告附录。
 
 ## 权重与完整证据
 

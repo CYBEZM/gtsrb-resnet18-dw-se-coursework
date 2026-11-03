@@ -47,7 +47,7 @@ def diagrams(data):
         arrow(ax,(x+w/2,1.8),(x+w/2,1.4)); box(ax,x,.2,w,1.2,text,11)
     save(fig,'workflow')
 
-    fig, axes=plt.subplots(2,1,figsize=(12,6.0),gridspec_kw={'height_ratios':[1,1.65]})
+    fig, axes=plt.subplots(2,1,figsize=(12,4.7),gridspec_kw={'height_ratios':[1,1.4]})
     ax=axes[0]; ax.axis('off'); ax.set(xlim=(0,12),ylim=(0,2.3))
     labels=['输入\n3×48×48','入口3×3\n64×48×48','stage1 ×2\n64×48×48',
             'stage2 ×2\n128×24×24','stage3 ×2\n256×12×12','stage4 ×2\n512×6×6','GAP + FC\n43类']
@@ -55,17 +55,15 @@ def diagrams(data):
         x=.05+i*1.72; box(ax,x,.65,1.5,1.0,label,10)
         if i<6: arrow(ax,(x+1.5,1.15),(x+1.72,1.15))
     ax.text(6,2.05,'共同骨架：3×3入口、stride=1、无maxpool；每阶段两个BasicBlock',ha='center',fontsize=12)
-    ax=axes[1]; ax.axis('off'); ax.set(xlim=(0,12),ylim=(0,3.7))
+    ax=axes[1]; ax.axis('off'); ax.set(xlim=(0,12),ylim=(.85,3.5))
     seq=[(.1,1.45,'输入 x'),(2.0,1.65,'卷积1\nBN → ReLU'),(4.1,1.65,'卷积2\nBN'),
          (6.2,1.55,'SE / 恒等\n相加前'),(8.2,1.2,'相加'),(10,1.7,'ReLU\n输出')]
     for x,w,text in seq: box(ax,x,1.6,w,1.05,text,11)
     for i in range(len(seq)-1): arrow(ax,(seq[i][0]+seq[i][1],2.125),(seq[i+1][0],2.125))
     ax.plot([.83,.83,8.8],[1.6,1.1,1.1],color='#444444',lw=1)
     arrow(ax,(8.8,1.1),(8.8,1.6)); ax.text(4.7,1.22,'shortcut：恒等，或1×1投影 + BN',ha='center',fontsize=10)
-    box(ax,.2,.05,5.6,.7,'卷积替换：标准3×3 → DW 3×3 → PW 1×1',11)
-    box(ax,6.2,.05,5.6,.7,'SE：GAP → FC(C/16) → ReLU → FC(C) → Sigmoid → 通道缩放',9)
     ax.text(6,3.2,'B/D：替换全部残差主分支卷积；E：仅stage3/4；C/D：每块加入SE',ha='center',fontsize=12)
-    fig.tight_layout(); save(fig,'architecture')
+    fig.tight_layout(); save(fig,'architecture_v3')
 
 
 def plots(data):
@@ -82,20 +80,31 @@ def plots(data):
     axes[1].yaxis.set_minor_formatter(NullFormatter())
     axes[0].legend(ncol=5,loc='lower right'); fig.tight_layout(); save(fig,'learning_curves')
 
-    fig,axes=plt.subplots(1,2,figsize=(11.8,3.7))
+    fig,axes=plt.subplots(1,3,figsize=(12.5,4.0),gridspec_kw={'width_ratios':[1,1.12,1]})
     for v,color,marker in zip(VARIANTS,COLORS,MARKERS):
         m=data['models'][v]
         axes[0].errorbar(m['parameters']/1e6,m['accuracy_mean']*100,
             yerr=m['accuracy_sd']*100,fmt=marker,capsize=4,color=color,ms=8)
         axes[0].annotate(v,(m['parameters']/1e6,m['accuracy_mean']*100),xytext=(7,5),textcoords='offset points')
-    axes[0].set(xlabel='参数量 (M)',ylabel='测试Accuracy (%)',xscale='log',ylim=(97.4,99.0))
+    axes[0].set(xlabel='参数量 (M)',ylabel='测试Accuracy (%)',xscale='log',ylim=(97.4,99.0),title='(a) 精度与存储取舍')
+    axes[0].set_xticks([1.5,3,6,12]); axes[0].set_xticklabels(['1.5','3','6','12'])
+    axes[0].xaxis.set_minor_formatter(NullFormatter())
+    contrasts=data['contrasts']; y=np.arange(len(contrasts))
+    axes[1].axvline(0,color='#888888',lw=1,linestyle='--')
+    for j,(seed,marker) in enumerate(zip(SEEDS,['o','s','^'])):
+        axes[1].scatter([r['seed_differences_pp'][j] for r in contrasts],y+(j-1)*.12,
+                        marker=marker,s=30,label=f'seed{seed}',color=COLORS[j+1])
+    axes[1].scatter([r['mean_pp'] for r in contrasts],y,marker='|',s=130,c='black',label='配对均值')
+    axes[1].set(yticks=y,yticklabels=[r['contrast'] for r in contrasts],
+                xlabel='Accuracy差值 (pp)',title='(b) 相同种子配对差值',xlim=(-1.05,.55),ylim=(5.6,-.6))
+    axes[1].legend(ncol=2,loc='lower left',fontsize=8)
     xs=np.arange(5); bottom=np.zeros(5)
     for i,hatch in enumerate(['///','...','xxx','\\\\']):
         heights=np.array([data['complexity'][v]['stage_macs'][i]/1e6 for v in VARIANTS])
-        axes[1].bar(xs,heights,bottom=bottom,label=f'stage{i+1}',color='white',edgecolor=f'{.15+i*.15:.2f}',hatch=hatch,width=.65)
+        axes[2].bar(xs,heights,bottom=bottom,label=f'stage{i+1}',color='white',edgecolor=f'{.15+i*.15:.2f}',hatch=hatch,width=.65)
         bottom+=heights
-    axes[1].set(xticks=xs,xticklabels=list(VARIANTS),ylabel='阶段Conv/Linear MACs (M)')
-    axes[1].legend(ncol=2,fontsize=9); fig.tight_layout(); save(fig,'tradeoffs')
+    axes[2].set(xticks=xs,xticklabels=list(VARIANTS),ylabel='阶段Conv/Linear MACs (M)',title='(c) 分阶段计算量')
+    axes[2].legend(ncol=2,fontsize=8); fig.tight_layout(w_pad=1.2); save(fig,'tradeoffs_v3')
 
     fig,axes=plt.subplots(2,3,figsize=(12,6.3)); lookup={(r['variant'],r['kind'],r['severity']):r for r in data['robustness']}
     for ax,kind in zip(axes.flat,KINDS):
@@ -128,7 +137,7 @@ def main():
     save_json(OUT/'figure_sources.json',dict(status='PASS',summary_sha256=sha256(OUT/'summary.json'),
         generator_sha256=sha256(__file__),
         outputs=[dict(path=p.relative_to(ROOT).as_posix(),sha256=sha256(p)) for p in sorted(OUT.glob('*.png'))
-                 if p.stem in ('workflow','architecture','learning_curves','tradeoffs','robustness','hardware')]))
+                 if p.stem in ('workflow','architecture_v3','learning_curves','tradeoffs_v3','robustness','hardware')]))
     print('Generated six unified A-E figures with white backgrounds.',flush=True)
 
 

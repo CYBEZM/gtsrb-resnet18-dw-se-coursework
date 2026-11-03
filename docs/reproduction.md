@@ -93,21 +93,22 @@ python summarize_supplement.py
 
 ```powershell
 python make_compact_evidence.py --data-root data/gtsrb --external-root data/gtsdb_external
+python make_explanatory_figures.py --data-root data/gtsrb --external-root data/gtsdb_external
 python make_integrated_figures.py
 python build_integrated_report.py
 python audit_integrated_report.py
 python -m pip install -r requirements-report.txt
-python export_pdf.py --source report/大作业报告_内容整合稿_v2.md --output report/大作业报告_内容整合稿_v2.pdf
+python export_pdf.py --source report/大作业报告_内容整合稿_v3.md --output report/大作业报告_内容整合稿_v3.pdf
 ```
 
-精简案例/组件分析与统计制图脚本分进程执行，避免PyTorch和绘图库在本机加载不同OpenMP运行时。默认使用Windows宋体/黑体；PDF导出可用`--font`、`--bold-font`指定中文TrueType字体，制图脚本的字体也需相应修改。PDF导出后仍须渲染检查分页、字体和图表清晰度。
+场景与模块原理图不执行新训练或测试推理，输入和实现对应关系见`explanatory_sources.json`。精简案例/组件分析与统计制图脚本分进程执行，避免PyTorch和绘图库在本机加载不同OpenMP运行时。默认使用Windows宋体/黑体；PDF导出可用`--font`、`--bold-font`指定中文TrueType字体，制图脚本的字体也需相应修改。PDF导出后仍须渲染检查分页、字体和图表清晰度。
 
 历史`build_report.py`、`build_improved_report.py`供重建旧版报告；A-D与E旧队列的自动收尾也沿用历史生成器。要得到当前内容整合稿，使用上面的新命令，避免混淆输出文件。
 
 当前稿、代码与轻量结果打包：
 
 ```powershell
-python package_results.py --output ../traffic_sign_cnn_内容整合稿_v2_代码与结果.zip
+python package_results.py --output ../traffic_sign_cnn_内容整合稿_v3_代码与结果.zip
 ```
 
 包内有文件级SHA256清单，不包含数据集、凭据、权重和大预测数组。添加`--include-weights`才包含15个最佳检查点、源码快照和240份GTSRB预测。恢复训练的`last.ckpt`保留本机，不进入交付包。

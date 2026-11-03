@@ -2,12 +2,13 @@
   "status": "PASS",
   "gtsrb_robustness_aggregates_verified": 75,
   "illustrated_test_predictions_verified": 50,
-  "figures": 6,
+  "figures": 9,
   "tables": 6,
+  "explanatory_sources_verified": true,
   "component_analysis_verified": true,
   "compact_road_predictions_verified": 4,
   "seed11_files_preserved": 112,
   "frozen_sources_unchanged": true,
-  "report_sha256": "b0d77dcb99006f9d14daa420ea69d273102c0aa0f480ef959736f8fd02421e4e",
-  "readme_sha256": "c74f0388a58fe652bc3e1ff49e0934f5825165e3ae4ffa9f1fec4325ad41fe71"
+  "report_sha256": "cdcf26b6de21e2610e1f50edf40e884265d2bc18ab73f71839f8aefe8b14c46b",
+  "readme_sha256": "be907b7c3f49d4e44bc12927c2b3826c10d1893588517125b4760a04c4ef16ff"
 }

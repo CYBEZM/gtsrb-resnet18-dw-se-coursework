@@ -1,0 +1,112 @@
+{
+  "status": "PASS",
+  "task_scene": {
+    "scene": "00011.ppm",
+    "scene_sha256": "5c1a00f9a126f640ead883f2eefbf084f722cf92df18cf2bcd1e624e267df6af",
+    "sample_id": "00011.ppm:17",
+    "box_inclusive": [
+      720,
+      338,
+      770,
+      398
+    ],
+    "canonical_sha256": "189cec1b738acfc4c060ac719297a883dfa5af6fa70286faf2282ae8fe1b0dde",
+    "label": 1,
+    "conditions": [
+      "clean_0",
+      "brightness_3",
+      "motion_3"
+    ],
+    "note": "Illustration only; supplied annotation, no detector output or newly measured predictions"
+  },
+  "grouping": {
+    "manifest_sha256": "209d45b5cf8f5caf3218658586be1ab6a6cb8b830221d7358c2f5a00f72a6502",
+    "selection": "Class1, lexicographically first track and first three frames within each actual subset",
+    "groups": [
+      {
+        "subset": "训练子集",
+        "track": "00001/00000",
+        "samples": [
+          {
+            "path": "GTSRB/Training/00001/00000_00000.ppm",
+            "original_sha256": "b3493d7872ffd5d6b1e34f7475513998b61fc3678da8016c14c266ceaf140ae9"
+          },
+          {
+            "path": "GTSRB/Training/00001/00000_00001.ppm",
+            "original_sha256": "a763d00e620adae3af4cfa618e25ff0928c1cd053357e13d92c434059d78654b"
+          },
+          {
+            "path": "GTSRB/Training/00001/00000_00002.ppm",
+            "original_sha256": "5774b3225e36052e6970dbad3ec122639829fa613396f63d9066a0a94ea26022"
+          }
+        ]
+      },
+      {
+        "subset": "验证子集",
+        "track": "00001/00003",
+        "samples": [
+          {
+            "path": "GTSRB/Training/00001/00003_00000.ppm",
+            "original_sha256": "3122a245c61aa1b1a0fcbecf14c8549b3ba614f4680ce6fd2cddb3107153ccbb"
+          },
+          {
+            "path": "GTSRB/Training/00001/00003_00001.ppm",
+            "original_sha256": "5481078e1fe8cf391b520a817305f5d3310c3b1109d37550efe2eb172da3ec15"
+          },
+          {
+            "path": "GTSRB/Training/00001/00003_00002.ppm",
+            "original_sha256": "4226e50f79e63625ba10191e91e2cb2c6d2810e7e7f2a67ffb5621cf2ff8acca"
+          }
+        ]
+      }
+    ],
+    "preprocessing_sample": {
+      "path": "GTSRB/Training/00038/00006_00000.ppm",
+      "original_sha256": "5defce56af3e49030422b96430884f45bb02801e9b4fa3b8a2e74e28836f260e"
+    }
+  },
+  "modules": {
+    "note": "Conceptual feature planes, not measured activations; depth multiplier1; no BN/activation at DW/PW boundary",
+    "se_reduction": 16,
+    "se_position": "after final branch BN, before residual addition",
+    "source": "src/models.py",
+    "source_sha256": "0b7327e0906b19a50964a6f18500b47245837845cb7b4027497d7d08de958d38"
+  },
+  "generator_sha256": "db4ff0adae03b26b9ad32b322b83e4a2de904108dd528bd4605bf10830263ce3",
+  "sources": [
+    {
+      "path": "report/data/dataset_summary.json",
+      "sha256": "b785a24ffc6ec580854ee477e614916c94a40fe3c1f1b02b89cdb80fbb539d8b"
+    },
+    {
+      "path": "report/external/input_protocol.json",
+      "sha256": "7eed9f4de2b84bfe1e825d0c29136d4623dbeb8f9b7283e06c48aa59489f5e06"
+    },
+    {
+      "path": "report/integrated/compact_sources.json",
+      "sha256": "8c8c79062b687b4aaca519bdc7c365ac7e0e28d59be6474005faa8cbb114d74b"
+    },
+    {
+      "path": "src/models.py",
+      "sha256": "0b7327e0906b19a50964a6f18500b47245837845cb7b4027497d7d08de958d38"
+    },
+    {
+      "path": "src/data.py",
+      "sha256": "885f215046a1f35222d7ce759cc69c0490494044b43e08c9006b85ec5f4eb550"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "report/integrated/task_scene.png",
+      "sha256": "93362f8f6cfc9bbe02f81dc2da31ac52cbec72464395b9ccd7300bef5c8f7a3a"
+    },
+    {
+      "path": "report/integrated/grouping_preprocessing.png",
+      "sha256": "d0b8314424411c4a593800c871eba5976e0fd590cd0117333c398395d1836956"
+    },
+    {
+      "path": "report/integrated/component_mechanisms.png",
+      "sha256": "b71434b35067e6865c5bcddb8b7c5b8fe1f697ab91092402cf5e8ed5b78075a6"
+    }
+  ]
+}

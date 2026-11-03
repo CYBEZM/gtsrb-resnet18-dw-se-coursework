@@ -1,9 +1,9 @@
 {
   "status": "PASS",
-  "draft": "content review v2",
-  "output": "report/大作业报告_内容整合稿_v2.md",
-  "output_sha256": "b0d77dcb99006f9d14daa420ea69d273102c0aa0f480ef959736f8fd02421e4e",
-  "readme_sha256": "c74f0388a58fe652bc3e1ff49e0934f5825165e3ae4ffa9f1fec4325ad41fe71",
+  "draft": "content review v3",
+  "output": "report/大作业报告_内容整合稿_v3.md",
+  "output_sha256": "cdcf26b6de21e2610e1f50edf40e884265d2bc18ab73f71839f8aefe8b14c46b",
+  "readme_sha256": "be907b7c3f49d4e44bc12927c2b3826c10d1893588517125b4760a04c4ef16ff",
   "sources": [
     {
       "path": "report/data/dataset_summary.json",
@@ -359,7 +359,7 @@
     },
     {
       "path": "report/integrated/figure_sources.json",
-      "sha256": "35be7efbf6f471605875503a7caabb87305e5f841289cc8bb2a2575a9c9d0665"
+      "sha256": "dec83f651f8273b0e064d0d892f94084cb39c671a00e14775c1abd7b21aa31a9"
     },
     {
       "path": "report/integrated/component_analysis.json",
@@ -370,8 +370,16 @@
       "sha256": "8c8c79062b687b4aaca519bdc7c365ac7e0e28d59be6474005faa8cbb114d74b"
     },
     {
+      "path": "report/integrated/explanatory_sources.json",
+      "sha256": "7c2eebc11d92f476ec69f01c7d95075fc742943c0d736e83ffa51d75848a01f0"
+    },
+    {
+      "path": "make_explanatory_figures.py",
+      "sha256": "db4ff0adae03b26b9ad32b322b83e4a2de904108dd528bd4605bf10830263ce3"
+    },
+    {
       "path": "report_narrative.py",
-      "sha256": "5e72e563dec6d7a1dc182dd9847095cb82caf209275af6f4f1df31188f7b66f0"
+      "sha256": "cd4b79d155004fd5c06bddc7d9fb978ff53ae80f9757ae13fcaf83ca5fd28203"
     },
     {
       "path": "make_compact_evidence.py",
@@ -379,7 +387,7 @@
     },
     {
       "path": "build_integrated_report.py",
-      "sha256": "5e95157905893d0334c9eb1e0e13543899d9992ebfe1fa92975ecce3597137d1"
+      "sha256": "8d734c7dec0c11f5d4502358229037ce06fe3c207aa2c2b14d28326060fe0a8f"
     },
     {
       "path": "review_data.py",

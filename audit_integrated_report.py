@@ -96,7 +96,26 @@ def audit():
     assert [r['size'] for r in components['receptive_field_standard']]==[12,12,6,3,2]
     assert [r['size'] for r in components['receptive_field_adapted']]==[48,48,24,12,6]
     assert [r['receptive_field'] for r in components['receptive_field_adapted']]==[3,11,25,53,109]
-    for manifest in ('figure_sources.json','comparison_sources.json','compact_sources.json'):
+    explanatory=read_json(out/'explanatory_sources.json')
+    assert explanatory['generator_sha256']==sha256(ROOT/'make_explanatory_figures.py')
+    for row in explanatory['sources']:
+        assert sha256(ROOT/row['path'])==row['sha256'],row['path']
+    assert explanatory['modules']['source_sha256']==sha256(ROOT/'src/models.py')
+    assert explanatory['grouping']['manifest_sha256']==read_json(ROOT/'report/data/dataset_summary.json')['manifest_sha256']
+    groups=explanatory['grouping']['groups']
+    assert len(groups)==2 and groups[0]['track']!=groups[1]['track']
+    for group in groups:
+        assert len(group['samples'])==3
+        for sample in group['samples']:
+            path=Path(sample['path'])
+            assert path.parent.name+'/'+path.stem.split('_')[0]==group['track']
+    scene=explanatory['task_scene']
+    assert scene['scene_sha256']==compact['road_cases']['scene_sha256']
+    external=read_json(ROOT/'report/external/input_protocol.json')
+    crop=next(r for r in external['samples'] if r['sample_id']==scene['sample_id'])
+    assert crop['canonical_sha256']==scene['canonical_sha256']
+    assert crop['box_inclusive']==scene['box_inclusive']
+    for manifest in ('figure_sources.json','comparison_sources.json','compact_sources.json','explanatory_sources.json'):
         for row in read_json(out/manifest)['outputs']:
             path=ROOT/row['path']; assert sha256(path)==row['sha256']
             with Image.open(path) as image:
@@ -107,7 +126,8 @@ def audit():
     assert len(headings)==len(set(headings))
     assert not any('补充' in h for h in headings)
     images=re.findall(r'!\[(.*?)\]\((.*?)\)',text)
-    assert len(images)==6
+    assert len(images)==9
+    assert [int(re.match(r'图(\d+)',caption).group(1)) for caption,path in images]==list(range(1,10))
     assert len(re.findall(r'^\| ---',text,re.M))==6
     for caption,path in images:
         assert (report.parent/path).is_file(),path
@@ -125,7 +145,8 @@ def audit():
     assert manifest['output_sha256']==sha256(report)
     assert manifest['readme_sha256']==sha256(ROOT/'README.md')
     result=dict(status='PASS',gtsrb_robustness_aggregates_verified=75,
-        illustrated_test_predictions_verified=checked,figures=6,tables=6,
+        illustrated_test_predictions_verified=checked,figures=9,tables=6,
+        explanatory_sources_verified=True,
         component_analysis_verified=True,compact_road_predictions_verified=4,
         seed11_files_preserved=len(read_json(ROOT/'validation/preserved_seed11_files.json')),
         frozen_sources_unchanged=True,report_sha256=sha256(report),readme_sha256=sha256(ROOT/'README.md'))

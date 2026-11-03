@@ -8,7 +8,7 @@ from report_narrative import compose
 from review_data import ROOT, VARIANTS, SEEDS, NAMES, KINDS, collect, csv_rows, pm, write_summary
 from src.utils import read_json, save_json, sha256
 
-REPORT='大作业报告_内容整合稿_v2'
+REPORT='大作业报告_内容整合稿_v3'
 URL='https://github.com/CYBEZM/gtsrb-resnet18-dw-se-coursework'
 
 
@@ -32,9 +32,9 @@ def readme(data):
 
 从随机初始化实现小图像ResNet-18，连续研究全阶段DW、SE及深层局部DW的精度、复杂度、退化表现和道路裁剪分类。五组共享数据划分、60轮训练预算及验证选模规则，使用种子11、22、33，共15次训练、900轮、240项GTSRB评价。
 
-![模型结构](report/integrated/architecture.png)
+![任务场景与研究路线](report/integrated/task_scene.png)
 
-当前阅读版本为**内容整合稿v2，供审阅，版式待调整**：[报告PDF](report/{REPORT}.pdf) · [可编辑正文](report/{REPORT}.md)。正文保留6幅核心图、6个表，增加结构推导与结果讨论；历史版本保留在仓库记录与Releases中。
+当前阅读版本为**内容整合稿v3，供审阅，版式待调整**：[报告PDF](report/{REPORT}.pdf) · [可编辑正文](report/{REPORT}.md)。正文包含9幅图、6个表，结合场景示意、组件原理与结构推导展开结果讨论；历史版本保留在仓库记录与Releases中。
 
 ## 主要结果
 
@@ -78,7 +78,7 @@ report/external/         道路裁剪结果、输入协议、来源与许可
 docs/                    操作说明与协议沿革
 ```
 
-报告、README表格和新图均从`review_data.py`读取保存结果。`make_compact_evidence.py`生成精简案例与组件分析，`make_integrated_figures.py`生成五组曲线，`build_integrated_report.py`生成本稿及本页。详细来源见报告附录。
+报告、README表格和新图均从`review_data.py`读取保存结果。`make_explanatory_figures.py`生成场景、组件原理及分组预处理示意，`make_compact_evidence.py`生成精简案例与组件分析，`make_integrated_figures.py`生成五组曲线，`build_integrated_report.py`生成本稿及本页。详细来源见报告附录。
 
 ## 权重与完整证据
 
@@ -100,9 +100,10 @@ def main():
     (ROOT/'README.md').write_text(readme(data),encoding='utf-8',newline='\n')
     sources=data['source_paths']+['report/integrated/comparison_sources.json',
         'report/integrated/figure_sources.json','report/integrated/component_analysis.json',
-        'report/integrated/compact_sources.json','report_narrative.py','make_compact_evidence.py',
+        'report/integrated/compact_sources.json','report/integrated/explanatory_sources.json',
+        'make_explanatory_figures.py','report_narrative.py','make_compact_evidence.py',
         'build_integrated_report.py','review_data.py']
-    save_json(ROOT/'report/integrated/report_sources.json',dict(status='PASS',draft='content review v2',
+    save_json(ROOT/'report/integrated/report_sources.json',dict(status='PASS',draft='content review v3',
         output=target.relative_to(ROOT).as_posix(),output_sha256=sha256(target),readme_sha256=sha256(ROOT/'README.md'),
         sources=[dict(path=p,sha256=sha256(ROOT/p)) for p in sources]))
     print(target,flush=True)

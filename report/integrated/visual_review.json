@@ -1,13 +1,13 @@
 {
   "status": "PASS",
-  "draft": "content review v2",
-  "pdf": "report/大作业报告_内容整合稿_v2.pdf",
-  "pdf_sha256": "1c1c0f8db44eb8f3784ec7ef0c852d0db4e214f3feeaa19f2fb9670c732da591",
-  "pages": 12,
-  "figures": 6,
+  "draft": "content review v3",
+  "pdf": "report/大作业报告_内容整合稿_v3.pdf",
+  "pdf_sha256": "2115982fb7de518b4803609e3cf5ebb515660630fbafd976a1f4acb7d92781e5",
+  "pages": 13,
+  "figures": 9,
   "tables": 6,
   "background": "white",
-  "review": "All 12 pages rendered with Poppler and checked in contact sheet; architecture, compact Grad-CAM, and road composite pages inspected separately. Text leads the result discussion; no clipped tables or figures.",
+  "review": "All 13 pages rendered with Poppler and checked in contact sheet; task scene, backbone, module mechanism, grouping/preprocessing, and paired tradeoff pages inspected separately at higher resolution. No clipped tables, labels, or figures. Existing analytical prose retained.",
   "renderer_sha256": "2271d2ef16d2d21c94ee433e45208477bca65866c38ccee6c4d7bd850c51319c",
-  "content_sha256": "b0d77dcb99006f9d14daa420ea69d273102c0aa0f480ef959736f8fd02421e4e"
+  "content_sha256": "cdcf26b6de21e2610e1f50edf40e884265d2bc18ab73f71839f8aefe8b14c46b"
 }
