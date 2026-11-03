@@ -1,0 +1,870 @@
+{
+  "status": "PASS",
+  "seed": 11,
+  "illustrated_test_pixels_match_original_evaluation_cache": true,
+  "probability_note": "uncalibrated top1 probabilities; test panels use original saved evaluation arrays",
+  "paired_cases": [
+    {
+      "case": "C修正A的错误",
+      "selection": "lexicographically first seed11 sample satisfying the paired outcome",
+      "eligible_samples": 85,
+      "sample_id": "GTSRB/Final_Test/Images/00072.ppm",
+      "label": 30,
+      "original_sha256": "4825581dad9f9f29a1b41be14b17e4f20476c69c2d2718201bd37a8e8b32ba08",
+      "canonical_hwc_sha256": "e8217486cae4b0e4bcc358492155e0cbc70ff2a88cb613b46a28fc3823df6ba7",
+      "models": {
+        "A": {
+          "class_id": 11,
+          "class_name": "交叉路口优先通行",
+          "probability": 0.8759908080101013,
+          "correct": false
+        },
+        "B": {
+          "class_id": 30,
+          "class_name": "注意冰雪",
+          "probability": 0.9675456285476685,
+          "correct": true
+        },
+        "C": {
+          "class_id": 30,
+          "class_name": "注意冰雪",
+          "probability": 0.758782148361206,
+          "correct": true
+        },
+        "D": {
+          "class_id": 30,
+          "class_name": "注意冰雪",
+          "probability": 0.9032140970230103,
+          "correct": true
+        },
+        "E": {
+          "class_id": 30,
+          "class_name": "注意冰雪",
+          "probability": 0.5452973246574402,
+          "correct": true
+        }
+      }
+    },
+    {
+      "case": "C引入的新错误",
+      "selection": "lexicographically first seed11 sample satisfying the paired outcome",
+      "eligible_samples": 73,
+      "sample_id": "GTSRB/Final_Test/Images/00443.ppm",
+      "label": 30,
+      "original_sha256": "e25d52e06a0a5d34348be3c65610d3ddbbc6291dcccc29723b2a3c8a9053f2a1",
+      "canonical_hwc_sha256": "a593557483b1a06f56534df4d7955361a2026530e72496d6a65916d284a45c44",
+      "models": {
+        "A": {
+          "class_id": 30,
+          "class_name": "注意冰雪",
+          "probability": 0.4591900706291199,
+          "correct": true
+        },
+        "B": {
+          "class_id": 30,
+          "class_name": "注意冰雪",
+          "probability": 0.5356144905090332,
+          "correct": true
+        },
+        "C": {
+          "class_id": 23,
+          "class_name": "路面湿滑",
+          "probability": 0.608995258808136,
+          "correct": false
+        },
+        "D": {
+          "class_id": 30,
+          "class_name": "注意冰雪",
+          "probability": 0.9563451409339905,
+          "correct": true
+        },
+        "E": {
+          "class_id": 30,
+          "class_name": "注意冰雪",
+          "probability": 0.9421099424362183,
+          "correct": true
+        }
+      }
+    },
+    {
+      "case": "E修正B的错误",
+      "selection": "lexicographically first seed11 sample satisfying the paired outcome",
+      "eligible_samples": 91,
+      "sample_id": "GTSRB/Final_Test/Images/00145.ppm",
+      "label": 25,
+      "original_sha256": "3ff345a85cabec09de697f5c758103b3eb12f2485302645394d997dac01e237f",
+      "canonical_hwc_sha256": "66042e20149f1182af9b13a05fdc280ee5de33b619992748efa737b0ba57d356",
+      "models": {
+        "A": {
+          "class_id": 25,
+          "class_name": "道路施工",
+          "probability": 0.48546555638313293,
+          "correct": true
+        },
+        "B": {
+          "class_id": 40,
+          "class_name": "环岛",
+          "probability": 0.2751160264015198,
+          "correct": false
+        },
+        "C": {
+          "class_id": 25,
+          "class_name": "道路施工",
+          "probability": 0.614595353603363,
+          "correct": true
+        },
+        "D": {
+          "class_id": 25,
+          "class_name": "道路施工",
+          "probability": 0.37116116285324097,
+          "correct": true
+        },
+        "E": {
+          "class_id": 25,
+          "class_name": "道路施工",
+          "probability": 0.844429075717926,
+          "correct": true
+        }
+      }
+    },
+    {
+      "case": "E引入的新错误",
+      "selection": "lexicographically first seed11 sample satisfying the paired outcome",
+      "eligible_samples": 57,
+      "sample_id": "GTSRB/Final_Test/Images/00309.ppm",
+      "label": 38,
+      "original_sha256": "f0b1408944cad9fe68df5d804f8847007e55a0e01bd2857145469003ad29e0f6",
+      "canonical_hwc_sha256": "0d5a349c9963d93e5f0f32a8f0fbc8b90191503ed422e5be25149f3ceee50e77",
+      "models": {
+        "A": {
+          "class_id": 40,
+          "class_name": "环岛",
+          "probability": 0.7042638659477234,
+          "correct": false
+        },
+        "B": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.21106378734111786,
+          "correct": true
+        },
+        "C": {
+          "class_id": 40,
+          "class_name": "环岛",
+          "probability": 0.8842211961746216,
+          "correct": false
+        },
+        "D": {
+          "class_id": 40,
+          "class_name": "环岛",
+          "probability": 0.74339759349823,
+          "correct": false
+        },
+        "E": {
+          "class_id": 40,
+          "class_name": "环岛",
+          "probability": 0.7256581783294678,
+          "correct": false
+        }
+      }
+    }
+  ],
+  "corruption_case": {
+    "sample_id": "GTSRB/Final_Test/Images/00001.ppm",
+    "label": 1,
+    "class_name": "限速30",
+    "selection": "First sample ID correct for every seed11 model on clean input and showing model disagreement in at least one level3 corruption",
+    "eligible_samples": 7962,
+    "original_sha256": "72fce13df1f0fa6169f3ea5f93d91e1a4c7676510db49f54a2540a9be3cc5e25",
+    "conditions": [
+      {
+        "condition": "clean_0",
+        "canonical_chw_sha256": "6bcb61d57cbec1c4e383a5a1bae94a4845fb9b9ea5e20ab9cca45dfb8e0e18ba",
+        "models": {
+          "A": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9997634291648865,
+            "correct": true
+          },
+          "B": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9994651675224304,
+            "correct": true
+          },
+          "C": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9995831847190857,
+            "correct": true
+          },
+          "D": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9984891414642334,
+            "correct": true
+          },
+          "E": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9994969367980957,
+            "correct": true
+          }
+        }
+      },
+      {
+        "condition": "brightness_3",
+        "canonical_chw_sha256": "45a991cd771db3a680bf9bf249542b1e33bf0975441a5b511be813e746753fae",
+        "models": {
+          "A": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9980010390281677,
+            "correct": true
+          },
+          "B": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9943937063217163,
+            "correct": true
+          },
+          "C": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9986371397972107,
+            "correct": true
+          },
+          "D": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9972187280654907,
+            "correct": true
+          },
+          "E": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9987550973892212,
+            "correct": true
+          }
+        }
+      },
+      {
+        "condition": "motion_3",
+        "canonical_chw_sha256": "32cbd8ff6890a316d777ca6728bd34c2b2fa016b621494e19659e030d1eac552",
+        "models": {
+          "A": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9773402214050293,
+            "correct": true
+          },
+          "B": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.642808735370636,
+            "correct": true
+          },
+          "C": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9927527904510498,
+            "correct": true
+          },
+          "D": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.989234983921051,
+            "correct": true
+          },
+          "E": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.8906569480895996,
+            "correct": true
+          }
+        }
+      },
+      {
+        "condition": "noise_3",
+        "canonical_chw_sha256": "2edcef7420bd24b55b39f8c6ecda8f5243c15f374b26e165ec86331efe07f051",
+        "models": {
+          "A": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.999718964099884,
+            "correct": true
+          },
+          "B": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.999492883682251,
+            "correct": true
+          },
+          "C": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9996427297592163,
+            "correct": true
+          },
+          "D": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9976931214332581,
+            "correct": true
+          },
+          "E": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.999487042427063,
+            "correct": true
+          }
+        }
+      },
+      {
+        "condition": "jpeg_3",
+        "canonical_chw_sha256": "768aeff12f9f9855bc3768cc06fbaf8a9e9085a931e2aaf1d15efd101e129724",
+        "models": {
+          "A": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9953160285949707,
+            "correct": true
+          },
+          "B": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9980442523956299,
+            "correct": true
+          },
+          "C": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9990697503089905,
+            "correct": true
+          },
+          "D": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.996577799320221,
+            "correct": true
+          },
+          "E": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.9994730353355408,
+            "correct": true
+          }
+        }
+      },
+      {
+        "condition": "resolution_3",
+        "canonical_chw_sha256": "0bc12b170057ad1aa7aa0fce2759fe0ee3a6df8a0d37e9793df86831fabf91a6",
+        "models": {
+          "A": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.676174521446228,
+            "correct": true
+          },
+          "B": {
+            "class_id": 5,
+            "class_name": "限速80",
+            "probability": 0.6275811791419983,
+            "correct": false
+          },
+          "C": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.5644227266311646,
+            "correct": true
+          },
+          "D": {
+            "class_id": 5,
+            "class_name": "限速80",
+            "probability": 0.48174265027046204,
+            "correct": false
+          },
+          "E": {
+            "class_id": 1,
+            "class_name": "限速30",
+            "probability": 0.5198769569396973,
+            "correct": true
+          }
+        }
+      }
+    ]
+  },
+  "validation_cams": [
+    {
+      "sample_id": "GTSRB/Training/00001/00003_00000.ppm",
+      "label": 1,
+      "original_sha256": "3122a245c61aa1b1a0fcbecf14c8549b3ba614f4680ce6fd2cddb3107153ccbb",
+      "models": {
+        "A": {
+          "class_id": 1,
+          "class_name": "限速30",
+          "probability": 0.9900381565093994,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "B": {
+          "class_id": 1,
+          "class_name": "限速30",
+          "probability": 0.8159139752388,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "C": {
+          "class_id": 1,
+          "class_name": "限速30",
+          "probability": 0.9967494010925293,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "D": {
+          "class_id": 1,
+          "class_name": "限速30",
+          "probability": 0.9763594269752502,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "E": {
+          "class_id": 1,
+          "class_name": "限速30",
+          "probability": 0.9981163740158081,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        }
+      }
+    },
+    {
+      "sample_id": "GTSRB/Training/00013/00004_00000.ppm",
+      "label": 13,
+      "original_sha256": "9ccdff9bd18b56e04d7ec9584dd1358f39156922dd815d811ba5f39f26de55a3",
+      "models": {
+        "A": {
+          "class_id": 13,
+          "class_name": "减速让行",
+          "probability": 0.8679290413856506,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "B": {
+          "class_id": 13,
+          "class_name": "减速让行",
+          "probability": 0.7438179850578308,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "C": {
+          "class_id": 13,
+          "class_name": "减速让行",
+          "probability": 0.931297242641449,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "D": {
+          "class_id": 13,
+          "class_name": "减速让行",
+          "probability": 0.6794126033782959,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "E": {
+          "class_id": 13,
+          "class_name": "减速让行",
+          "probability": 0.9557947516441345,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        }
+      }
+    },
+    {
+      "sample_id": "GTSRB/Training/00025/00004_00000.ppm",
+      "label": 25,
+      "original_sha256": "2df2915034c9c17b3ddd7e5ae60fef5b4b92e3b09578021b193b02bcb7c51035",
+      "models": {
+        "A": {
+          "class_id": 25,
+          "class_name": "道路施工",
+          "probability": 0.8847202062606812,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "B": {
+          "class_id": 25,
+          "class_name": "道路施工",
+          "probability": 0.7018144130706787,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "C": {
+          "class_id": 25,
+          "class_name": "道路施工",
+          "probability": 0.9597825407981873,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "D": {
+          "class_id": 25,
+          "class_name": "道路施工",
+          "probability": 0.5459802150726318,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "E": {
+          "class_id": 25,
+          "class_name": "道路施工",
+          "probability": 0.9813659191131592,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        }
+      }
+    },
+    {
+      "sample_id": "GTSRB/Training/00038/00006_00000.ppm",
+      "label": 38,
+      "original_sha256": "5defce56af3e49030422b96430884f45bb02801e9b4fa3b8a2e74e28836f260e",
+      "models": {
+        "A": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.999516487121582,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "B": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.9991264939308167,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "C": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.9992358684539795,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "D": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.9991069436073303,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "E": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.9990008473396301,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        }
+      }
+    }
+  ],
+  "cam_note": "stage3 (12x12), each model explains its own predicted class; orange positive attribution, no causal interpretation",
+  "generator_sha256": "0902ef050f2466c4fa858352825b971847dd135b0eabddadd624fa324664abaa",
+  "sources": [
+    {
+      "path": "runs/A/11/best.ckpt",
+      "sha256": "e93ecf240325b66edf2416fb19cf5b215e627955502dca908f9ef930c4342b4a"
+    },
+    {
+      "path": "runs/A/11/predictions/brightness_3.npz",
+      "sha256": "7706244ff8a43d2d55674e958cb759b14a86846ebd9e289ea46611ea2d06813a"
+    },
+    {
+      "path": "runs/A/11/predictions/clean_0.npz",
+      "sha256": "b1b1b54228677e787d68af817974e5249c757da39f09e2fce5ced37d0b036261"
+    },
+    {
+      "path": "runs/A/11/predictions/jpeg_3.npz",
+      "sha256": "9c79ec82d7eaa33feb6481b3a16b58eb2a8992bc27ff05fb5003567ea6243380"
+    },
+    {
+      "path": "runs/A/11/predictions/motion_3.npz",
+      "sha256": "8016261adba64e41d5aa5b7c60427eb1b9365cec183c9b4886b5976d517ac6c8"
+    },
+    {
+      "path": "runs/A/11/predictions/noise_3.npz",
+      "sha256": "3105d5ed6dab68508cf6b8503eb383217423b65a96bfb94c1a4e8f8e91186199"
+    },
+    {
+      "path": "runs/A/11/predictions/resolution_3.npz",
+      "sha256": "457c8a039c694a794b63df4fad97c9b7fa5b5c2e4ca8fc465ad70ab70488a7d1"
+    },
+    {
+      "path": "runs/B/11/best.ckpt",
+      "sha256": "7bf354b3cef55138eed10f31320e802c62f79cb4dddf7f490666d8ca8d5804aa"
+    },
+    {
+      "path": "runs/B/11/predictions/brightness_3.npz",
+      "sha256": "08b340dca2a1d6a8e98853a073a4b8b604b6f280e2081daed2f02555f99e5494"
+    },
+    {
+      "path": "runs/B/11/predictions/clean_0.npz",
+      "sha256": "201d30f1f997222740dcf774d7fc9790ac950b2a4083a5a5c74afaec611ebed9"
+    },
+    {
+      "path": "runs/B/11/predictions/jpeg_3.npz",
+      "sha256": "d4bb6d7448f40dac4af875cc06cc4a9a3569d4f72e14ec7059f8925a83c0acb8"
+    },
+    {
+      "path": "runs/B/11/predictions/motion_3.npz",
+      "sha256": "30efbff18d245eb79d2e52c5c3d8f36a62c856a8fac3d6f68254c8b01b537e00"
+    },
+    {
+      "path": "runs/B/11/predictions/noise_3.npz",
+      "sha256": "910b80be7806de9f92385c03ac1ff0e0305e4deb1e065edb1a6f402e60c46d94"
+    },
+    {
+      "path": "runs/B/11/predictions/resolution_3.npz",
+      "sha256": "bf43b2c133896d8d27abc55dfd264748fc6aa8432d0359a7a465a8cf90fafbad"
+    },
+    {
+      "path": "runs/C/11/best.ckpt",
+      "sha256": "2fac656832cd83d0e93454e07cd2b3fcf5619bee21ccc1a289e0dc4b68c3c81a"
+    },
+    {
+      "path": "runs/C/11/predictions/brightness_3.npz",
+      "sha256": "0e6807ad45019b527f7d17b8798051feb61342927f085ac85468b87f18b3de90"
+    },
+    {
+      "path": "runs/C/11/predictions/clean_0.npz",
+      "sha256": "b38368b4bbb5524017866caf8dc8cbb7ca88c63126778b3d8c9bfdf956787c51"
+    },
+    {
+      "path": "runs/C/11/predictions/jpeg_3.npz",
+      "sha256": "5ab171fee1336c1024c57820b2855d652f6a68f8775c4049f50c8bdd472db069"
+    },
+    {
+      "path": "runs/C/11/predictions/motion_3.npz",
+      "sha256": "723823ac4be91b05df449a09819ecc4ac2488e690dedabde6d9c38f250649799"
+    },
+    {
+      "path": "runs/C/11/predictions/noise_3.npz",
+      "sha256": "c35653c53ccaee93846b3b3e5471ea596ad5a500834f16afb3b499b7a220d838"
+    },
+    {
+      "path": "runs/C/11/predictions/resolution_3.npz",
+      "sha256": "1c50d2bcc7804e64f65b7c202bdac805d74fa6ef79c36feaf42e918b6b327127"
+    },
+    {
+      "path": "runs/D/11/best.ckpt",
+      "sha256": "d1834893f30d886550142c1ec4ad30d129a1f54f540858ecea9495969d051ea6"
+    },
+    {
+      "path": "runs/D/11/predictions/brightness_3.npz",
+      "sha256": "c99d03f7f86188961f6dccb0dac78451b3c4191223da24849da87d0b7107e93f"
+    },
+    {
+      "path": "runs/D/11/predictions/clean_0.npz",
+      "sha256": "07b7ade68a70805db497b9c1a90cae57af0933f4e9c4a5670ba89ef06764e487"
+    },
+    {
+      "path": "runs/D/11/predictions/jpeg_3.npz",
+      "sha256": "09ae47d58655a723866da8d23359493f189f874f22fe0a2b7a8b3ed6959dc02b"
+    },
+    {
+      "path": "runs/D/11/predictions/motion_3.npz",
+      "sha256": "2c4ea68c6fce51db7e2db1e774fa216bb96f99d356b027194cddb7a8d43e9a22"
+    },
+    {
+      "path": "runs/D/11/predictions/noise_3.npz",
+      "sha256": "d097bf35648ab319f59accce85a2cb5e4f726f0aa29f647b7b52e1ddf077c8ff"
+    },
+    {
+      "path": "runs/D/11/predictions/resolution_3.npz",
+      "sha256": "f4bd137f9088e61d1fa7c850c80e6fc17d064add031ed16cfef2a6445b34c80b"
+    },
+    {
+      "path": "runs/E/11/best.ckpt",
+      "sha256": "d9433458020a8528cb158e1ce0c78382546760c6190e9c6cb1511fc7610e6bd5"
+    },
+    {
+      "path": "runs/E/11/predictions/brightness_3.npz",
+      "sha256": "319391901a90df29cbdf3681dc386430f2aec765fd86c0d97c7885264ccd8d0d"
+    },
+    {
+      "path": "runs/E/11/predictions/clean_0.npz",
+      "sha256": "890bdc82f6ada5014568702005c10df7da1bbb6cdb0f7f3b56c22170fe62a319"
+    },
+    {
+      "path": "runs/E/11/predictions/jpeg_3.npz",
+      "sha256": "798cbaaf50b360c46b40c0df075b2e92baf27cea994e44b157564730176f3418"
+    },
+    {
+      "path": "runs/E/11/predictions/motion_3.npz",
+      "sha256": "bdd48435732cc313f51ab503720be05ed28fe9af592d49c5175f8ed1de11e142"
+    },
+    {
+      "path": "runs/E/11/predictions/noise_3.npz",
+      "sha256": "fc6630280ae9f7514461d8b4707366d33d32a99e01db6b1760316c2f44e2cd0f"
+    },
+    {
+      "path": "runs/E/11/predictions/resolution_3.npz",
+      "sha256": "08a4999028333f173c623e38b36727508b44bcf5190a8d05cdfae70262a195f4"
+    }
+  ],
+  "outputs": [
+    {
+      "path": "report/integrated/paired_cases.png",
+      "sha256": "9bdafbdd224c8f8e35be5d1100ae636d9ffa8e1d8b6ea38fa19d658b13798d6a"
+    },
+    {
+      "path": "report/integrated/same_image_corruptions.png",
+      "sha256": "8c426fa95798f980fb8c50c3dbe0800ce974b34772c5569c54c11aca6ec18330"
+    },
+    {
+      "path": "report/integrated/validation_cams.png",
+      "sha256": "0f5125070728e12238ee3f3ebc3f1a3bb308138ec824ce038549f49701b29318"
+    },
+    {
+      "path": "report/integrated/preprocessing.png",
+      "sha256": "81a912c4d4be81b64f331fc31dac66098f1cc1acdb2f9ab19736e33962f175b7"
+    }
+  ]
+}

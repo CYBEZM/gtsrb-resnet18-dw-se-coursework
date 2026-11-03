@@ -1,0 +1,373 @@
+{
+  "status": "PASS",
+  "draft": "content review v1",
+  "output": "report/大作业报告_内容整合稿_v1.md",
+  "output_sha256": "1b5434aebceebb62840553a35bf6d1556074bb681984512aec942415e36526dd",
+  "readme_sha256": "0b9c6256ee8cb34fbdb262bbb94d8f9dea0c213626671ba7d2a655de76530284",
+  "sources": [
+    {
+      "path": "report/data/dataset_summary.json",
+      "sha256": "b785a24ffc6ec580854ee477e614916c94a40fe3c1f1b02b89cdb80fbb539d8b"
+    },
+    {
+      "path": "report/deep_analysis/largest_validation_drops.csv",
+      "sha256": "53fd914fece4b94ca49ba703279a4f89a41c20c746e7a56b29e684b49af9f162"
+    },
+    {
+      "path": "report/deep_analysis/paired_class_summary.csv",
+      "sha256": "ee666e73c15c0fc061fc7c3c27c1f086ba5a3dee730aaf544ae61da76728ddca"
+    },
+    {
+      "path": "report/deep_analysis/paired_errors.csv",
+      "sha256": "cc1ca9b47a3fb769ba583d794dd0345c6f4cca14586b51e3439bd11def5ae074"
+    },
+    {
+      "path": "report/external/summary.json",
+      "sha256": "5d4205b5caf9fb85151afe574d6d7595ed62e043ea77ca49574b579b55cfdc7d"
+    },
+    {
+      "path": "report/supplement/contemporary_profiles/A.json",
+      "sha256": "828cac14356f0eab7bc05089ac13bc3a3629537622845e373cf04da119025744"
+    },
+    {
+      "path": "report/supplement/contemporary_profiles/B.json",
+      "sha256": "eb8ab425eaa9362d8a1ad158c24963afaeb81797b9266ac0c1a984301b68b2a9"
+    },
+    {
+      "path": "report/supplement/contemporary_profiles/C.json",
+      "sha256": "ee2b16240763dc9a6bd1f57f65c12308975210f41693137f3aab0fd326880d75"
+    },
+    {
+      "path": "report/supplement/contemporary_profiles/D.json",
+      "sha256": "98baa7eb140430f86a081fd998e426b0d1acfb22c67bebfbf29451808149a2db"
+    },
+    {
+      "path": "report/supplement/contemporary_profiles/E.json",
+      "sha256": "56fa77012579bdd78a632388124e299fd4229ece21cfdc1871d9315e848bf06c"
+    },
+    {
+      "path": "report/supplement/summary.json",
+      "sha256": "4d287a5a56996a7695d4c2c1fb23bde680f7c73204277f92e2a2dbd4c42bd67a"
+    },
+    {
+      "path": "report/tables/summary.json",
+      "sha256": "04c9f43d9a08fc8ee3698697fa39a1311ccf33a4e954ecaa62def766bcb2a865"
+    },
+    {
+      "path": "runs/A/11/complete.json",
+      "sha256": "90997c1fe3db5cc652732e4ddd7401a601f2b3caa0d63980cd8647f44f5ac815"
+    },
+    {
+      "path": "runs/A/11/complexity.json",
+      "sha256": "ee641def6e250792d7e942be26f727f785de504765f2fa2ca3f9954b137b85e8"
+    },
+    {
+      "path": "runs/A/11/log.csv",
+      "sha256": "2272e372ed86b048cc60bc79da323903a6ec45c47e8d45f14d7cc34b92dc1617"
+    },
+    {
+      "path": "runs/A/11/robustness_metrics.json",
+      "sha256": "d1b93c8dfa40ae21625a2428e1a1ae5c044d32ab1918d8c4b32ae8b8cc4e7dd9"
+    },
+    {
+      "path": "runs/A/11/test_metrics.json",
+      "sha256": "aee5f819c7d1c3b63093f004dd3335aacec471d76ca273db0d198ed152e17d30"
+    },
+    {
+      "path": "runs/A/22/complete.json",
+      "sha256": "2bc3721b1a2490fad8d6331ca2dbb13ef77fd5175b624803a26b5df574fdef31"
+    },
+    {
+      "path": "runs/A/22/complexity.json",
+      "sha256": "ee641def6e250792d7e942be26f727f785de504765f2fa2ca3f9954b137b85e8"
+    },
+    {
+      "path": "runs/A/22/log.csv",
+      "sha256": "b5b07dbeac35c5b7e6fe0235913179dbd7a3e1fee969d2e4e6bb70127bf38e9d"
+    },
+    {
+      "path": "runs/A/22/robustness_metrics.json",
+      "sha256": "ad4c7687af1b7c42626d6928a7f8de5d15ebe6e870a2daa74204d4edeecdd04c"
+    },
+    {
+      "path": "runs/A/22/test_metrics.json",
+      "sha256": "7d471b3d44636fa49339e06efe98616ae0434b64b51b8875e7c86ee7c166df9d"
+    },
+    {
+      "path": "runs/A/33/complete.json",
+      "sha256": "13c05c0dbf3c12c91d373738a3eac3448da179176e17679be280fe48072f9398"
+    },
+    {
+      "path": "runs/A/33/complexity.json",
+      "sha256": "ee641def6e250792d7e942be26f727f785de504765f2fa2ca3f9954b137b85e8"
+    },
+    {
+      "path": "runs/A/33/log.csv",
+      "sha256": "f2876e02cad40efa662b78cbe59fa95d4408d278d28744ba13e910275426e9b7"
+    },
+    {
+      "path": "runs/A/33/robustness_metrics.json",
+      "sha256": "a78b760690a42fc967539f3fa289072f53882bb8eeca0b3da1f2e9b1dfb19df8"
+    },
+    {
+      "path": "runs/A/33/test_metrics.json",
+      "sha256": "14dc0bf036c6bc937afe93519af856e7d7dab0d168cbb9e91973b37fee182bda"
+    },
+    {
+      "path": "runs/B/11/complete.json",
+      "sha256": "e2264a0cc152ff16c9837354362422f4f99885c0410fe00b776ad1fb700f83f6"
+    },
+    {
+      "path": "runs/B/11/complexity.json",
+      "sha256": "b198006e41caa1cff36e8909cf7da67490ac1a84a28e100259aaca3668f2032b"
+    },
+    {
+      "path": "runs/B/11/log.csv",
+      "sha256": "bc563a5d97414624ca3da74c62585007e29f1e8cdf2f61a9a9f48dfafff74082"
+    },
+    {
+      "path": "runs/B/11/robustness_metrics.json",
+      "sha256": "22a6259412987fb1e582412bf312c54ebb6ec085b82c57aee84442f3000be3ba"
+    },
+    {
+      "path": "runs/B/11/test_metrics.json",
+      "sha256": "8f30ca001bd24499736f1bed4c2dc112eb204b8c4bf4f54ce891186cb3ee1cf3"
+    },
+    {
+      "path": "runs/B/22/complete.json",
+      "sha256": "087e4caa2ce18dbabe3ca16f8fd5c2b5d1b6c4a85a471f10dce8f15f005e5618"
+    },
+    {
+      "path": "runs/B/22/complexity.json",
+      "sha256": "b198006e41caa1cff36e8909cf7da67490ac1a84a28e100259aaca3668f2032b"
+    },
+    {
+      "path": "runs/B/22/log.csv",
+      "sha256": "b91779efe1d581d184b385085bc53b25e32b87107e387503f4df1bc8b997ba9f"
+    },
+    {
+      "path": "runs/B/22/robustness_metrics.json",
+      "sha256": "77d303a92a76580b2b861dedc0acfd2fee8b2b2e1cb7ed8b2bc0710bc497480f"
+    },
+    {
+      "path": "runs/B/22/test_metrics.json",
+      "sha256": "fde9a74c94d773f9f578b0d07a3d31ef43011ce2bc4cf4787bb87843e5caba78"
+    },
+    {
+      "path": "runs/B/33/complete.json",
+      "sha256": "146ad353aa646fc8cdd89e0cd6dda52c1778d805538835cfe1c997901fb8c8d4"
+    },
+    {
+      "path": "runs/B/33/complexity.json",
+      "sha256": "b198006e41caa1cff36e8909cf7da67490ac1a84a28e100259aaca3668f2032b"
+    },
+    {
+      "path": "runs/B/33/log.csv",
+      "sha256": "8b043b0baf131da0ab7c8c2f40eb27caee298370a81848c18e60d040311489a0"
+    },
+    {
+      "path": "runs/B/33/robustness_metrics.json",
+      "sha256": "cba7232ee78801d5a5c1091e1860a64843e979fb43da05c009766ff5e72c28ad"
+    },
+    {
+      "path": "runs/B/33/test_metrics.json",
+      "sha256": "461f74faebf318a41156d4eb1b4e740d4b55f46d6abebf22b2c1389a23b8e4d9"
+    },
+    {
+      "path": "runs/C/11/complete.json",
+      "sha256": "fb1421d0232a0fe2878ccd8767203cf1298b64d215ec4ed1fbd6ee3ce572b785"
+    },
+    {
+      "path": "runs/C/11/complexity.json",
+      "sha256": "10c8c68965fe0eee7d0eea978c52a408e90fe529ce0d69a7bdf577316a7e3a72"
+    },
+    {
+      "path": "runs/C/11/log.csv",
+      "sha256": "0e9c8dbf7cfd8629ed2811a3d92066803c7f29e8f133376da666343888e1ba42"
+    },
+    {
+      "path": "runs/C/11/robustness_metrics.json",
+      "sha256": "3a635b12bc6d439f6deb756da7fd92c0f5d8a5ad8f959fa827a428dc093c7856"
+    },
+    {
+      "path": "runs/C/11/test_metrics.json",
+      "sha256": "cf2d2dfb58e92926f8c30605fb2ca703fdb030eccd5375f3a0818e48ecf14fde"
+    },
+    {
+      "path": "runs/C/22/complete.json",
+      "sha256": "7d8157ad773e0f3bcc85175c669996a5b753d517f17692fa88b76d0e4e00709b"
+    },
+    {
+      "path": "runs/C/22/complexity.json",
+      "sha256": "10c8c68965fe0eee7d0eea978c52a408e90fe529ce0d69a7bdf577316a7e3a72"
+    },
+    {
+      "path": "runs/C/22/log.csv",
+      "sha256": "ccd3ca0cacadd5e1f80457fcf2a227d081096b07bad9127b969a5ec8c12276b5"
+    },
+    {
+      "path": "runs/C/22/robustness_metrics.json",
+      "sha256": "26b8007fd71c5453fbda56f93d9594b0c304c1f6470805d1876b8c9bbff5a1c3"
+    },
+    {
+      "path": "runs/C/22/test_metrics.json",
+      "sha256": "d20f780e79b183ca28b52af3476ccda9056df942214a82fa234c8d57f5e2bf61"
+    },
+    {
+      "path": "runs/C/33/complete.json",
+      "sha256": "90754eec92e03c4e02079ea862d3a23c7ed78da02205aa6b4d5b78bd0648ac5b"
+    },
+    {
+      "path": "runs/C/33/complexity.json",
+      "sha256": "10c8c68965fe0eee7d0eea978c52a408e90fe529ce0d69a7bdf577316a7e3a72"
+    },
+    {
+      "path": "runs/C/33/log.csv",
+      "sha256": "d9df2b4aa162387c1f66d0af700a5ab20a6a59564d203a8735f44c96ccb9038a"
+    },
+    {
+      "path": "runs/C/33/robustness_metrics.json",
+      "sha256": "16d9ed1976ac8cdfd217b75b651aba9c157f42eda5d491fd1d57e246f89896b0"
+    },
+    {
+      "path": "runs/C/33/test_metrics.json",
+      "sha256": "cd57cb049e25601554870e3938e47baf562b844a7824236959d9feaf77800b86"
+    },
+    {
+      "path": "runs/D/11/complete.json",
+      "sha256": "a7660131e8f2558ee9d544baff0741be1b81b23de565548ba5e2a50f2e0edc60"
+    },
+    {
+      "path": "runs/D/11/complexity.json",
+      "sha256": "49895b12dfc0660f0c6c3c92b7305c21ef9a6d58116a5b8666f8b93b4fb31640"
+    },
+    {
+      "path": "runs/D/11/log.csv",
+      "sha256": "5d61e830be1cbf916c7d994a961e64b00e69d37c0e3cc32dcf55bc7c5e823338"
+    },
+    {
+      "path": "runs/D/11/robustness_metrics.json",
+      "sha256": "22ef888f41a8c52406fc62cdfce270c18999ea923aac28687633eeaf7dc1821a"
+    },
+    {
+      "path": "runs/D/11/test_metrics.json",
+      "sha256": "119b9b601e58ea02550e548059896f834d501ddc2cef2d7161c0e6d606711404"
+    },
+    {
+      "path": "runs/D/22/complete.json",
+      "sha256": "27c297dbf6f74d129fe13a8e69415b7664e6f44b0a77280b38658f567f26d1d6"
+    },
+    {
+      "path": "runs/D/22/complexity.json",
+      "sha256": "49895b12dfc0660f0c6c3c92b7305c21ef9a6d58116a5b8666f8b93b4fb31640"
+    },
+    {
+      "path": "runs/D/22/log.csv",
+      "sha256": "f53df15c4d34043a818533b7e5dca52523b5c3cd49ad55e842d454b984136188"
+    },
+    {
+      "path": "runs/D/22/robustness_metrics.json",
+      "sha256": "ccfd0c584c6ad943c7a9ca3738d915d8ce7de1153447a9731684771e488f6593"
+    },
+    {
+      "path": "runs/D/22/test_metrics.json",
+      "sha256": "e21d3f92b6d4dac9e0de0a9e716a207039152be729e5ef7c50d25c934721de46"
+    },
+    {
+      "path": "runs/D/33/complete.json",
+      "sha256": "91be7d2d07d59429d78bd830b16956bdc3b07afbe400a6135b393ac55e701908"
+    },
+    {
+      "path": "runs/D/33/complexity.json",
+      "sha256": "49895b12dfc0660f0c6c3c92b7305c21ef9a6d58116a5b8666f8b93b4fb31640"
+    },
+    {
+      "path": "runs/D/33/log.csv",
+      "sha256": "7e7ac33624358196dc61dd79783d182dc6b5c4f505463d8a109008dc0ec15f41"
+    },
+    {
+      "path": "runs/D/33/robustness_metrics.json",
+      "sha256": "cf8c4cb03f602eaed9076d5e2ae3b78ca14fcdb8be3a25b4d6fdc3a5f8a707fb"
+    },
+    {
+      "path": "runs/D/33/test_metrics.json",
+      "sha256": "326d02d665c9d1615f4bcd34f2fd9b4db2d1a9ccab9dce380b26e483f4027451"
+    },
+    {
+      "path": "runs/E/11/complete.json",
+      "sha256": "c6aa20e39d3a40bdcb3cf13a659671e714a1336575c17a7cb8342741572f6887"
+    },
+    {
+      "path": "runs/E/11/complexity.json",
+      "sha256": "2448c427ea3f30eec5a6f60cade60b6ce4d2dd2be0b785b3060dfdc67d1988d3"
+    },
+    {
+      "path": "runs/E/11/log.csv",
+      "sha256": "e1cd110613037546522435f67e93709e1753b62eb62abbceacebaed59025ce5d"
+    },
+    {
+      "path": "runs/E/11/robustness_metrics.json",
+      "sha256": "f5d4ded315361f6d3031fc1fffac00d721b30f542669a3e3c7a5ed4b5dd37cd6"
+    },
+    {
+      "path": "runs/E/11/test_metrics.json",
+      "sha256": "80a6aaf3e2c8919ed1594c77dd86e38a63106dc0ab72f52c994984ebfdb996c2"
+    },
+    {
+      "path": "runs/E/22/complete.json",
+      "sha256": "1717669af2ba3e1617d481c1435e5243c5036031b5de9b208ba85775bcd50f05"
+    },
+    {
+      "path": "runs/E/22/complexity.json",
+      "sha256": "2448c427ea3f30eec5a6f60cade60b6ce4d2dd2be0b785b3060dfdc67d1988d3"
+    },
+    {
+      "path": "runs/E/22/log.csv",
+      "sha256": "f25f5eb9b19e8525c4e399f188aacfe0629058311ee135a2534c4eea8da646ca"
+    },
+    {
+      "path": "runs/E/22/robustness_metrics.json",
+      "sha256": "b58cd9d6b0f326dfed66daf64104761ac212b59229695f24008b7610acd2f468"
+    },
+    {
+      "path": "runs/E/22/test_metrics.json",
+      "sha256": "7d45220e9884ad8fabff39eb24db81852781efa8ef4829f497c0588fe85a2fa9"
+    },
+    {
+      "path": "runs/E/33/complete.json",
+      "sha256": "6fd6332dfdd227c76d26fb3ab2b281bfc2cd26b057bf34857d3dab61ec1f28db"
+    },
+    {
+      "path": "runs/E/33/complexity.json",
+      "sha256": "2448c427ea3f30eec5a6f60cade60b6ce4d2dd2be0b785b3060dfdc67d1988d3"
+    },
+    {
+      "path": "runs/E/33/log.csv",
+      "sha256": "1a2f9dd3eb51e5dc11b00db9daab906a8d4dab499410a702c0363eb3e404f925"
+    },
+    {
+      "path": "runs/E/33/robustness_metrics.json",
+      "sha256": "987511aae405a01db88e28bd3f88d9ec5d1c2462c14920db72843b7e44067922"
+    },
+    {
+      "path": "runs/E/33/test_metrics.json",
+      "sha256": "7b20ea530df8cd6404adc054b5b398e2828692b8fe6b7f867dccaa8b5121d55f"
+    },
+    {
+      "path": "report/integrated/comparison_sources.json",
+      "sha256": "fdf72fc114ed6715727d6ea0103346acfd7815fbd4b93e7b32a838753b5162d1"
+    },
+    {
+      "path": "report/integrated/figure_sources.json",
+      "sha256": "35be7efbf6f471605875503a7caabb87305e5f841289cc8bb2a2575a9c9d0665"
+    },
+    {
+      "path": "build_integrated_report.py",
+      "sha256": "51dbfbacf94ae907efcb9f6e7ffc6f3231cc3392f7f7bfbb90916c50c696267f"
+    },
+    {
+      "path": "review_data.py",
+      "sha256": "ad26d6dfff595f75089da7eae771e42f0660b1e2e40b3d8a94d1f6987fa54641"
+    }
+  ]
+}

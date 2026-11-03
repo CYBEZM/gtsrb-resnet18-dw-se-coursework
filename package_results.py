@@ -22,7 +22,7 @@ def public_files(root=ROOT):
     patterns = ['*.py', '*.md', 'requirements*.txt', 'LICENSE', '.gitignore',
                 '.gitattributes', 'protocol_frozen.json', 'weights*manifest.json', 'examples/*.png',
                 'examples/*.json', 'examples/*.md', 'configs/*.yaml',
-                'src/*.py', 'tests/*.py', 'protocols/*.json', 'validation/*.json']
+                'src/*.py', 'tests/*.py', 'protocols/*.json', 'validation/*.json', 'docs/*.md']
     for pattern in patterns:
         files.update(path for path in root.glob(pattern) if path.is_file())
     for path in (root / 'report').rglob('*'):
@@ -76,6 +76,13 @@ def check_ready():
         audit=json.loads(independent.read_text(encoding='utf-8'))
         if audit['status']!='PASS' or audit['analysis_sha256']!=digest(independent.parent/'analysis.json'):
             raise ValueError('Independent per-class audit is stale')
+    integrated = ROOT/'report/integrated/audit.json'
+    if integrated.exists():
+        audit = json.loads(integrated.read_text(encoding='utf-8'))
+        report = ROOT/'report/大作业报告_内容整合稿_v1.md'
+        if (audit['status'] != 'PASS' or audit['report_sha256'] != digest(report)
+                or audit['readme_sha256'] != digest(ROOT/'README.md')):
+            raise ValueError('Integrated report audit is stale')
 
 
 def package(output, include_weights=False):
@@ -95,9 +102,9 @@ def package(output, include_weights=False):
     files=sorted(set(files))
     manifest = [dict(path=p.relative_to(ROOT).as_posix(), bytes=p.stat().st_size,
                      sha256=digest(p)) for p in sorted(files)]
-    note = ('This archive contains code, original A-D twelve run metrics, and the measured report.\n'
+    note = ('This archive contains code, fifteen A-E run metrics, reports and measured figures.\n'
             'No full dataset or credentials are included; a few attributed road-scene figures illustrate results.\n'
-            'See README.md for installation and data download.\n'
+            'See README.md for the current review draft and docs/reproduction.md for commands.\n'
             'All mean/SD values use seeds 11,22,33; sample SD uses ddof=1.\n')
     note += ('Best checkpoints, source snapshots and original A-D 192 prediction arrays are included.\n'
              'Run audit_results.py and audit_summary.py from the extracted project folder.\n'

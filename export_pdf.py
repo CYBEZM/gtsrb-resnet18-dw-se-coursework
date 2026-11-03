@@ -74,11 +74,14 @@ def create(source, output, regular, bold):
         elif line.startswith('!['):
             caption, filename = re.fullmatch(r'!\[(.*?)\]\((.*?)\)', line).groups()
             picture = Image(str(source.parent / filename))
-            scale = min(width / picture.imageWidth, 4.45*inch / picture.imageHeight)
+            max_height = 5.6*inch if '内容整合稿' in source.stem else 4.45*inch
+            scale = min(width / picture.imageWidth, max_height / picture.imageHeight)
             picture.drawWidth = picture.imageWidth * scale
             picture.drawHeight = picture.imageHeight * scale
-            story.append(KeepTogether([Spacer(1, 5), picture,
-                                       Paragraph(inline(caption), styles['caption'])]))
+            content = [Spacer(1, 5), picture, Paragraph(inline(caption), styles['caption'])]
+            while story and isinstance(story[-1], Paragraph) and story[-1].style.name in ('H1', 'H2'):
+                content.insert(0, story.pop())
+            story.append(KeepTogether(content))
         elif line.startswith('|'):
             rows = []
             while True:
@@ -96,6 +99,14 @@ def create(source, output, regular, bold):
                          6: [0.18, 0.07, 0.1875, 0.1875, 0.1875, 0.1875]}[count]
             if count == 6 and '种子' in rows[0]:
                 fractions = [0.07, 0.07, 0.19, 0.19, 0.28, 0.20]
+            if count == 6 and rows[0][0] == '强度3退化':
+                fractions = [0.15, 0.17, 0.17, 0.17, 0.17, 0.17]
+            if count == 5 and rows[0][0] == '组别' and rows[0][-1] == 'MACs M':
+                fractions = [0.08, 0.24, 0.24, 0.25, 0.19]
+            if count == 4 and rows[0][0] in ('组别', '运行'):
+                fractions = [0.17, 0.23, 0.28, 0.32]
+            if count == 3 and rows[0][0] == '子集':
+                fractions = [0.30, 0.30, 0.40]
             cells = [[Paragraph(inline(value), styles[
                 ('cell_header_left' if count == 2 else 'cell_header') if row_index == 0
                 else ('cell_left' if count == 2 else 'cell')])
@@ -111,7 +122,13 @@ def create(source, output, regular, bold):
                 ('LEFTPADDING', (0, 0), (-1, -1), 5),
                 ('RIGHTPADDING', (0, 0), (-1, -1), 5),
             ]))
-            story.extend([table, Spacer(1, 9)])
+            if len(rows) <= 8:
+                content = [table, Spacer(1, 9)]
+                while story and isinstance(story[-1], Paragraph) and story[-1].style.name in ('H1', 'H2'):
+                    content.insert(0, story.pop())
+                story.append(KeepTogether(content))
+            else:
+                story.extend([table, Spacer(1, 9)])
         elif line.startswith('```'):
             while index < len(lines) and not lines[index].strip().startswith('```'):
                 story.append(Paragraph(inline(lines[index]), styles['code']))

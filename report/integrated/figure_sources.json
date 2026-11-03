@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "summary_sha256": "4ce200f0df7c389714ab5a7195c5a16fc1ed344612f09c06b4c20f9426d03dfa",
+  "generator_sha256": "d4e02a88f7bd8346ecf91e03132e29640e7370b02ef239f564d276128971bc95",
+  "outputs": [
+    {
+      "path": "report/integrated/architecture.png",
+      "sha256": "af817b744674b59c0149a5fbb2dd4437c4578c3b5ede0639e77423ca9fc66a98"
+    },
+    {
+      "path": "report/integrated/hardware.png",
+      "sha256": "01fa5f21f5270b0497e97de0c0677aa150f11a974b057af56c4b5bfbd0170116"
+    },
+    {
+      "path": "report/integrated/learning_curves.png",
+      "sha256": "b34ee4f20809897ba8f38a16b940902b397caad4892e77c6898020bcd190017d"
+    },
+    {
+      "path": "report/integrated/robustness.png",
+      "sha256": "84949f91b8d0caebf2d0c15a45ed2d4540ad4091ce297dd69198dce4ef053c35"
+    },
+    {
+      "path": "report/integrated/tradeoffs.png",
+      "sha256": "19d01c04023395f99047089b39f30897860262b0e1bdfe5f4774e02a02777bfc"
+    },
+    {
+      "path": "report/integrated/workflow.png",
+      "sha256": "5f125c2cd57474aa7fcc88394ef43047144f769fef187a43b95ac8506277bfe7"
+    }
+  ]
+}

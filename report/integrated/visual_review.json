@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "draft": "content review v1",
+  "pdf": "report/大作业报告_内容整合稿_v1.pdf",
+  "pdf_sha256": "8d2fe185a0f76c750c8aa14a8d593979b45b85b3fc0dfe8d0b08e045368afbc2",
+  "pages": 15,
+  "figures": 14,
+  "background": "white",
+  "review": "All pages rendered with Poppler and reviewed in contact sheets; dense model comparison, corruption and Grad-CAM pages inspected separately. Section headings and short tables kept together.",
+  "renderer_sha256": "2271d2ef16d2d21c94ee433e45208477bca65866c38ccee6c4d7bd850c51319c",
+  "content_sha256": "1b5434aebceebb62840553a35bf6d1556074bb681984512aec942415e36526dd"
+}
