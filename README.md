@@ -2,9 +2,9 @@
 
 从随机初始化实现小图像ResNet-18，连续研究全阶段DW、SE及深层局部DW的精度、复杂度、退化表现和道路裁剪分类。五组共享数据划分、60轮训练预算及验证选模规则，使用种子11、22、33，共15次训练、900轮、240项GTSRB评价。
 
-![实验流程](report/integrated/workflow.png)
+![模型结构](report/integrated/architecture.png)
 
-当前阅读版本为**内容整合稿v1，供审阅，版式待调整**：[报告PDF](report/大作业报告_内容整合稿_v1.pdf) · [可编辑正文](report/大作业报告_内容整合稿_v1.md)。方法、结果和场景分析已连成同一份报告；历史版本保留在仓库记录与Releases中。
+当前阅读版本为**内容整合稿v2，供审阅，版式待调整**：[报告PDF](report/大作业报告_内容整合稿_v2.pdf) · [可编辑正文](report/大作业报告_内容整合稿_v2.md)。正文保留6幅核心图、6个表，增加结构推导与结果讨论；历史版本保留在仓库记录与Releases中。
 
 ## 主要结果
 
@@ -18,9 +18,7 @@
 
 分类指标为三种子均值±样本标准差；设备值统一来自同一时段、固定seed11、三轮FP32计时，包含网络前向，不含读图和预处理。[原始汇总与来源](report/integrated/summary.json)。B具有本设备上最低延迟，C干净精度最高，E提供另一种取舍；三种子支持描述性比较，不宣称显著性。
 
-![同图结构对比](report/integrated/paired_cases.png)
-
-上图同时展示修正原错误与引入新错误。固定seed11，按各类配对结果取首个样本ID；概率直接来自保存的测试预测。全部样本指标用于上表，案例不代表总体比例。
+精简的同图退化与Grad-CAM、道路全景与成功/失败裁剪已在报告中合并。分层参数、理论感受野和验证回落由[组件分析代码](make_compact_evidence.py)重新计算，解释中区分实测、推导和待验证机制。
 
 ## 快速运行
 
@@ -56,7 +54,7 @@ report/external/         道路裁剪结果、输入协议、来源与许可
 docs/                    操作说明与协议沿革
 ```
 
-报告、README表格和新图均从`review_data.py`读取保存结果。`make_model_comparisons.py`生成真实同图对照，`make_integrated_figures.py`生成五组曲线，`build_integrated_report.py`生成本稿及本页。详细来源见报告附录。
+报告、README表格和新图均从`review_data.py`读取保存结果。`make_compact_evidence.py`生成精简案例与组件分析，`make_integrated_figures.py`生成五组曲线，`build_integrated_report.py`生成本稿及本页。详细来源见报告附录。
 
 ## 权重与完整证据
 

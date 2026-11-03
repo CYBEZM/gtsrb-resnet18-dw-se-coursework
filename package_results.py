@@ -79,7 +79,7 @@ def check_ready():
     integrated = ROOT/'report/integrated/audit.json'
     if integrated.exists():
         audit = json.loads(integrated.read_text(encoding='utf-8'))
-        report = ROOT/'report/大作业报告_内容整合稿_v1.md'
+        report = ROOT/json.loads((ROOT/'report/integrated/report_sources.json').read_text(encoding='utf-8'))['output']
         if (audit['status'] != 'PASS' or audit['report_sha256'] != digest(report)
                 or audit['readme_sha256'] != digest(ROOT/'README.md')):
             raise ValueError('Integrated report audit is stale')

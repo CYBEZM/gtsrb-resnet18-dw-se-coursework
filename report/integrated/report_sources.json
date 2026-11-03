@@ -1,9 +1,9 @@
 {
   "status": "PASS",
-  "draft": "content review v1",
-  "output": "report/大作业报告_内容整合稿_v1.md",
-  "output_sha256": "1b5434aebceebb62840553a35bf6d1556074bb681984512aec942415e36526dd",
-  "readme_sha256": "0b9c6256ee8cb34fbdb262bbb94d8f9dea0c213626671ba7d2a655de76530284",
+  "draft": "content review v2",
+  "output": "report/大作业报告_内容整合稿_v2.md",
+  "output_sha256": "b0d77dcb99006f9d14daa420ea69d273102c0aa0f480ef959736f8fd02421e4e",
+  "readme_sha256": "c74f0388a58fe652bc3e1ff49e0934f5825165e3ae4ffa9f1fec4325ad41fe71",
   "sources": [
     {
       "path": "report/data/dataset_summary.json",
@@ -362,8 +362,24 @@
       "sha256": "35be7efbf6f471605875503a7caabb87305e5f841289cc8bb2a2575a9c9d0665"
     },
     {
+      "path": "report/integrated/component_analysis.json",
+      "sha256": "2d06e55a261d7a119fe1d2737825b874d872d6e5b00df25c7a53bc99a8c596da"
+    },
+    {
+      "path": "report/integrated/compact_sources.json",
+      "sha256": "8c8c79062b687b4aaca519bdc7c365ac7e0e28d59be6474005faa8cbb114d74b"
+    },
+    {
+      "path": "report_narrative.py",
+      "sha256": "5e72e563dec6d7a1dc182dd9847095cb82caf209275af6f4f1df31188f7b66f0"
+    },
+    {
+      "path": "make_compact_evidence.py",
+      "sha256": "6fcc74c5c086ccfb734f7faaaac52d390286585148a8352864d84f0a1bf9bf4e"
+    },
+    {
       "path": "build_integrated_report.py",
-      "sha256": "51dbfbacf94ae907efcb9f6e7ffc6f3231cc3392f7f7bfbb90916c50c696267f"
+      "sha256": "5e95157905893d0334c9eb1e0e13543899d9992ebfe1fa92975ecce3597137d1"
     },
     {
       "path": "review_data.py",

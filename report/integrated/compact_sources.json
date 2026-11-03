@@ -1,0 +1,241 @@
+{
+  "status": "PASS",
+  "validation_cases": [
+    {
+      "sample_id": "GTSRB/Training/00025/00004_00000.ppm",
+      "label": 25,
+      "original_sha256": "2df2915034c9c17b3ddd7e5ae60fef5b4b92e3b09578021b193b02bcb7c51035",
+      "degraded_chw_sha256": "1dfc4a7f897513e94cd5ebe17d28d2eb5bf0ac7127f0b3705ce43feb55cb50dd",
+      "models": {
+        "A": {
+          "class_id": 31,
+          "class_name": "注意野生动物",
+          "probability": 0.5734515190124512,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": false
+        },
+        "B": {
+          "class_id": 31,
+          "class_name": "注意野生动物",
+          "probability": 0.24998268485069275,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": false
+        },
+        "C": {
+          "class_id": 31,
+          "class_name": "注意野生动物",
+          "probability": 0.9499350786209106,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": false
+        },
+        "D": {
+          "class_id": 31,
+          "class_name": "注意野生动物",
+          "probability": 0.7359039783477783,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": false
+        },
+        "E": {
+          "class_id": 31,
+          "class_name": "注意野生动物",
+          "probability": 0.8256394863128662,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": false
+        }
+      }
+    },
+    {
+      "sample_id": "GTSRB/Training/00038/00006_00000.ppm",
+      "label": 38,
+      "original_sha256": "5defce56af3e49030422b96430884f45bb02801e9b4fa3b8a2e74e28836f260e",
+      "degraded_chw_sha256": "6e1ae9eb8f06c6f5282347d486fc3109164ac16a53873d8a0d9cc974ed425384",
+      "models": {
+        "A": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.9933117628097534,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "B": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.9902862906455994,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "C": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.9927451014518738,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "D": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.967631995677948,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        },
+        "E": {
+          "class_id": 38,
+          "class_name": "靠右行驶",
+          "probability": 0.9706836342811584,
+          "target": "predicted top1 logit",
+          "activation_shape": [
+            1,
+            256,
+            12,
+            12
+          ],
+          "heatmap_max": 1.0,
+          "correct": true
+        }
+      }
+    }
+  ],
+  "road_cases": {
+    "model": "C/11",
+    "selection": "First two correct and first two erroneous sample IDs; left scene contains first error",
+    "scene": "00011.ppm",
+    "scene_sha256": "5c1a00f9a126f640ead883f2eefbf084f722cf92df18cf2bcd1e624e267df6af",
+    "cases": [
+      {
+        "sample_id": "00000.ppm:0",
+        "label": 11,
+        "predicted": 11,
+        "canonical_sha256": "365240b88ba1d7bbe9fbc8df7d8dacfb55cc133c63698941c90fa491383f33a1",
+        "scene_sha256": "df36f79d891f76f6c80d356de555f7f9bc8adfdf66d12fe032be1f6000cf1771"
+      },
+      {
+        "sample_id": "00001.ppm:1",
+        "label": 40,
+        "predicted": 40,
+        "canonical_sha256": "c01a7a1ae255880308cb759e6830e07ca5eec5b9bc47fca69ca9ec6ba8760fd1",
+        "scene_sha256": "1ab49f0f78982eaf6028a7a00deb07136b93f6abac8b9db0e71fa8db2d341d4c"
+      },
+      {
+        "sample_id": "00011.ppm:18",
+        "label": 21,
+        "predicted": 11,
+        "canonical_sha256": "07a02712c631856dbbef7a9b823d2de96e4aeadfe9b45ad17d62196d7c2f7fb3",
+        "scene_sha256": "5c1a00f9a126f640ead883f2eefbf084f722cf92df18cf2bcd1e624e267df6af"
+      },
+      {
+        "sample_id": "00014.ppm:21",
+        "label": 21,
+        "predicted": 11,
+        "canonical_sha256": "710186a7e66485b3502f66d9d9dc73682ca17c40405b4b0bc5bd5e58353c9ae6",
+        "scene_sha256": "365ef074adafcdc7a0a1d91c24a56e3b8f286bf640ecc4fd895bd0bafde8cf99"
+      }
+    ]
+  },
+  "selection": "Prespecified validation example indices 2,3 (construction / keep right), fixed severity3 resolution, seed11; not selected by predicted outcomes",
+  "inference": "New CPU FP32 Grad-CAM inference on validation images only; original formal metrics untouched",
+  "target": "Each model explains its own top1 logit at stage3; uncalibrated probabilities",
+  "sources": [
+    {
+      "path": "report/external/C_11.npz",
+      "sha256": "d60e304344d96cdb1dcecd564c8c388f8614960bd3bbc665c606ccae9fcbb8c3"
+    },
+    {
+      "path": "report/external/input_protocol.json",
+      "sha256": "7eed9f4de2b84bfe1e825d0c29136d4623dbeb8f9b7283e06c48aa59489f5e06"
+    },
+    {
+      "path": "runs/A/11/best.ckpt",
+      "sha256": "e93ecf240325b66edf2416fb19cf5b215e627955502dca908f9ef930c4342b4a"
+    },
+    {
+      "path": "runs/B/11/best.ckpt",
+      "sha256": "7bf354b3cef55138eed10f31320e802c62f79cb4dddf7f490666d8ca8d5804aa"
+    },
+    {
+      "path": "runs/C/11/best.ckpt",
+      "sha256": "2fac656832cd83d0e93454e07cd2b3fcf5619bee21ccc1a289e0dc4b68c3c81a"
+    },
+    {
+      "path": "runs/D/11/best.ckpt",
+      "sha256": "d1834893f30d886550142c1ec4ad30d129a1f54f540858ecea9495969d051ea6"
+    },
+    {
+      "path": "runs/E/11/best.ckpt",
+      "sha256": "d9433458020a8528cb158e1ce0c78382546760c6190e9c6cb1511fc7610e6bd5"
+    }
+  ],
+  "generator_sha256": "6fcc74c5c086ccfb734f7faaaac52d390286585148a8352864d84f0a1bf9bf4e",
+  "outputs": [
+    {
+      "path": "report/integrated/compact_cams.png",
+      "sha256": "466f881904653110e4f1b97e465f23b97ab137b75c92a71833f54a3b86bf115d"
+    },
+    {
+      "path": "report/integrated/road_composite.png",
+      "sha256": "22eec37459219da4f94ed14f9f32268515b027a3295c18b72489f6a9907966e7"
+    }
+  ]
+}

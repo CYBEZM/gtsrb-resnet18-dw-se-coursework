@@ -1,12 +1,13 @@
 {
   "status": "PASS",
-  "draft": "content review v1",
-  "pdf": "report/大作业报告_内容整合稿_v1.pdf",
-  "pdf_sha256": "8d2fe185a0f76c750c8aa14a8d593979b45b85b3fc0dfe8d0b08e045368afbc2",
-  "pages": 15,
-  "figures": 14,
+  "draft": "content review v2",
+  "pdf": "report/大作业报告_内容整合稿_v2.pdf",
+  "pdf_sha256": "1c1c0f8db44eb8f3784ec7ef0c852d0db4e214f3feeaa19f2fb9670c732da591",
+  "pages": 12,
+  "figures": 6,
+  "tables": 6,
   "background": "white",
-  "review": "All pages rendered with Poppler and reviewed in contact sheets; dense model comparison, corruption and Grad-CAM pages inspected separately. Section headings and short tables kept together.",
+  "review": "All 12 pages rendered with Poppler and checked in contact sheet; architecture, compact Grad-CAM, and road composite pages inspected separately. Text leads the result discussion; no clipped tables or figures.",
   "renderer_sha256": "2271d2ef16d2d21c94ee433e45208477bca65866c38ccee6c4d7bd850c51319c",
-  "content_sha256": "1b5434aebceebb62840553a35bf6d1556074bb681984512aec942415e36526dd"
+  "content_sha256": "b0d77dcb99006f9d14daa420ea69d273102c0aa0f480ef959736f8fd02421e4e"
 }

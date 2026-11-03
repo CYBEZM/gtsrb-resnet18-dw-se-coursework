@@ -72,17 +72,43 @@ def audit():
     chosen=sorted(ids[eligible&disagrees].tolist())
     assert comparisons['corruption_case']['sample_id']==chosen[0]
     assert comparisons['corruption_case']['eligible_samples']==len(chosen)
-    for manifest in ('figure_sources.json','comparison_sources.json'):
+    compact=read_json(out/'compact_sources.json')
+    for row in compact['sources']:
+        assert sha256(ROOT/row['path'])==row['sha256'],row['path']
+    with np.load(ROOT/'report/external/C_11.npz') as raw:
+        for row in compact['road_cases']['cases']:
+            i=np.flatnonzero(raw['sample_ids']==row['sample_id']); assert len(i)==1
+            assert int(raw['labels'][i[0]])==row['label']
+            assert int(raw['predicted'][i[0]])==row['predicted']
+    components=read_json(out/'component_analysis.json')
+    for row in components['sources']:
+        assert sha256(ROOT/row['path'])==row['sha256'],row['path']
+    for v in VARIANTS:
+        c=components['models'][v]
+        assert sum(c['parameters_by_component'].values())==data['models'][v]['parameters']
+        for s in SEEDS:
+            import csv
+            with (ROOT/f'runs/{v}/{s}/log.csv').open(newline='',encoding='utf-8-sig') as f:
+                logs=list(csv.DictReader(f))
+            changes=[100*(float(logs[i]['val_macro_f1'])-float(logs[i-1]['val_macro_f1'])) for i in range(5,len(logs))]
+            row=next(r for r in components['validation_events'] if r['variant']==v and r['seed']==s)
+            assert row['max_f1_drop_pp']==min(changes)
+    assert [r['size'] for r in components['receptive_field_standard']]==[12,12,6,3,2]
+    assert [r['size'] for r in components['receptive_field_adapted']]==[48,48,24,12,6]
+    assert [r['receptive_field'] for r in components['receptive_field_adapted']]==[3,11,25,53,109]
+    for manifest in ('figure_sources.json','comparison_sources.json','compact_sources.json'):
         for row in read_json(out/manifest)['outputs']:
             path=ROOT/row['path']; assert sha256(path)==row['sha256']
             with Image.open(path) as image:
                 assert image.convert('RGB').getpixel((0,0))==(255,255,255),str(path)
-    report=ROOT/'report/大作业报告_内容整合稿_v1.md'; text=report.read_text(encoding='utf-8')
+    manifest=read_json(out/'report_sources.json')
+    report=ROOT/manifest['output']; text=report.read_text(encoding='utf-8')
     headings=re.findall(r'^## .+',text,re.M)
     assert len(headings)==len(set(headings))
     assert not any('补充' in h for h in headings)
     images=re.findall(r'!\[(.*?)\]\((.*?)\)',text)
-    assert len(images)==14
+    assert len(images)==6
+    assert len(re.findall(r'^\| ---',text,re.M))==6
     for caption,path in images:
         assert (report.parent/path).is_file(),path
     for v in VARIANTS:
@@ -99,7 +125,8 @@ def audit():
     assert manifest['output_sha256']==sha256(report)
     assert manifest['readme_sha256']==sha256(ROOT/'README.md')
     result=dict(status='PASS',gtsrb_robustness_aggregates_verified=75,
-        illustrated_test_predictions_verified=checked,figures=14,
+        illustrated_test_predictions_verified=checked,figures=6,tables=6,
+        component_analysis_verified=True,compact_road_predictions_verified=4,
         seed11_files_preserved=len(read_json(ROOT/'validation/preserved_seed11_files.json')),
         frozen_sources_unchanged=True,report_sha256=sha256(report),readme_sha256=sha256(ROOT/'README.md'))
     save_json(out/'audit.json',result)
