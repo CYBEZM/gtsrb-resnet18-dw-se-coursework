@@ -145,7 +145,7 @@ def create(source, output):
                     cell.vertical_alignment = WD_CELL_VERTICAL_ALIGNMENT.CENTER
                     pr = cell._tc.get_or_add_tcPr()
                     shade = OxmlElement('w:shd')
-                    shade.set(qn('w:fill'), 'DCE6F1' if n == 0 else ('F5F7FA' if n % 2 == 0 else 'FFFFFF'))
+                    shade.set(qn('w:fill'), 'FFFFFF')
                     pr.append(shade)
                     margins = OxmlElement('w:tcMar')
                     for side in ('top', 'left', 'bottom', 'right'):

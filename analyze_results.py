@@ -28,8 +28,11 @@ def stat(values):
 
 
 def save_figure(fig, name):
+    fig.set_facecolor('white')
+    for ax in fig.axes:
+        ax.set_facecolor('white')
     for suffix in ('.png', '.svg'):
-        fig.savefig(OUT / (name + suffix), dpi=200, bbox_inches='tight')
+        fig.savefig(OUT / (name + suffix), dpi=200, bbox_inches='tight', facecolor='white')
     plt.close(fig)
 
 

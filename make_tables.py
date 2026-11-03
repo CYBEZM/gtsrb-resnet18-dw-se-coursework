@@ -22,9 +22,24 @@ def write_csv(path, rows):
 
 
 def save_figure(fig, path):
-    fig.savefig(path.with_suffix('.png'), dpi=220, bbox_inches='tight')
-    fig.savefig(path.with_suffix('.svg'), bbox_inches='tight')
+    fig.set_facecolor('white')
+    for ax in fig.axes:
+        ax.set_facecolor('white')
+    fig.savefig(path.with_suffix('.png'), dpi=220, bbox_inches='tight', facecolor='white')
+    fig.savefig(path.with_suffix('.svg'), bbox_inches='tight', facecolor='white')
     plt.close(fig)
+
+
+def make_confusion(runs_root, output, seed):
+    """Render fixed-seed recorded confusion matrices with a white zero level."""
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4.5), layout='constrained')
+    for ax, variant in zip(axes, ['A', 'D']):
+        cm = np.array(read_json(Path(runs_root) / variant / str(seed) / 'test_metrics.json')['confusion_matrix'])
+        norm = cm / cm.sum(1, keepdims=True).clip(1)
+        im = ax.imshow(norm, vmin=0, vmax=1, cmap='Greys')
+        ax.set(title=f'{variant}, seed {seed}', xlabel='Predicted class ID', ylabel='True class ID')
+    fig.colorbar(im, ax=list(axes), shrink=0.75, label='Row-normalized frequency')
+    save_figure(fig, Path(output) / 'figures/confusion')
 
 
 def sample_std(values):
@@ -169,14 +184,7 @@ def make(runs_root, output, protocol_path='protocol_frozen.json'):
         ax.grid(axis='y', alpha=0.2)
     save_figure(fig, figures / 'hardware')
     # Fixed seed selected before testing, not the seed with best test performance.
-    fig, axes = plt.subplots(1, 2, figsize=(10, 4.5), layout='constrained')
-    for ax, v in zip(axes, ['A', 'D']):
-        cm = np.array(runs[v][0]['clean']['confusion_matrix'])
-        norm = cm / cm.sum(1, keepdims=True).clip(1)
-        im = ax.imshow(norm, vmin=0, vmax=1, cmap='Blues')
-        ax.set(title=f'{v}, seed {seeds[0]}', xlabel='Predicted class ID', ylabel='True class ID')
-    fig.colorbar(im, ax=list(axes), shrink=0.75, label='Row-normalized frequency')
-    save_figure(fig, figures / 'confusion')
+    make_confusion(runs_root, output, seeds[0])
     print('Generated', tables, figures, flush=True)
 
 
@@ -185,5 +193,9 @@ if __name__ == '__main__':
     parser.add_argument('--runs-root', default='runs')
     parser.add_argument('--output', default='report')
     parser.add_argument('--protocol', default='protocol_frozen.json')
+    parser.add_argument('--confusion-only', action='store_true', help='Render only the recorded confusion matrices')
     args = parser.parse_args()
-    make(args.runs_root, args.output, args.protocol)
+    if args.confusion_only:
+        make_confusion(args.runs_root,args.output,read_json(args.protocol)['seeds'][0])
+    else:
+        make(args.runs_root, args.output, args.protocol)

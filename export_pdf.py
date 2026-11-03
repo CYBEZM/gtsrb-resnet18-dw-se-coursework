@@ -49,6 +49,8 @@ def create(source, output, regular, bold):
         'code': ParagraphStyle('Code', parent=body, fontSize=8.5, leading=13,
                                spaceAfter=2),
     }
+    styles['cell_header'] = ParagraphStyle('CellHeader', parent=styles['cell'], fontName='ReportBold')
+    styles['cell_header_left'] = ParagraphStyle('CellHeaderLeft', parent=styles['cell_left'], fontName='ReportBold')
     output.parent.mkdir(parents=True, exist_ok=True)
     document = SimpleDocTemplate(str(output), pagesize=letter, leftMargin=0.8*inch,
         rightMargin=0.8*inch, topMargin=0.72*inch, bottomMargin=0.7*inch,
@@ -94,14 +96,14 @@ def create(source, output, regular, bold):
                          6: [0.18, 0.07, 0.1875, 0.1875, 0.1875, 0.1875]}[count]
             if count == 6 and '种子' in rows[0]:
                 fractions = [0.07, 0.07, 0.19, 0.19, 0.28, 0.20]
-            cells = [[Paragraph(inline(value), styles['cell_left'] if count == 2
-                                 else styles['cell']) for value in row] for row in rows]
+            cells = [[Paragraph(inline(value), styles[
+                ('cell_header_left' if count == 2 else 'cell_header') if row_index == 0
+                else ('cell_left' if count == 2 else 'cell')])
+                for value in row] for row_index, row in enumerate(rows)]
             table = Table(cells, colWidths=[width*f for f in fractions], repeatRows=1,
                           hAlign='CENTER')
             table.setStyle(TableStyle([
-                ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#DCE6F1')),
-                ('ROWBACKGROUNDS', (0, 1), (-1, -1),
-                 [colors.white, colors.HexColor('#F5F7FA')]),
+                ('BACKGROUND', (0, 0), (-1, -1), colors.white),
                 ('GRID', (0, 0), (-1, -1), 0.4, colors.HexColor('#D9D9D9')),
                 ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
                 ('TOPPADDING', (0, 0), (-1, -1), 6),

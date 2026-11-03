@@ -1,0 +1,18 @@
+{
+  "status": "PASS",
+  "pdf": "report/大作业报告_改进版.pdf",
+  "pdf_sha256": "9d99b90e37757a5f792b9ec19e10b8f5b693fb33915734b5614b32c4fb7149f1",
+  "baseline_pdf_sha256": "b7d99af87ca4b99efde9f7dd8a754cc52debe56148a539551600ba175888ffc1",
+  "pages": 17,
+  "figure_count": 12,
+  "checks": [
+    "normalized complete PDF text identical before/after",
+    "PDF vector fill colors restricted to white and black",
+    "12 report figures have white background corners",
+    "confusion matrix uses Greys with white zero level",
+    "all pages reviewed via contact sheet; pages3/6 inspected individually",
+    "original112 files and frozen experiment sources unchanged"
+  ],
+  "style": "white table cells, bold black headers, white figure backgrounds and grayscale confusion matrix",
+  "word_exporter": "Updated to white table fills; existing Word files were not regenerated"
+}

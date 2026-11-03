@@ -34,7 +34,7 @@ def inspect(root, output):
             if col == 0:
                 axes[row, col].text(-0.05, 0.5, f'class {sample["label"]}', rotation=90,
                                    transform=axes[row, col].transAxes, ha='right', va='center')
-    fig.savefig(output / 'validation_corruptions.png', dpi=180, bbox_inches='tight')
+    fig.savefig(output / 'validation_corruptions.png', dpi=180, bbox_inches='tight', facecolor='white')
     plt.close(fig)
     fig, ax = plt.subplots(figsize=(10, 3.2), layout='constrained')
     x = np.arange(43)
@@ -43,7 +43,7 @@ def inspect(root, output):
            label='Validation', color='#E69F00')
     ax.set(xlabel='Class ID', ylabel='Images', xticks=np.arange(0, 43, 3))
     ax.legend()
-    fig.savefig(output / 'class_distribution.png', dpi=220, bbox_inches='tight')
+    fig.savefig(output / 'class_distribution.png', dpi=220, bbox_inches='tight', facecolor='white')
     plt.close(fig)
     with (output / 'split_counts.csv').open('w', newline='', encoding='utf-8-sig') as f:
         writer = csv.DictWriter(f, list(m['per_class'][0]))
